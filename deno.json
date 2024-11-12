@@ -1,0 +1,9 @@
+{
+  "name": "infinite-num",
+  "license": "MIT",
+  "version": "0.0.1",
+  "tasks": {
+    "dev": "deno run --watch main.ts"
+  },
+  "imports": {}
+}

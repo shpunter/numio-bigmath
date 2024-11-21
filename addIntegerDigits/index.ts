@@ -9,7 +9,7 @@ export const calcNext: CalcNext = (digit2, digit1, inc) => {
 	return [digit2 + digit1 + inc, 0];
 };
 
-export const add = (num1: string, num2: string) => {
+export const addIntegerDigits = (num1: string, num2: string) => {
 	let p1 = num1.length - 1;
 	let p2 = num2.length - 1;
 	let incNext = 0;
@@ -26,6 +26,7 @@ export const add = (num1: string, num2: string) => {
 		p1 > -1 && (p1 -= 1);
 		p2 > -1 && (p2 -= 1);
 	}
-
-	return incNext ? `1${result}` : result;
+ 
+	return [result, incNext]
+	// return incNext ? `1${result}` : result;
 };

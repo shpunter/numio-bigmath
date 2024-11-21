@@ -1,5 +1,5 @@
 {
-  "name": "infinite-num",
+  "name": "@jsr/infinite-number",
   "license": "MIT",
   "version": "0.0.1",
   "tasks": {

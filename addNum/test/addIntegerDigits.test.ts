@@ -1,5 +1,5 @@
-import { addIntegerDigits } from "../index.ts";
 import { assertEquals } from "jsr:@std/assert";
+import { addIntegerDigits } from "../utils.ts";
 
 Deno.test("12 + 21", () => {
     const sum = addIntegerDigits("12", "21");

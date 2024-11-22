@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { checkFractionLength } from "../index.ts";
+import { checkFractionLength } from "../utils.ts";
 
 Deno.test("12 + 23", () => {
     const sum = checkFractionLength("12", "23");

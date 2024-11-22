@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { addFractionDigits } from "../index.ts";
+import { addFractionDigits } from "../utils.ts";
 
 Deno.test("1 + 1", () => {
     const sum = addFractionDigits("1", "1");

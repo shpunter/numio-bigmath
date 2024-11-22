@@ -1,5 +1,4 @@
-import { addFractionDigits, checkFractionLength } from "../../addFractionDigits/index.ts";
-import { addIntegerDigits } from "../../addIntegerDigits/index.ts";
+import { addFractionDigits, addIntegerDigits, checkFractionLength } from "../../addNum/utils.ts";
 
 Deno.bench("checkFractionLength", () => {
     checkFractionLength("1", "100000000000000000000000000000000000000")

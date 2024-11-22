@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { getSum } from "../index.ts";
+import { getSum } from "../utils.ts";
 
 Deno.test("1 + 9", () => {
     const result = getSum(1, 9);

@@ -1,37 +1,37 @@
 import { addIntegerDigits } from "../index.ts";
 import { assertEquals } from "jsr:@std/assert";
 
-Deno.test("addIntegerDigitsIntegerDigits 2 num as string", () => {
+Deno.test("12 + 21", () => {
     const sum = addIntegerDigits("12", "21");
     assertEquals(sum, ["33", 0]);
 })
 
-Deno.test("sum === 10", () => {
+Deno.test("12 + 28", () => {
     const sum = addIntegerDigits("12", "28");
     assertEquals(sum, ["40", 0]);
 })
 
-Deno.test("sum > 10", () => {
+Deno.test("19 + 29", () => {
     const sum = addIntegerDigits("19", "29");
     assertEquals(sum, ["48", 0]);
 })
 
-Deno.test("2 sums > 10 test 1", () => {
+Deno.test("189 + 29", () => {
     const sum = addIntegerDigits("189", "29");
     assertEquals(sum, ["218", 0]);
 })
 
-Deno.test("2 sums > 10 test 2", () => {
+Deno.test("1589 + 529", () => {
     const sum = addIntegerDigits("1589", "529");
     assertEquals(sum, ["2118", 0]);
 })
 
-Deno.test("2 sums > 10 test 3", () => {
+Deno.test("529 + 1589", () => {
     const sum = addIntegerDigits("529", "1589");
     assertEquals(sum, ["2118", 0]);
 })
 
-Deno.test("all sums > 10", () => {
+Deno.test("589 + 529", () => {
     const sum = addIntegerDigits("589", "529");
     assertEquals(sum, ["118", 1]);
 })

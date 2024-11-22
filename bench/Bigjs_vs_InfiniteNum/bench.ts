@@ -1,6 +1,6 @@
 import Big from "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs";
 
-Deno.bench("addIntegerDigitsIntegerDigits", () => {
+Deno.bench("add", () => {
 	10000000000000000000000000200000000123123123123123 +
 		111110908098081789182387864589709111333444555;
 });
@@ -53,7 +53,7 @@ Deno.bench("convert into arrays", () => {
 	}
 });
 
-Deno.bench("addIntegerDigits strings create new string", () => {
+Deno.bench("add strings create new string", () => {
 	const num1 = "10000000000000000000000000200000000123123123123123";
 	const num2 = "111110908098081789182387864589709111333444555";
 
@@ -98,7 +98,7 @@ Deno.bench("addIntegerDigits strings create new string", () => {
 	}
 });
 
-Deno.bench("addIntegerDigits strings create new string remove map", () => {
+Deno.bench("add strings create new string remove map", () => {
 	const num1 = "10000000000000000000000000200000000123123123123123";
 	const num2 = "111110908098081789182387864589709111333444555";
 
@@ -130,7 +130,7 @@ Deno.bench("addIntegerDigits strings create new string remove map", () => {
 	}
 });
 
-Deno.bench("addIntegerDigits strings create new string remove num conversion", () => {
+Deno.bench("add strings create new string remove num conversion", () => {
 	const num1 = "10000000000000000000000000200000000123123123123123";
 	const num2 = "111110908098081789182387864589709111333444555";
 
@@ -188,7 +188,7 @@ Deno.bench("addIntegerDigits strings create new string remove num conversion", (
 	}
 });
 
-Deno.bench("addIntegerDigits using big.js", () => {
+Deno.bench("add using big.js", () => {
 	const x = new Big("100000000000000000000000002000000001231231231231231");
 	const y = new Big("1111109080980817891823878645897091113334445559");
 	const res = x.plus(y);

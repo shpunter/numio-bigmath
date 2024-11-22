@@ -37,13 +37,13 @@ Deno.bench("add using big.js => big", () => {
 	const res = x.plus(y);
 });
 
-Deno.bench("0.3", () => {
+Deno.bench("addNum => 0.3", () => {
     const num1 = "0.1";
     const num2 = "0.2";
     const res = addNum(num1, num2);
 });
 
-Deno.bench("add using big.js => big", () => {
+Deno.bench("big.js => 0.3", () => {
     const x = new Big("0.1");
     const y = new Big("0.2");
     const res = x.plus(y);

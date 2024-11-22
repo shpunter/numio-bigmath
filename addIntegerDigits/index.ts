@@ -27,6 +27,5 @@ export const addIntegerDigits = (num1: string, num2: string) => {
 		p2 > -1 && (p2 -= 1);
 	}
  
-	return [result, incNext]
-	// return incNext ? `1${result}` : result;
+	return [result, incNext ? "1" : ""]
 };

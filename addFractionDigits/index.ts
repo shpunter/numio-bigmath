@@ -12,7 +12,7 @@ export const checkFractionLength = (num1: string, num2: string) => {
     return [numToModify, num];
 };
 
-export const addFractionDigits = (num1: string, num2: string) => {
+export const addFractionDigits = (num1: string = "", num2: string = "") => {
     const [_num1, _num2] = checkFractionLength(num1, num2);
 
     return addIntegerDigits(_num1, _num2);

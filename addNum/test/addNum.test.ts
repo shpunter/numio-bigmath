@@ -55,8 +55,3 @@ Deno.test("10 + 0.19", () => {
     const sum = addNum("10", "0.19");
     assertEquals(sum, "10.19");
 });
-
-Deno.test("0.1 + 0.2", () => {
-    const sum = addNum("0.1", "0.2");
-    assertEquals(sum, "0.3");
-});

@@ -5,5 +5,6 @@
   "tasks": {
     "dev": "deno run --watch main.ts"
   },
-  "imports": {}
+  "imports": {},
+  "exports": {}
 }

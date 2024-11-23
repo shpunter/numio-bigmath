@@ -1,5 +1,5 @@
 import { addFractionDigits, addIntegerDigits } from "./utils.ts";
-import { AddNum } from "./utils.type.ts";
+import type { AddNum } from "./utils.type.ts";
 
 export const addNum: AddNum = (num1, num2) => {
     const [int1, frac1] = num1.split(".");
@@ -8,9 +8,9 @@ export const addNum: AddNum = (num1, num2) => {
     let [sumInt, incNextInt] = addIntegerDigits(int1, int2);
 
     sumInt = incNextInt + sumInt;
-    sumInt = addIntegerDigits(sumInt, incNextFrac)[0]
+    sumInt = addIntegerDigits(sumInt, incNextFrac)[0];
 
-    if (frac1 || frac2) return sumInt + "." + sumFrac;    
+    if (frac1 || frac2) return sumInt + "." + sumFrac;
 
     return sumInt;
 };

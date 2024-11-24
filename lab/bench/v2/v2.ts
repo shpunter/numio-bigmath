@@ -1,6 +1,6 @@
-import { addNum } from "../../addNum/index.ts";
-import { addIntegerDigits } from "../../addNum/utils.ts";
-import { addV2 } from "../../addNumV2/index.ts";
+import { addNumV1 } from "../../addNumV1/index.ts";
+import { addIntegerPart } from "../../addNumV1/utils.ts";
+import { addNumV2 } from "../../addNumV2/index.ts";
 import Big from "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs";
 
 Deno.bench("add using big.js => big", () => {
@@ -18,23 +18,23 @@ Deno.bench("addV2 => big", () => {
         "999999999999999999999999999999999999999999999999999999999999999";
     const num2 =
         "111111111111111111111111111111111111111111111111111111111111111";
-    const res = addV2(num1, num2);
+    const res = addNumV2(num1, num2);
 });
 
-Deno.bench("addNum => big", () => {
+Deno.bench("addNumV1 => big", () => {
     const num1 =
         "999999999999999999999999999999999999999999999999999999999999999";
     const num2 =
         "111111111111111111111111111111111111111111111111111111111111111";
-    const res = addNum(num1, num2);
+    const res = addNumV1(num1, num2);
 });
 
-Deno.bench("addIntegerDigits => big", () => {
+Deno.bench("addIntegerPart => big", () => {
     const num1 =
         "999999999999999999999999999999999999999999999999999999999999999";
     const num2 =
         "111111111111111111111111111111111111111111111111111111111111111";
-    const res = addIntegerDigits(num1, num2);
+    const res = addIntegerPart(num1, num2);
 });
 
 

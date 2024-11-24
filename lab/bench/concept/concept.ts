@@ -7,7 +7,6 @@ Deno.bench("add", () => {
 	const res = num1 + num1;
 });
 
-
 Deno.bench("convert into arrays", () => {
 	const num1 = "10000000000000000000000000200000000123123123123123";
 	const num2 = "111110908098081789182387864589709111333444555";

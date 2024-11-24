@@ -1,4 +1,4 @@
-import { AddIntegerDigits, CalcNext, GetSum, CheckFractionLength } from "./utils.type.ts";
+import type { AddIntegerPart, CalcNext, GetSum, CheckFractionLength } from "./utils.type.ts";
 
 export const getSum: GetSum = (digit1, digit2) => digit1 - (10 - digit2);
 
@@ -9,7 +9,7 @@ export const calcNext: CalcNext = (digit2, digit1, inc) => {
     return [digit2 + digit1 + inc, 0];
 };
 
-export const addIntegerDigits: AddIntegerDigits = (num1, num2) => {
+export const addIntegerPart: AddIntegerPart = (num1, num2) => {
     let p1 = num1.length - 1;
     let p2 = num2.length - 1;
     let incNext = 0;
@@ -42,8 +42,8 @@ export const checkFractionLength: CheckFractionLength = (num1, num2) => {
     return [numToModify, num];
 };
 
-export const addFractionDigits = (num1 = "", num2 = "") => {
+export const addFractionPart = (num1 = "", num2 = "") => {
     const [_num1, _num2] = checkFractionLength(num1, num2);
 
-    return addIntegerDigits(_num1, _num2);
+    return addIntegerPart(_num1, _num2);
 };

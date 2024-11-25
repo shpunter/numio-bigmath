@@ -14,3 +14,5 @@ export const addNumV4 = (num1: string, num2: string) => {
     return carryOver ? "1" + str : str;
     // return [str, carryOver];
 };
+
+addNumV4("123.4568", "1")

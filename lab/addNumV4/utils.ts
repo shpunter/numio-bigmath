@@ -52,9 +52,11 @@ export const splitFn = (num: string) => {
             continue;
         }
 
-        const idx = dotIdx === -1 ? i : i - dotIdx - 1;
-
-        arrInt[idx] = charCode - 48;
+        if (dotIdx === -1) {
+            arrInt[i] = charCode - 48;
+        } else {
+            arrFrac[i - dotIdx - 1] = charCode - 48;
+        }
     }
 
     return [arrInt, arrFrac];

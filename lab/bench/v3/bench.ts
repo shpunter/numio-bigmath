@@ -8,57 +8,57 @@ const num1 =
 const num2 =
     "111111111111111111111111111111111111111111111111111111111111111";
 
-Deno.bench("chatCodeAt", () => {
-    const arr1: number[] = Array(num1.length);
-    const arr2: number[] = Array(num2.length);
+// Deno.bench("chatCodeAt", () => {
+//     const arr1: number[] = Array(num1.length);
+//     const arr2: number[] = Array(num2.length);
 
-    for (let i = 0; i < num1.length; i++) {
-        arr1[i] = num1.charCodeAt(i);
-    }
+//     for (let i = 0; i < num1.length; i++) {
+//         arr1[i] = num1.charCodeAt(i);
+//     }
 
-    for (let i = 0; i < num1.length; i++) {
-        arr2[i] = num2.charCodeAt(i);
-    }
-});
+//     for (let i = 0; i < num1.length; i++) {
+//         arr2[i] = num2.charCodeAt(i);
+//     }
+// });
 
-Deno.bench("create string", () => {
-    let arr1 = "";
-    let arr2 = "";
+// Deno.bench("create string", () => {
+//     let arr1 = "";
+//     let arr2 = "";
 
-    for (let i = 0; i < num1.length; i++) {
-        arr1 += num1[i];
-    }
+//     for (let i = 0; i < num1.length; i++) {
+//         arr1 += num1[i];
+//     }
 
-    for (let i = 0; i < num1.length; i++) {
-        arr2 += num2[i];
-    }
-});
+//     for (let i = 0; i < num1.length; i++) {
+//         arr2 += num2[i];
+//     }
+// });
 
-Deno.bench("convert string to int", () => {
-    const arr1: number[] = Array(num1.length);
-    const arr2: number[] = Array(num2.length);
+// Deno.bench("convert string to int", () => {
+//     const arr1: number[] = Array(num1.length);
+//     const arr2: number[] = Array(num2.length);
 
-    for (let i = 0; i < num1.length; i++) {
-        arr1[i] = +num1[i];
-    }
+//     for (let i = 0; i < num1.length; i++) {
+//         arr1[i] = +num1[i];
+//     }
 
-    for (let i = 0; i < num1.length; i++) {
-        arr2[i] = +num2[i];
-    }
-});
+//     for (let i = 0; i < num1.length; i++) {
+//         arr2[i] = +num2[i];
+//     }
+// });
 
-Deno.bench("Int8Array", () => {
-    const arr1 = new Int8Array(num1.length);
-    const arr2 = new Int8Array(num1.length);
+// Deno.bench("Int8Array", () => {
+//     const arr1 = new Int8Array(num1.length);
+//     const arr2 = new Int8Array(num1.length);
 
-    for (let i = 0; i < num1.length; i++) {
-        arr1[i] = +num1[i];
-    }
+//     for (let i = 0; i < num1.length; i++) {
+//         arr1[i] = +num1[i];
+//     }
 
-    for (let i = 0; i < num1.length; i++) {
-        arr2[i] = +num2[i];
-    }
-});
+//     for (let i = 0; i < num1.length; i++) {
+//         arr2[i] = +num2[i];
+//     }
+// });
 
 
 Deno.bench("addNumV3", () => {

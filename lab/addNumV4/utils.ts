@@ -7,8 +7,7 @@ export const addIntPart = (num1: number[], num2: string) => {
     while (p2 >= 0) {
         p1 = lenDiff + p2;
 
-        const digit2 = p2 < 0 ? 0 : num2.charCodeAt(p2) - 48;
-        const sum = num1[p1] + digit2 + carryOver;
+        const sum = num1[p1] + (num2.charCodeAt(p2) - 48) + carryOver;
 
         if (sum > 9) {
             num1[p1] = sum % 10;
@@ -18,7 +17,7 @@ export const addIntPart = (num1: number[], num2: string) => {
             carryOver = 0;
         }
 
-        p2 >= 0 && (p2 -= 1);
+        p2 -= 1;
     }
 
     while (p1 - 1 >= 0 && carryOver) {

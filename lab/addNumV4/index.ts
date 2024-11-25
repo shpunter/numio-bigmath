@@ -22,5 +22,3 @@ export const addNumV4 = (num1: string, num2: string) => {
     return carryOver ? "1" + str : str;
     // return [str, carryOver];
 };
-
-console.log(addNumV4("12", "21"));

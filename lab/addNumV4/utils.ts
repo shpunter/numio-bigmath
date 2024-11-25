@@ -1,19 +1,31 @@
-export const addIntPart = (num1: number[], num2: string) => {
-    let p2 = num2.length - 1;
+export const addIntPart = (left: string, right: string) => {
+    const [_left, _right] = left.length > right.length
+        ? [left, right]
+        : [right, left];
+
+    const { length: leftLen } = _left;
+    const leftAsArr: number[] = Array(leftLen);
+    const lenDiff = leftAsArr.length - _right.length;
+
+    let p2 = _right.length - 1;
     let p1 = NaN;
     let carryOver = 0;
-    const lenDiff = num1.length - num2.length;
+
+    for (let i = 0; i < leftLen; i++) {
+        leftAsArr[i] = _left.charCodeAt(i) - 48;
+    }
+
 
     while (p2 >= 0) {
         p1 = lenDiff + p2;
 
-        const sum = num1[p1] + (num2.charCodeAt(p2) - 48) + carryOver;
+        const sum = leftAsArr[p1] + (_right.charCodeAt(p2) - 48) + carryOver;
 
         if (sum > 9) {
-            num1[p1] = sum % 10;
+            leftAsArr[p1] = sum % 10;
             carryOver = (sum / 10) | 0;
         } else {
-            num1[p1] = sum;
+            leftAsArr[p1] = sum;
             carryOver = 0;
         }
 
@@ -21,12 +33,12 @@ export const addIntPart = (num1: number[], num2: string) => {
     }
 
     while (p1 - 1 >= 0 && carryOver) {
-        const sum = num1[p1 - 1] + carryOver;
+        const sum = leftAsArr[p1 - 1] + carryOver;
 
-        num1[p1 - 1] = sum % 10;
+        leftAsArr[p1 - 1] = sum % 10;
         carryOver = (sum / 10) | 0;
         p1 -= 1;
     }
 
-    return [num1, carryOver] as const;
+    return [leftAsArr, carryOver] as const;
 };

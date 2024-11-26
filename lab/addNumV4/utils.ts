@@ -52,12 +52,35 @@ export const splitFn = (num: string) => {
             continue;
         }
 
-        if (dotIdx === -1) {
-            arrInt[i] = charCode - 48;
-        } else {
-            arrFrac[i - dotIdx - 1] = charCode - 48;
-        }
+        dotIdx === -1
+            ? arrInt[i] = charCode - 48
+            : arrFrac[i - dotIdx - 1] = charCode - 48;
     }
 
     return [arrInt, arrFrac];
+};
+
+export const addFracPart = (left: number[], right: number[]) => {
+    const [_left, _right] = left.length > right.length
+        ? [left, right]
+        : [right, left];
+
+    let p = _right.length - 1;
+    let carryOver = 0;
+
+    while (p >= 0) {
+        const sum = _left[p] + _right[p] + carryOver;
+
+        if (sum > 9) {
+            _left[p] = sum % 10;
+            carryOver = (sum / 10) | 0;
+        } else {
+            _left[p] = sum;
+            carryOver = 0;
+        }
+
+        p -= 1;
+    }
+
+    return [_left, carryOver] as const;
 };

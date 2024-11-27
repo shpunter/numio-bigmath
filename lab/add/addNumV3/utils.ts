@@ -11,7 +11,7 @@ export const addIntPart = (num1: number[], num2: number[]) => {
 
         if (sum > 9) {
             result.push(sum % 10);
-            carryOver = (sum / 10) | 0
+            carryOver = (sum / 10) | 0;
         } else {
             result.push(sum);
             carryOver = 0;
@@ -49,5 +49,5 @@ export const splitFn = (num: string) => {
         }
     }
 
-    return [arrInt, arrFrac];
+    return [arrInt, arrFrac]
 };

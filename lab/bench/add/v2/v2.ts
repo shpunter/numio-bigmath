@@ -1,6 +1,6 @@
-import { addNumV1 } from "../../addNumV1/index.ts";
-import { addIntegerPart } from "../../addNumV1/utils.ts";
-import { addNumV2 } from "../../addNumV2/index.ts";
+import { addNumV1 } from "../../../add/addNumV1/index.ts";
+import { addIntegerPart } from "../../../add/addNumV1/utils.ts";
+import { addNumV2 } from "../../../add/addNumV2/index.ts";
 import Big from "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs";
 
 Deno.bench("add using big.js => big", () => {

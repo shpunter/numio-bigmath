@@ -37,24 +37,19 @@ export const addIntPart = (left: number[], right: number[]) => {
 };
 
 export const splitFn = (num: string) => {
-    const { length } = num;
-    const arrInt: number[] = Array(length);
-    const arrFrac: number[] = Array(0);
-    let dotIdx = -1;
+    const arrInt: number[] = [];
+    const arrFrac: number[] = [];
+    let hasFrac = false;
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < num.length; i++) {
         const charCode = num.charCodeAt(i);
 
         if (charCode === 46) {
-            dotIdx = i;
-            arrInt.length = i;
-            arrFrac.length = length - i - 1;
+            hasFrac = true;
             continue;
         }
 
-        dotIdx === -1
-            ? arrInt[i] = charCode - 48
-            : arrFrac[i - dotIdx - 1] = charCode - 48;
+        hasFrac ? arrFrac.push(charCode - 48) : arrInt.push(charCode - 48);
     }
 
     return [arrInt, arrFrac];

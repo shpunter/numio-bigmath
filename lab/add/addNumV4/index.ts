@@ -20,7 +20,5 @@ export const addNumV4 = (num1: string, num2: string) => {
         str += resultFrac[i];
     }
 
-    return carryOverInt ? "1" + str : str;
-    // return [str, carryOver];
+    return carryOverInt ? carryOverInt + str : str;
 };
-

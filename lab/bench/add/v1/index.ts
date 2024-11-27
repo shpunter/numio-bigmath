@@ -1,4 +1,4 @@
-import { addFractionPart, addIntegerPart, checkFractionLength } from "../../addNumV1/utils.ts";
+import { addFractionPart, addIntegerPart, checkFractionLength } from "../../../add/addNumV1/utils.ts";
 
 Deno.bench("checkFractionLength", () => {
     checkFractionLength("1", "100000000000000000000000000000000000000")

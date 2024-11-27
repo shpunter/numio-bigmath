@@ -3,7 +3,7 @@ const num =
         .split("");
 
 Deno.bench("join", () => {
-    const res = num.join("");
+    num.join("");
 });
 
 Deno.bench("loop", () => {

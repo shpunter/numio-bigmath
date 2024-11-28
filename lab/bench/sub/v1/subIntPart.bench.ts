@@ -15,6 +15,6 @@ Deno.bench("big int subIntPart", () => {
 
 Deno.bench("big int Bigjs", () => {
     const x = new Big(numLong1);
-    const y = new Big(numLong2);
-    x.plus(y);
+    const y = numLong2;
+    x.minus(y);
 });

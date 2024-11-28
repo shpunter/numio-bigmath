@@ -1,40 +1,53 @@
-export const subFracPart = (left: number[], right: number[]) => {
+export const subIntPart = (left: number[], right: number[]) => {
+    let [_left, _right] = left.length > right.length
+        ? [left, right]
+        : [right, left];
 
+    const lenDiff = _left.length - _right.length;
+    let pl = lenDiff;
+    let pr = 0;
+    let isSwapped = false;
+    let carryOver = false;
+    let shiftIdx = 1;
 
-    // return [_left, carryOver] as const;
-}
+    while (pr < _right.length) {
+        let sub = _left[pl] - _right[pr];
 
-export const getBigger = (
-    [leftInt, leftFrac]: Num,
-    [rightInt, rightFrac]: Num,
-) => {
-    const option1 = [[leftInt, leftFrac], [rightInt, rightFrac]];
-    const option2 = [[rightInt, rightFrac], [leftInt, leftFrac]];
+        if (sub < 0 && !isSwapped && lenDiff === 0) {
+            [_left, _right] = [left, right];
+            isSwapped = true;
+            continue;
+        }
 
-    if (leftInt.length > rightInt.length) return option1;
-    if (leftInt.length < rightInt.length) return option2;
+        if (sub < 0) {
+            sub += 10;
+            carryOver = true;
+        }
 
-    for (let i = 0; i < leftInt.length; i++) {
-        if (leftInt[i] === rightInt[i]) continue;
-        if (leftInt[i] > rightInt[i]) return option1;
+        while (carryOver) {
+            const _pl = pl - shiftIdx;
+            const _pr = pr - shiftIdx;
 
-        return option2;
+            if (_left[_pl] !== 0) {
+                _pl >= 0 && (_left[_pl] -= 1);
+                _pr >= 0 && (_right[_pr] -= 1);
+
+                carryOver = false;
+                shiftIdx = 0;
+            } else {
+                _left[_pl] = 9;
+                _right[_pr] = 9;
+            }
+
+            shiftIdx += 1;
+        }
+
+        _left[pl] = sub;
+        _right[pr] = sub;
+
+        pl += 1;
+        pr += 1;
     }
 
-    const len = leftFrac.length > rightFrac.length
-        ? leftFrac.length
-        : rightFrac.length;
-
-    for (let i = 0; i < len; i++) {
-        if (i >= leftFrac.length) return option2;
-        if (i >= rightFrac.length) return option1;
-        if (leftFrac[i] === rightFrac[i]) continue;
-        if (leftFrac[i] > rightFrac[i]) return option1;
-
-        return option2;
-    }
-
-    return option1;
+    return _left;
 };
-
-type Num = number[][];//[number[], number[]];

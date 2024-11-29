@@ -13,8 +13,64 @@ export const subIntPart = (left: number[], right: number[]) => {
     while (pr < _right.length) {
         let sub = _left[pl] - _right[pr];
 
+        if (_left[pl] > _right[pr] || lenDiff > 0) isSwapped = true;
+
         if (sub < 0 && !isSwapped && lenDiff === 0) {
             [_left, _right] = [left, right];
+            isSwapped = true;
+            continue;
+        }
+
+        if (sub < 0) {
+            sub += 10;
+            carryOver = true;
+        }
+
+        while (carryOver) {
+            const _pl = pl - shiftIdx;
+            const _pr = pr - shiftIdx;
+
+            if (_left[_pl] !== 0) {
+                _pl >= 0 && (_left[_pl] -= 1);
+                _pr >= 0 && (_right[_pr] -= 1);
+
+                carryOver = false;
+                shiftIdx = 0;
+            } else {
+                _left[_pl] = 9;
+                _right[_pr] = 9;
+            }
+
+            shiftIdx += 1;
+        }
+
+        _left[pl] = sub;
+        _right[pr] = sub;
+
+        pl += 1;
+        pr += 1;
+    }
+
+    return _left;
+};
+
+export const subFracPart = (left: number[], right: number[]) => {
+    let [_left, _right] = [left, right];
+    let pl = 0;
+    let pr = 0;
+    let isSwapped = false;
+    let carryOver = false;
+    let shiftIdx = 1;
+
+    while (pr < _right.length) {
+        if (_left[pl] === undefined) _left[pl] = 0;
+
+        let sub = _left[pl] - _right[pr];
+
+        if (_left[pl] > _right[pr]) isSwapped = true;
+
+        if (sub < 0 && !isSwapped) {
+            [_left, _right] = [right, left];
             isSwapped = true;
             continue;
         }

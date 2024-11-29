@@ -1,4 +1,4 @@
-import { subV1 } from "../../../sub/v1/index.ts";
+import { subV1 } from "../index.ts";
 
 const tricky1 =
     "1.100000000000000000000000000000000000000000000000000000000001";

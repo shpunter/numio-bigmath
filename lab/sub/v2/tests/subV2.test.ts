@@ -132,10 +132,10 @@ Deno.test("10.01 - 0.12", () => {
     assertEquals(sub, "09.89");
 });
 
-// Deno.test("10 - 0.12", () => {
-//     const sub = subV2("10", "0.12");
-//     assertEquals(sub, "09.88");
-// });
+Deno.test("10 - 0.12", () => {
+    const sub = subV2("10", "0.12");
+    assertEquals(sub, "09.88");
+});
 
 Deno.test("10.12 - 1", () => {
     const sub = subV2("10.12", "1");

@@ -4,12 +4,15 @@ export const sub = (
     intLenL: number,
     intLenR: number,
 ): number[] => {
-    let [_left, _right] = intLenL >= intLenR ? [left, right] : [right, left];
     const lenDiff = (intLenL - intLenR) * (intLenL > intLenR ? 1 : -1);
+    let [_left, _right] = intLenL >= intLenR ? [left, right] : [right, left];
     let pl = lenDiff;
     let pr = 0;
     let isSwapped = lenDiff > 0;
     let carryOver = false;
+
+    if (intLenL === _left.length && intLenR !== _right.length) _left.push(46);
+    if (intLenR === _right.length && intLenL !== _left.length) _right.push(46);
 
     while (pr < _right.length) {
         if (_left[pl] < 48 || _right[pr] < 48) {

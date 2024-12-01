@@ -13,24 +13,24 @@ export const sub = (
     let shiftIdx = 1;
 
     while (pr < _right.length) {
-        if (_left[pl] < 0 || _right[pr] < 0 ) {
+        if (_left[pl] < 48 || _right[pr] < 48 ) {
             pr +=1;
             pl +=1;
         }
 
-        let sub = (_left[pl] ?? 0) - (_right[pr] ?? 0);
+        let sub = ((_left[pl] ?? 48) - (_right[pr]?? 48)) + 48;
 
         if (!isSwapped && _left[pl] > _right[pr]) {
             isSwapped = true;
         }
 
-        if (!isSwapped && sub < 0 && lenDiff === 0) {
+        if (!isSwapped && sub < 48 && lenDiff === 0) {
             [_left, _right] = [right, left];
             isSwapped = true;
             continue;
         }
 
-        if (sub < 0) {
+        if (sub < 48) {
             sub += 10;
             carryOver = true;
         }
@@ -39,20 +39,20 @@ export const sub = (
             const _pl = pl - shiftIdx;
             const _pr = pr - shiftIdx;
 
-            if (_left[_pl] < 0 || _right[_pr] < 0) {
+            if (_left[_pl] < 48 || _right[_pr] < 48) {
                 shiftIdx += 1;
                 continue;
             }
 
-            if (_left[_pl] !== 0) {
+            if (_left[_pl] !== 48) {
                 _pl >= 0 && (_left[_pl] -= 1);
                 _pr >= 0 && (_right[_pr] -= 1);
 
                 carryOver = false;
                 shiftIdx = 0;
             } else {
-                _pl >= 0 && (_left[_pl] = 9);
-                _pr >= 0 && (_right[_pr] = 9);
+                _pl >= 0 && (_left[_pl] = 57);
+                _pr >= 0 && (_right[_pr] = 57);
             }
 
             shiftIdx += 1;
@@ -67,3 +67,4 @@ export const sub = (
 
     return _left;
 };
+

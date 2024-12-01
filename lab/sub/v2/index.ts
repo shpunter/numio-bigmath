@@ -11,7 +11,7 @@ export const subV2 = (left: string, right: string) => {
 
         if (charCode === 46) intLenL = i;        
 
-        arrL[i] = charCode - 48;
+        arrL[i] = charCode;
     }
 
     for (let i = 0; i < right.length; i++) {
@@ -19,16 +19,11 @@ export const subV2 = (left: string, right: string) => {
 
         if (charCode === 46) intLenR = i;
         
-        arrR[i] = charCode - 48;
+        arrR[i] = charCode;
     }
 
     const result = sub(arrL, arrR, intLenL, intLenR);
-    // return String.fromCharCode(...result)
-    let str = "";
-    for (let i = 0; i < result.length; i++) {
-        const charCode = result[i] === 46 ? 46 : result[i] + 48;
-        str += String.fromCharCode(charCode);
-    }
 
-    return str;
+    return String.fromCharCode(...result)
 };
+

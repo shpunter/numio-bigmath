@@ -1,5 +1,6 @@
-import Big from "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs";
-import { subV1 } from "../index.ts";
+// import Big from "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs";
+import { subV1 } from "../../v1/index.ts";
+import { subV2 } from "../index.ts";
 
 const numLong1 =
     "1111111111111111111111111111111111111111111111111111111111111111111111111111111111";
@@ -18,52 +19,51 @@ const numFracTricky2 =
 
 const short = "2";
 
-Deno.bench("big int subIntPart", () => {
+Deno.bench("big int v2", () => {
+    subV2(numLong1, numLong2);
+});
+
+Deno.bench("big int v1", () => {
     subV1(numLong1, numLong2);
 });
 
-Deno.bench("big int Bigjs", () => {
-    const x = new Big(numLong1);
-    const y = numLong2;
-    x.minus(y);
+// ---------------------------------------
+
+Deno.bench("long frac subV2", () => {
+    subV2(numFrac1, numFrac2);
 });
 
 Deno.bench("long frac subV1", () => {
     subV1(numFrac1, numFrac2);
 });
 
-Deno.bench("long frac  Bigjs", () => {
-    const x = new Big(numFrac1);
-    const y = numFrac2;
-    x.minus(y);
+// ---------------------------------------
+
+Deno.bench("long frac tricky subV2", () => {
+    subV2(numFracTricky1, numFracTricky2);
 });
 
 Deno.bench("long frac tricky subV1", () => {
     subV1(numFracTricky1, numFracTricky2);
 });
 
-Deno.bench("long frac tricky Bigjs", () => {
-    const x = new Big(numFracTricky1);
-    const y = numFracTricky2;
-    x.minus(y);
+// ---------------------------------------
+
+Deno.bench("numLong1 - short subV2", () => {
+    subV2(numLong1, short);
 });
 
 Deno.bench("numLong1 - short subV1", () => {
     subV1(numLong1, short);
 });
 
-Deno.bench("numLong1 - short Bigjs", () => {
-    const x = new Big(numLong1);
-    const y = short;
-    x.minus(y);
+// ---------------------------------------
+
+Deno.bench("short - numFracTricky1 subV2", () => {
+    subV2(short, numFracTricky1);
 });
 
 Deno.bench("short - numFracTricky1 subV1", () => {
     subV1(short, numFracTricky1);
 });
 
-Deno.bench("short - numFracTricky1 Bigjs", () => {
-    const x = new Big(short);
-    const y = numFracTricky1;
-    x.minus(y);
-});

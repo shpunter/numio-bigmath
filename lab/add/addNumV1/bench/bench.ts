@@ -1,4 +1,4 @@
-import { addNumV1 } from "../../../add/addNumV1/index.ts";
+import { addNumV1 } from "../index.ts";
 import Big from "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs";
 
 Deno.bench("add addNumV1 => small", () => {

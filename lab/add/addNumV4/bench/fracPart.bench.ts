@@ -1,6 +1,6 @@
 import Big from "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs";
-import { addNumV1 } from "../../../add/addNumV1/index.ts";
-import { addNumV4 } from "../../../add/addNumV4/index.ts";
+import { addNumV1 } from "../../addNumV1/index.ts";
+import { addNumV4 } from "../index.ts";
 
 const num1BigIntPart = "1111111111111111111111111111111111111111111111111111111111111111111111111.111";
 const num2BigIntPart = "9999999999999999999999999999999999999999999999999999999999999999999999999.999";

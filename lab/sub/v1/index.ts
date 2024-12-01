@@ -7,9 +7,6 @@ export const subV1 = (num1: string, num2: string) => {
     const resultInt = subIntPart(int1, int2);
     const resultFrac = subFracPart(frac1, frac2);
 
-
-    // return String.fromCharCode(...resultInt)
-
     let str = "";
 
     for (let i = 0; i < resultInt.length; i++) {
@@ -24,5 +21,3 @@ export const subV1 = (num1: string, num2: string) => {
 
     return str;
 };
-
-

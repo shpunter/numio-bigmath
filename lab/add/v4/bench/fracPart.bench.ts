@@ -1,6 +1,6 @@
 import Big from "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs";
-import { addNumV1 } from "../../addNumV1/index.ts";
-import { addNumV4 } from "../index.ts";
+import { addV1 } from "../../addV1/index.ts";
+import { addV4 } from "../index.ts";
 
 const num1BigIntPart = "1111111111111111111111111111111111111111111111111111111111111111111111111.111";
 const num2BigIntPart = "9999999999999999999999999999999999999999999999999999999999999999999999999.999";
@@ -9,11 +9,11 @@ const num2BigFracPart = "0.99999999999999999999999999999999999999999999999999999
 const numSmallIntFracPart = "0.9";
 
 Deno.bench("v4 => big int part", () => {
-    addNumV4(num1BigIntPart, num2BigIntPart);
+    addV4(num1BigIntPart, num2BigIntPart);
 });
 
 Deno.bench("v1 => big int part", () => {
-    addNumV1(num1BigIntPart, num2BigIntPart);
+    addV1(num1BigIntPart, num2BigIntPart);
 });
 
 Deno.bench("bigjs => big int part", () => {
@@ -23,11 +23,11 @@ Deno.bench("bigjs => big int part", () => {
 });
 //----------------------------------------------------------------------
 Deno.bench("v4 => big frac part", () => {
-    addNumV4(num1BigFracPart, num2BigFracPart);
+    addV4(num1BigFracPart, num2BigFracPart);
 });
 
 Deno.bench("v1 => big frac part", () => {
-    addNumV1(num1BigFracPart, num2BigFracPart);
+    addV1(num1BigFracPart, num2BigFracPart);
 });
 
 Deno.bench("bigjs => big int part", () => {
@@ -37,11 +37,11 @@ Deno.bench("bigjs => big int part", () => {
 });
 //----------------------------------------------------------------------
 Deno.bench("v4 => big frac part & small num", () => {
-    addNumV4(num1BigFracPart, numSmallIntFracPart);
+    addV4(num1BigFracPart, numSmallIntFracPart);
 });
 
 Deno.bench("v1 => big frac part & small num", () => {
-    addNumV1(num1BigFracPart, numSmallIntFracPart);
+    addV1(num1BigFracPart, numSmallIntFracPart);
 });
 
 Deno.bench("bigjs => big int part & small num", () => {
@@ -52,11 +52,11 @@ Deno.bench("bigjs => big int part & small num", () => {
 //----------------------------------------------------------------------
 
 Deno.bench("v4 => big int part & small num", () => {
-    addNumV4(num1BigIntPart, numSmallIntFracPart);
+    addV4(num1BigIntPart, numSmallIntFracPart);
 });
 
 Deno.bench("v1 => big int part & small num", () => {
-    addNumV1(num1BigIntPart, numSmallIntFracPart);
+    addV1(num1BigIntPart, numSmallIntFracPart);
 });
 
 Deno.bench("bigjs => big int part & small num", () => {

@@ -30,7 +30,7 @@ export const addChunks = (remembered: number, chunks: number[]) => {
     return [0, sum];
 };
 
-export const addNumV2 = (num1: string, num2: string) => {
+export const addV2 = (num1: string, num2: string) => {
     const chunks1 = chop(num1);
     const chunks2 = chop(num2);
     const [arr1, arr2] = chunks1.length > chunks2.length

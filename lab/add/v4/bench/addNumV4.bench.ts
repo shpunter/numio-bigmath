@@ -1,5 +1,5 @@
 import Big from "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs";
-import { addNumV4 } from "../index.ts";
+import { addV4 } from "../index.ts";
 
 const num1 = "999999999999999999999999999999999999999999999999999999999999999999999999";
 const num2 = "111111111111111111111111111111111111111111111111111111111111111111111111";
@@ -12,8 +12,8 @@ const tricky1 = "0.1000000000000000000000000000000000000000000000000000000000000
 const tricky2 = "0.10000000000000000000000000000000000000000000000000000000000000000000001";
 
 
-Deno.bench("long addNumV4", () => {
-    addNumV4(num1, num2);
+Deno.bench("long addV4", () => {
+    addV4(num1, num2);
 });
 
 Deno.bench("long big.js", () => {
@@ -23,8 +23,8 @@ Deno.bench("long big.js", () => {
 });
 
 
-Deno.bench("short addNumV4", () => {
-    addNumV4(num1, short);
+Deno.bench("short addV4", () => {
+    addV4(num1, short);
 });
 
 Deno.bench("short big.js", () => {
@@ -33,8 +33,8 @@ Deno.bench("short big.js", () => {
     x.plus(y);
 });
 
-Deno.bench("small addNumV4", () => {
-    addNumV4(small1, small2);
+Deno.bench("small addV4", () => {
+    addV4(small1, small2);
 });
 
 Deno.bench("small big.js", () => {
@@ -43,8 +43,8 @@ Deno.bench("small big.js", () => {
     x.plus(y);
 });
 
-Deno.bench("tricky addNumV4", () => {
-    addNumV4(tricky1, tricky2);
+Deno.bench("tricky addV4", () => {
+    addV4(tricky1, tricky2);
 });
 
 Deno.bench("tricky big.js", () => {

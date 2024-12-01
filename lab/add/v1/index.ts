@@ -1,7 +1,7 @@
 import { addFractionPart, addIntegerPart } from "./utils.ts";
 import type { AddNum } from "./utils.type.ts";
 
-export const addNumV1: AddNum = (num1, num2) => {
+export const addV1: AddNum = (num1, num2) => {
     const [int1, frac1] = num1.split(".");
     const [int2, frac2] = num2.split(".");
     const [sumFrac, incNextFrac] = addFractionPart(frac1, frac2);

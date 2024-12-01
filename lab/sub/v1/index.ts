@@ -1,4 +1,4 @@
-import { splitFn } from "../../add/addNumV4/utils.ts";
+import { splitFn } from "../../add/v4/utils.ts";
 import { subFracPart, subIntPart } from "./utils.ts";
 
 export const subV1 = (num1: string, num2: string) => {

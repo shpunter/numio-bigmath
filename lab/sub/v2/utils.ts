@@ -8,7 +8,7 @@ export const sub = (
     let [_left, _right] = intLenL >= intLenR ? [left, right] : [right, left];
     let pl = lenDiff;
     let pr = 0;
-    let isSwapped = lenDiff > 0;
+    let isLeftBigger = lenDiff > 0;
     let carryOver = false;
 
     if (intLenL === _left.length && intLenR !== _right.length) _left.push(46);
@@ -22,13 +22,13 @@ export const sub = (
 
         let sub = ((_left[pl] ?? 48) - (_right[pr] ?? 48)) + 48;
 
-        if (!isSwapped && _left[pl] > _right[pr]) {
-            isSwapped = true;
+        if (!isLeftBigger && _left[pl] > _right[pr]) {
+            isLeftBigger = true;
         }
 
-        if (!isSwapped && sub < 48 && lenDiff === 0) {
+        if (!isLeftBigger && sub < 48 && lenDiff === 0) {
             [_left, _right] = [right, left];
-            isSwapped = true;
+            isLeftBigger = true;
             continue;
         }
 

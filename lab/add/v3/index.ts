@@ -1,6 +1,6 @@
 import { addIntPart, splitFn } from "./utils.ts";
 
-export const addNumV3 = (num1: string, num2: string) => {
+export const addV3 = (num1: string, num2: string) => {
     const [int1, frac1] = splitFn(num1);
     const [int2, frac2] = splitFn(num2);
 

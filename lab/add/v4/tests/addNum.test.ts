@@ -123,7 +123,7 @@ Deno.test("0.001 + 0.101", () => {
 
 Deno.test("0.1 + 0.9", () => {
     const sum = addV4("0.1", "0.9");
-    assertEquals(sum, "1.0");
+    assertEquals(sum, "1");
 });
 
 Deno.test("0.10101 + 0.01010", () => {
@@ -133,7 +133,7 @@ Deno.test("0.10101 + 0.01010", () => {
 
 Deno.test("1.11 + 9.99", () => {
     const sum = addV4("1.11", "9.99");
-    assertEquals(sum, "11.10");
+    assertEquals(sum, "11.1");
 });
 
 Deno.test("1.0011 + 9.99", () => {

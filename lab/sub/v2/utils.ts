@@ -1,21 +1,19 @@
-export const sub = (
-    left: number[],
-    right: number[],
-    intLenL: number,
-    intLenR: number,
-): number[] => {
+import type { Sub } from "./types.ts";
+
+export const sub: Sub = (left, right, intLenL, intLenR) => {
     const lenDiff = (intLenL - intLenR) * (intLenL > intLenR ? 1 : -1);
     let [_left, _right] = intLenL >= intLenR ? [left, right] : [right, left];
     let pl = lenDiff;
     let pr = 0;
     let isLeftBigger = lenDiff > 0;
     let carryOver = false;
+    let isNegative = false;
 
     if (intLenL === _left.length && intLenR !== _right.length) _left.push(46);
     if (intLenR === _right.length && intLenL !== _left.length) _right.push(46);
 
     while (pr < _right.length) {
-        if (_left[pl] < 48 || _right[pr] < 48) {
+        if (_left[pl] === 46 || _right[pr] === 46) {
             pr += 1;
             pl += 1;
         }
@@ -29,6 +27,7 @@ export const sub = (
         if (!isLeftBigger && sub < 48 && lenDiff === 0) {
             [_left, _right] = [right, left];
             isLeftBigger = true;
+            isNegative = true;
             continue;
         }
 
@@ -67,5 +66,5 @@ export const sub = (
         pr += 1;
     }
 
-    return _left;
+    return [_left, isNegative];
 };

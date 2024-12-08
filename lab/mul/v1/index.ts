@@ -27,5 +27,3 @@ export const mulV1 = (left: string, right: string) => {
     return (carryOver ? String.fromCharCode(carryOver) : "") +
         String.fromCharCode(...result).trim();
 };
-
-console.log(mulV1("5", "23"));

@@ -1,9 +1,9 @@
 import type { Sum } from "./types.ts";
 
 export const sum: Sum = (left, right, intLenL, intLenR) => {
-    const leftFracLen = left.length - intLenL;
-    const rightFracLen = right.length - intLenR;
-    const fracMaxLen = leftFracLen >= rightFracLen ? leftFracLen : rightFracLen;
+    const fracLenL = left.length - intLenL;
+    const fracLenR = right.length - intLenR;
+    const fracMaxLen = fracLenL >= fracLenR ? fracLenL : fracLenR;
     const [_left, _right] = intLenL >= intLenR ? [left, right] : [right, left];
     let pl = (intLenL >= intLenR ? intLenL : intLenR) + fracMaxLen - 1;
     let pr = (intLenL >= intLenR ? intLenR : intLenL) + fracMaxLen - 1;

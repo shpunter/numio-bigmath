@@ -1,28 +1,35 @@
 import { mul } from "./utils.ts";
 
 export const mulV1 = (left: string, right: string) => {
-    let intLenL = left.length;
-    let intLenR = right.length;
-    const arrL: number[] = Array(left.length);
-    const arrR: number[] = Array(right.length);
+    const arrL: number[] = [];
+    const arrR: number[] = [];
+    let decNum = 0;
 
     for (let i = 0; i < left.length; i++) {
         const charCode = left.charCodeAt(i);
 
-        if (charCode === 46) intLenL = i;
+        if (arrL.length === 0 && charCode === 48) continue;
+        if (charCode === 46) {
+            decNum += left.length - 1 - i;
+            continue;
+        }
 
-        arrL[i] = charCode;
+        arrL.push(charCode);
     }
 
     for (let i = 0; i < right.length; i++) {
         const charCode = right.charCodeAt(i);
 
-        if (charCode === 46) intLenR = i;
+        if (arrR.length === 0 && charCode === 48) continue;
+        if (charCode === 46) {
+            decNum += right.length - 1 - i;
+            continue;
+        }
 
-        arrR[i] = charCode;
+        arrR.push(charCode);
     }
 
-    const [result, carryOver] = mul(arrL, arrR, intLenL, intLenR);
+    const [result, carryOver] = mul(arrL, arrR, decNum);
 
     return (carryOver ? String.fromCharCode(carryOver) : "") +
         String.fromCharCode(...result).trim();

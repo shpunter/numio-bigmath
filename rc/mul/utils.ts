@@ -1,8 +1,6 @@
-export const mul = (
-  left: number[],
-  right: number[],
-  decNum: number,
-): [number[], number] => {
+import type { Multiplication } from "./types.ts";
+
+export const multiplication: Multiplication = (left, right, decNum) => {
   if (left.length === 0 || right.length === 0) return [[48], 0];
 
   const [_left, _right] = left.length >= right.length

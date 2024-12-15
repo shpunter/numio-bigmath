@@ -1,6 +1,6 @@
-export type Sum = (
+export type Subtract = (
   left: number[],
   right: number[],
   intLenL: number,
   intLenR: number,
-) => [number[], number];
+) => [number[], boolean];

@@ -1,6 +1,6 @@
-import type { Sum } from "./types.ts";
+import type { Addition } from "./types.ts";
 
-export const sum: Sum = (left, right, intLenL, intLenR) => {
+export const addition: Addition = (left, right, intLenL, intLenR) => {
   const fracLenL = left.length - intLenL;
   const fracLenR = right.length - intLenR;
   const fracMaxLen = fracLenL >= fracLenR ? fracLenL : fracLenR;

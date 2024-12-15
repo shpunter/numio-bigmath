@@ -1,6 +1,6 @@
-import type { Sub } from "./types.ts";
+import type { Subtract } from "./types.ts";
 
-export const sub: Sub = (left, right, intLenL, intLenR) => {
+export const subtract: Subtract = (left, right, intLenL, intLenR) => {
   const lenDiff = (intLenL - intLenR) * (intLenL > intLenR ? 1 : -1);
   let [_left, _right] = intLenL >= intLenR ? [left, right] : [right, left];
   let pl = lenDiff;

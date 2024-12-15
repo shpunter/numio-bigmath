@@ -1,6 +1,6 @@
-import { mul } from "./utils.ts";
+import { multiplication } from "./utils.ts";
 
-export const mulV1 = (left: string, right: string) => {
+export const mul = (left: string, right: string) => {
   const arrL: number[] = [];
   const arrR: number[] = [];
   let decNum = 0;
@@ -29,7 +29,7 @@ export const mulV1 = (left: string, right: string) => {
     arrR.push(charCode);
   }
 
-  const [result, carryOver] = mul(arrL, arrR, decNum);
+  const [result, carryOver] = multiplication(arrL, arrR, decNum);
 
   return (carryOver ? String.fromCharCode(carryOver) : "") +
     String.fromCharCode(...result).trim();

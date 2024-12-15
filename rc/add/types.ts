@@ -1,4 +1,4 @@
-export type Sum = (
+export type Addition = (
   left: number[],
   right: number[],
   intLenL: number,

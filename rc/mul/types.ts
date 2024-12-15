@@ -1,6 +1,5 @@
-export type Sum = (
+export type Multiplication = (
   left: number[],
   right: number[],
-  intLenL: number,
-  intLenR: number,
+  decNum: number,
 ) => [number[], number];

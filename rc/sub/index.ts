@@ -1,6 +1,6 @@
-import { sub } from "./utils.ts";
+import { subtract } from "./utils.ts";
 
-export const subV2 = (left: string, right: string) => {
+export const sub = (left: string, right: string): string => {
   let intLenL = left.length;
   let intLenR = right.length;
   const arrL: number[] = Array(left.length);
@@ -23,7 +23,7 @@ export const subV2 = (left: string, right: string) => {
   }
 
   const isFloat = intLenL !== left.length || intLenR !== right.length;
-  const [result, isNegative] = sub(arrL, arrR, intLenL, intLenR);
+  const [result, isNegative] = subtract(arrL, arrR, intLenL, intLenR);
 
   for (let i = 0; i < result.length; i++) {
     if (result[i] === 48 && result[i + 1] !== 46) result[i] = 32;

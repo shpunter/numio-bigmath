@@ -1,6 +1,7 @@
 # Infinite-numbers
 
-A JavaScript library for basic operation with decimal numbers (integer and float) 
+A JavaScript library for basic operation with decimal numbers (integer and
+float)
 
 # Example:
 
@@ -22,5 +23,18 @@ const int = sub("15", "11"); // 164
 const float = sub("0.01", "0.99"); // 0.0099
 ```
 
-Does not have a limitation on the number of digits
-You can use any length you'd like
+Does not have a limitation on the number of digits You can use any length you'd
+like
+
+```javascript
+// NO precision loss using numeric literals with more than 15 significant digits.
+const int = sub(
+  "999999999999999999999999999999999999999999999999999999999999999",
+  "2",
+); // "1000000000000000000000000000000000000000000000000000000000000001"
+
+const float = mul(
+  "0.00000000000000000000000000000000000000000000000000000000000000000009",
+  "0.000000002",
+); // 0.00000000000000000000000000000000000000000000000000000000000000000000000000018
+```

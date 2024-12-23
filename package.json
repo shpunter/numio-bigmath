@@ -21,7 +21,7 @@
     "type": "git",
     "url": "https://github.com/shpunter/infinite-num.git"
   },
-  "main": "infinite-num",
+  "main": "main",
   "exports": {
     ".": {
       "import": "./index.ts"

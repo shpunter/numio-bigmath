@@ -1,0 +1,43 @@
+{
+  "name": "infinite-numbers",
+  "description": "A JavaScript library for basic operation with decimal numbers (integer and float)",
+  "version": "0.1.1",
+  "keywords": [
+    "precision",
+    "arithmetic",
+    "big",
+    "number",
+    "decimal",
+    "float",
+    "biginteger",
+    "bigdecimal",
+    "bignumber",
+    "bigint",
+    "bignum",
+    "longnumbers",
+    "infinitenumbers"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shpunter/infinite-num.git"
+  },
+  "main": "infinite-num",
+  "exports": {
+    ".": {
+      "import": "./index.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "author": {
+    "name": "Oleksandr Brudnovskyi ",
+    "email": "oleksandr.brudnovskyi@gmail.com"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "node test"
+  },
+  "dependencies": {}
+}

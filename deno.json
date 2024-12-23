@@ -1,12 +1,6 @@
 {
-  "name": "@jsr/infinite-number",
+  "name": "@num/infinite-numbers",
+  "version": "0.1.0",
   "license": "MIT",
-  "version": "0.0.1",
-  "tasks": {
-    "dev": "deno run --watch main.ts"
-  },
-  "imports": {
-    "@std/testing": "jsr:@std/testing@^1.0.5"
-  },
-  "exports": {}
+  "exports": "./index.ts"
 }

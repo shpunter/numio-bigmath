@@ -1,6 +1,6 @@
 import { addition } from "./utils.ts";
 
-export const add = (left: string, right: string) => {
+export const add = (left: string, right: string): string => {
   let intLenL = left.length;
   let intLenR = right.length;
   const arrL: number[] = Array(left.length);

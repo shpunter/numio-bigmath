@@ -1,6 +1,6 @@
 import { multiplication } from "./utils.ts";
 
-export const mul = (left: string, right: string) => {
+export const mul = (left: string, right: string): string => {
   const arrL: number[] = [];
   const arrR: number[] = [];
   let decNum = 0;

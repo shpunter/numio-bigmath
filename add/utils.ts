@@ -1,5 +1,6 @@
 import type { Addition } from "./types.ts";
 
+/** This function adds 2 numbers (as array). */
 export const addition: Addition = (left, right, intLenL, intLenR) => {
   const fracLenL = left.length - intLenL;
   const fracLenR = right.length - intLenR;

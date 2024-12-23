@@ -1,6 +1,7 @@
-import { sub } from "./utils.ts";
+import { addition } from "./utils.ts";
 
-export const subV2 = (left: string, right: string) => {
+/** This function adds 2 numbers (as string). */
+export const add = (left: string, right: string): string => {
   let intLenL = left.length;
   let intLenR = right.length;
   const arrL: number[] = Array(left.length);
@@ -23,17 +24,12 @@ export const subV2 = (left: string, right: string) => {
   }
 
   const isFloat = intLenL !== left.length || intLenR !== right.length;
-  const [result, isNegative] = sub(arrL, arrR, intLenL, intLenR);
-
-  for (let i = 0; i < result.length; i++) {
-    if (result[i] === 48 && result[i + 1] !== 46) result[i] = 32;
-    else break;
-  }
+  const [result, carryOver] = addition(arrL, arrR, intLenL, intLenR);
 
   for (let i = result.length - 1; i > 0; i--) {
     if (isFloat && result[i] === 48 || result[i] === 46) result[i] = 32;
     else break;
   }
 
-  return (isNegative ? "-" : "") + String.fromCharCode(...result).trim();
+  return (carryOver ? "1" : "") + String.fromCharCode(...result).trim();
 };

@@ -1,5 +1,6 @@
 import { multiplication } from "./utils.ts";
 
+/** This function multiplies 2 numbers (as string). */
 export const mul = (left: string, right: string): string => {
   const arrL: number[] = [];
   const arrR: number[] = [];

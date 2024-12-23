@@ -1,5 +1,5 @@
-import { add } from "./rc/add/index.ts";
-import { mul } from "./rc/mul/index.ts";
-import { sub } from "./rc/sub/index.ts";
+import { add } from "./add/index.ts";
+import { mul } from "./mul/index.ts";
+import { sub } from "./sub/index.ts";
 
 export { add, mul, sub };

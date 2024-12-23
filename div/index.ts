@@ -1,6 +1,7 @@
-import { div } from "./utils.ts";
+import { division } from "./utils.ts";
 
-export const divV1 = (left: string, right: string) => {
+/** This function should divide 2 numbers (as string). */
+export const div = (left: string, right: string) => {
   let intLenL = left.length;
   let intLenR = right.length;
   const arrL: number[] = Array(left.length);
@@ -22,7 +23,7 @@ export const divV1 = (left: string, right: string) => {
     arrR[i] = charCode - 48;
   }
 
-  const result = div(arrL, arrR, intLenL, intLenR);
+  const result = division(arrL, arrR, intLenL, intLenR);
 
   return String.fromCodePoint(...result);
 };

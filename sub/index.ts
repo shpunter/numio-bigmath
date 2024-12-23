@@ -1,5 +1,6 @@
 import { subtract } from "./utils.ts";
 
+/** This function subtracts 2 numbers (as string). */
 export const sub = (left: string, right: string): string => {
   let intLenL = left.length;
   let intLenR = right.length;

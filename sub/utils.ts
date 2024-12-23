@@ -1,5 +1,6 @@
 import type { Subtract } from "./types.ts";
 
+/** This function subtracts 2 numbers (as array). */
 export const subtract: Subtract = (left, right, intLenL, intLenR) => {
   const lenDiff = (intLenL - intLenR) * (intLenL > intLenR ? 1 : -1);
   let [_left, _right] = intLenL >= intLenR ? [left, right] : [right, left];

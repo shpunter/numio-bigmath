@@ -103,7 +103,7 @@ export const getCandidates = (num: Digit, endsWith: Digit) => {
   return map[num][endsWith] ?? null;
 };
 
-export const div = (
+export const division = (
   left: number[],
   right: number[],
   intLenL: number,

@@ -1,6 +1,6 @@
 # Infinite-numbers
 
-Infinite-numbers is an arbitrary-precision arithmetic library. Can be used for basic operation with decimal numbers (integer and
+Infinite-numbers is an arbitrary-precision arithmetic library. It can be used for basic operations with decimal numbers (integers and
 float)
 
 # Install:

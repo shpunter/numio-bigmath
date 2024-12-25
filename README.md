@@ -7,7 +7,7 @@ float)
 ### NPM
 
 ```bash
-npm jsr add @num/infinite-numbers
+npx jsr add @num/infinite-numbers
 ```
 
 ### DENO

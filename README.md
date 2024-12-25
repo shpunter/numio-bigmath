@@ -1,25 +1,38 @@
 # Infinite-numbers
 
-A JavaScript library for basic operation with decimal numbers (integer and
+Infinite-numbers is an arbitrary-precision arithmetic library. Can be used for basic operation with decimal numbers (integer and
 float)
+
+# Install:
+### NPM
+
+```bash
+npm jsr add @num/infinite-numbers
+```
+
+### DENO
+
+```bash
+deno add jsr:@num/infinite-numbers
+```
 
 # Example:
 
 ```javascript
 // add numbers
-const int = add("12345", "99"); // 124444
-const float = add("0.01", "0.99"); // 1
+const int = add("12345", "99");  // 124444
+const float = add("0.1", "0.2"); // 0.3
 ```
 
 ```javascript
 // subtract numbers
-const int = sub("150", "99"); // 51
+const int = sub("150", "99");   // 51
 const float = sub("1", "0.99"); // 0.01
 ```
 
 ```javascript
 // multiply numbers
-const int = sub("15", "11"); // 164
+const int = sub("15", "11");       // 164
 const float = sub("0.01", "0.99"); // 0.0099
 ```
 
@@ -37,4 +50,20 @@ const float = mul(
   "0.00000000000000000000000000000000000000000000000000000000000000000009",
   "0.000000002",
 ); // 0.00000000000000000000000000000000000000000000000000000000000000000000000000018
+```
+
+# Methods:
+```javascript
+// add 2 numbers
+import { add } from "@num/infinite-numbers";
+```
+
+```javascript
+// subtract 2 numbers
+import { sub } from "@num/infinite-numbers";
+```
+
+```javascript
+// multiply 2 numbers
+import { mul } from "@num/infinite-numbers";
 ```

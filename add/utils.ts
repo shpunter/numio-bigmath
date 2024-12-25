@@ -11,7 +11,6 @@ export const addition: Addition = (left, right, intLenL, intLenR) => {
   let carryOver = 48;
 
   if (intLenL === _left.length && intLenR !== _right.length) _left.push(46);
-  if (intLenR === _right.length && intLenL !== _left.length) _right.push(46);
 
   while (pr >= 0) {
     if (_left[pl] === 46 || _right[pl] === 46) {
@@ -35,8 +34,6 @@ export const addition: Addition = (left, right, intLenL, intLenR) => {
   }
 
   while (pl >= 0 && carryOver) {
-    if (_left[pl] === 46) pl -= 1;
-
     const sum = (_left[pl] + carryOver) - 2 * 48;
 
     _left[pl] = (sum % 10) + 48;

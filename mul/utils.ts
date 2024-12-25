@@ -22,10 +22,7 @@ export const multiplication: Multiplication = (left, right, decNum) => {
   }
 
   const len = sums.length > decNum ? sums.length + 1 : decNum + 2;
-  const lastCarryOver = (sums[0] === 9 && sums[1] > 9) ? 1 : 0;
-  const result = Array(
-    decNum ? lastCarryOver + len : sums.length,
-  );
+  const result = Array(decNum ? len : sums.length);
 
   const dotIdx = result.length - 1 - decNum;
   const diff = result.length - sums.length;

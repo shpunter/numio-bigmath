@@ -198,6 +198,11 @@ Deno.test("9 + 1.1", () => {
   assertEquals(res, "10.1");
 });
 
+Deno.test("1.1 + 9", () => {
+  const res = add("1.1", "9");
+  assertEquals(res, "10.1");
+});
+
 Deno.test("19 + 1", () => {
   const res = add("19", "1");
   assertEquals(res, "20");
@@ -206,4 +211,39 @@ Deno.test("19 + 1", () => {
 Deno.test("1.9 + 0.1", () => {
   const res = add("1.9", "0.1");
   assertEquals(res, "2");
+});
+
+Deno.test("1119 + 0.1", () => {
+  const res = add("1119", "0.1");
+  assertEquals(res, "1119.1");
+});
+
+Deno.test("0.1 + 1119", () => {
+  const res = add("0.1", "1119");
+  assertEquals(res, "1119.1");
+});
+
+Deno.test("19 + 0.111", () => {
+  const res = add("19", "0.111");
+  assertEquals(res, "19.111");
+});
+
+Deno.test("0.111 + 19", () => {
+  const res = add("0.111", "19");
+  assertEquals(res, "19.111");
+});
+
+Deno.test("999.999 + 99.99", () => {
+  const res = add("999.999", "99.99");
+  assertEquals(res, "1099.989");
+});
+
+Deno.test("999999 + 99.99", () => {
+  const res = add("999999", "99.99");
+  assertEquals(res, "1000098.99");
+});
+
+Deno.test("999.9 + 0.1", () => {
+  const res = add("999.9", "0.1");
+  assertEquals(res, "1000");
 });

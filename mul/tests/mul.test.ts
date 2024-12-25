@@ -120,3 +120,8 @@ Deno.test("0.0999 * 0.00999", () => {
   const res = mul("0.0999", "0.00999");
   assertEquals(res, "0.000998001");
 });
+
+Deno.test("9.99 * 0.999", () => {
+  const res = mul("9.99", "0.999");
+  assertEquals(res, "9.98001");
+});

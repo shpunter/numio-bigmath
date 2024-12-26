@@ -1,4 +1,4 @@
-import { createFinalString } from "../shared/utils.ts";
+import { createString } from "../shared/utils.ts";
 import { addition } from "./utils.ts";
 
 /** This function adds 2 numbers (as string). */
@@ -27,5 +27,5 @@ export const add = (left: string, right: string): string => {
   const isFloat = intLenL !== left.length || intLenR !== right.length;
   const [array, carryOver] = addition(arrL, arrR, intLenL, intLenR);
 
-  return createFinalString(carryOver, array, isFloat);
+  return createString(carryOver, array, isFloat);
 };

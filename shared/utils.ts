@@ -1,8 +1,6 @@
-export const createFinalString = (
-  carryOver: number,
-  array: number[],
-  isFloat: boolean,
-) => {
+import type { CreateString } from "./types.ts";
+
+export const createString: CreateString = (carryOver, array, isFloat) => {
   let isToCheckTail = isFloat;
 
   for (let i = array.length - 1; i > 0; i--) {
@@ -18,7 +16,7 @@ export const createFinalString = (
 
   for (let i = 0; i < array.length; i++) {
     if (array[i + 1] === 46 || carryOver || array.length <= 1) break;
-    
+
     if (array[i] === 48) array[i] = 32;
     else break;
   }

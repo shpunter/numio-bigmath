@@ -1,32 +1,32 @@
 import type { Subtract } from "./types.ts";
 
 /** This function subtracts 2 numbers (as array). */
-export const subtract: Subtract = (left, right, intLenL, intLenR) => {
+export const subtract: Subtract = (arrayL, arrayR, intLenL, intLenR) => {
   const lenDiff = (intLenL - intLenR) * (intLenL > intLenR ? 1 : -1);
-  let [_left, _right] = intLenL >= intLenR ? [left, right] : [right, left];
+  let [left, right] = intLenL >= intLenR ? [arrayL, arrayR] : [arrayR, arrayL];
   let pl = lenDiff;
   let pr = 0;
   let isLeftBigger = lenDiff > 0;
   let carryOver = false;
   let isNegative = false;
 
-  if (intLenL === _left.length && intLenR !== _right.length) _left.push(46);
-  if (intLenR === _right.length && intLenL !== _left.length) _right.push(46);
+  if (intLenL === left.length && intLenR !== right.length) left.push(46);
+  if (intLenR === right.length && intLenL !== left.length) right.push(46);
 
-  while (pr < _right.length) {
-    if (_left[pl] === 46 || _right[pr] === 46) {
+  while (pr < right.length) {
+    if (left[pl] === 46 || right[pr] === 46) {
       pr += 1;
       pl += 1;
     }
 
-    let sub = ((_left[pl] ?? 48) - (_right[pr] ?? 48)) + 48;
+    let sub = ((left[pl] ?? 48) - (right[pr] ?? 48)) + 48;
 
-    if (!isLeftBigger && _left[pl] > _right[pr]) {
+    if (!isLeftBigger && left[pl] > right[pr]) {
       isLeftBigger = true;
     }
 
     if (!isLeftBigger && sub < 48 && lenDiff === 0) {
-      [_left, _right] = [right, left];
+      [left, right] = [right, left];
       isLeftBigger = true;
       isNegative = true;
       continue;
@@ -37,35 +37,35 @@ export const subtract: Subtract = (left, right, intLenL, intLenR) => {
       carryOver = true;
     }
 
-    let _pl = pl - 1;
-    let _pr = pr - 1;
+    let plReverse = pl - 1;
+    let prReverse = pr - 1;
 
     while (carryOver) {
-      if (_left[_pl] === 46 || _right[_pr] === 46) {
-        _pl -= 1;
-        _pr -= 1;
+      if (left[plReverse] === 46 || right[prReverse] === 46) {
+        plReverse -= 1;
+        prReverse -= 1;
       }
 
-      if (_left[_pl] !== 48) {
-        _pl >= 0 && (_left[_pl] -= 1);
-        _pr >= 0 && (_right[_pr] -= 1);
+      if (left[plReverse] !== 48) {
+        plReverse >= 0 && (left[plReverse] -= 1);
+        prReverse >= 0 && (right[prReverse] -= 1);
 
         carryOver = false;
       } else {
-        _pl >= 0 && (_left[_pl] = 57);
-        _pr >= 0 && (_right[_pr] = 57);
+        plReverse >= 0 && (left[plReverse] = 57);
+        prReverse >= 0 && (right[prReverse] = 57);
       }
 
-      _pl -= 1;
-      _pr -= 1;
+      plReverse -= 1;
+      prReverse -= 1;
     }
 
-    _left[pl] = sub;
-    _right[pr] = sub;
+    left[pl] = sub;
+    right[pr] = sub;
 
     pl += 1;
     pr += 1;
   }
 
-  return [_left, isNegative];
+  return [left, isNegative];
 };

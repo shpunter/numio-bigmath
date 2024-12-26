@@ -1,23 +1,23 @@
 import type { Multiplication } from "./types.ts";
 
 /** This function multiplies 2 numbers (as array). */
-export const multiplication: Multiplication = (left, right, decNum) => {
-  if (left.length === 0 || right.length === 0) return [[48], 0];
+export const multiplication: Multiplication = (arrayL, arrayR, decNum) => {
+  if (arrayL.length === 0 || arrayR.length === 0) return [[48], 0];
 
-  const [_left, _right] = left.length >= right.length
-    ? [left, right]
-    : [right, left];
+  const [left, right] = arrayL.length >= arrayR.length
+    ? [arrayL, arrayR]
+    : [arrayR, arrayL];
 
   const sums: number[] = Array(
-    _right.length + _left.length - 1,
+    right.length + left.length - 1,
   );
 
-  for (let i = _right.length - 1; i >= 0; i--) {
-    for (let j = _left.length - 1; j >= 0; j--) {
+  for (let i = right.length - 1; i >= 0; i--) {
+    for (let j = left.length - 1; j >= 0; j--) {
       const idx = j + i;
 
       sums[idx] = (sums[idx] ?? 0) +
-        (_left[j] - 48) * (_right[i] - 48);
+        (left[j] - 48) * (right[i] - 48);
     }
   }
 

@@ -16,7 +16,16 @@
     "bignum",
     "infinite",
     "longnumbers",
-    "infinitenumbers"
+    "infinitenumbers",
+    "integer",
+    "float",
+    "math",
+    "add",
+    "multiply",
+    "subtract",
+    "plus",
+    "minus",
+    "divide"
   ],
   "repository": {
     "type": "git",

@@ -41,5 +41,5 @@ export const addition: Addition = (left, right, intLenL, intLenR) => {
     pl -= 1;
   }
 
-  return [_left, carryOver - 48];
+  return [_left, !(carryOver - 48) ? 0 : carryOver];
 };

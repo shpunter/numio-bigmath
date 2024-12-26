@@ -1,3 +1,4 @@
+import { createFinalString } from "../shared/utils.ts";
 import { subtract } from "./utils.ts";
 
 /** This function subtracts 2 numbers (as string). */
@@ -24,17 +25,8 @@ export const sub = (left: string, right: string): string => {
   }
 
   const isFloat = intLenL !== left.length || intLenR !== right.length;
-  const [result, isNegative] = subtract(arrL, arrR, intLenL, intLenR);
+  const [array, isNegative] = subtract(arrL, arrR, intLenL, intLenR);
+  const result = createFinalString(0, array, isFloat);
 
-  for (let i = 0; i < result.length; i++) {
-    if (result[i] === 48 && result[i + 1] !== 46) result[i] = 32;
-    else break;
-  }
-
-  for (let i = result.length - 1; i > 0; i--) {
-    if (isFloat && result[i] === 48 || result[i] === 46) result[i] = 32;
-    else break;
-  }
-
-  return (isNegative ? "-" : "") + String.fromCharCode(...result).trim();
+  return (isNegative ? "-" : "") + result;
 };

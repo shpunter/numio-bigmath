@@ -36,7 +36,7 @@ const int = sub("15", "11");       // 164
 const float = sub("0.01", "0.99"); // 0.0099
 ```
 
-Does not have a limitation on the number of digits You can use any length you'd
+Does not have a limitation on the number of digits. You can use any length you'd
 like
 
 ```javascript

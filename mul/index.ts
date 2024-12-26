@@ -1,3 +1,4 @@
+import { createFinalString } from "../shared/utils.ts";
 import { multiplication } from "./utils.ts";
 
 /** This function multiplies 2 numbers (as string). */
@@ -30,8 +31,7 @@ export const mul = (left: string, right: string): string => {
     arrR.push(charCode);
   }
 
-  const [result, carryOver] = multiplication(arrL, arrR, decNum);
+  const [array, carryOver] = multiplication(arrL, arrR, decNum);
 
-  return (carryOver ? String.fromCharCode(carryOver) : "") +
-    String.fromCharCode(...result).trim();
+  return createFinalString(carryOver, array, decNum > 0);
 };

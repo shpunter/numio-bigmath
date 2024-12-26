@@ -1,3 +1,4 @@
+import { createFinalString } from "../shared/utils.ts";
 import { addition } from "./utils.ts";
 
 /** This function adds 2 numbers (as string). */
@@ -23,20 +24,8 @@ export const add = (left: string, right: string): string => {
     arrR[i] = charCode;
   }
 
-  let isFloat = intLenL !== left.length || intLenR !== right.length;
-  const [result, carryOver] = addition(arrL, arrR, intLenL, intLenR);
+  const isFloat = intLenL !== left.length || intLenR !== right.length;
+  const [array, carryOver] = addition(arrL, arrR, intLenL, intLenR);
 
-  for (let i = result.length - 1; i > 0; i--) {
-    if (isFloat && result[i] === 46) {
-      result[i] = 32;
-      isFloat = false;
-      break;
-    }
-
-    if (isFloat && result[i] === 48) {
-      result[i] = 32;
-    } else break;
-  }
-
-  return (carryOver ? "1" : "") + String.fromCharCode(...result).trim();
+  return createFinalString(carryOver, array, isFloat);
 };

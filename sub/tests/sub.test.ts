@@ -155,3 +155,13 @@ Deno.test("111 - 11", () => {
   const result = sub("111", "11");
   assertEquals(result, "100");
 });
+
+Deno.test("100.1 - 0.1", () => {
+  const result = sub("100.1", "0.1");
+  assertEquals(result, "100");
+});
+
+Deno.test("999.9 - 999.1", () => {
+  const result = sub("999.9", "999.1");
+  assertEquals(result, "0.8");
+});

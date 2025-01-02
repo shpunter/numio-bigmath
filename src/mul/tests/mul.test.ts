@@ -31,6 +31,11 @@ Deno.test("99 * 5", () => {
   assertEquals(res, "495");
 });
 
+Deno.test("15 * 11", () => {
+  const res = mul("15", "11");
+  assertEquals(res, "165");
+});
+
 Deno.test("2604 * 1812", () => {
   const res = mul("2604", "1812");
   assertEquals(res, "4718448");

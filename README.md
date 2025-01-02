@@ -5,33 +5,45 @@ float)
 
 # Install:
 ### NPM
-
 ```bash
 npx jsr add @num/infinite-numbers
 ```
 
-### DENO
+### YARN
+```bash
+yarn dlx jsr add @num/infinite-numbers
 
+```
+### BUN
+```bash
+bunx jsr add @num/infinite-numbers
+```
+
+### PNPM
+```bash
+pnpm dlx jsr add @num/infinite-numbers
+```
+
+### DENO
 ```bash
 deno add jsr:@num/infinite-numbers
 ```
 
 # Example:
-
+### Add numbers
 ```javascript
-// add numbers
 const int = add("12345", "99");  // 124444
 const float = add("0.1", "0.2"); // 0.3
 ```
 
+### Subtract numbers
 ```javascript
-// subtract numbers
 const int = sub("150", "99");   // 51
 const float = sub("1", "0.99"); // 0.01
 ```
 
+### Multiply numbers
 ```javascript
-// multiply numbers
 const int = sub("15", "11");       // 164
 const float = sub("0.01", "0.99"); // 0.0099
 ```
@@ -52,7 +64,7 @@ const float = mul(
 ); // 0.00000000000000000000000000000000000000000000000000000000000000000000000000018
 ```
 
-# Methods:
+Methods:
 ```javascript
 // add 2 numbers
 import { add } from "@num/infinite-numbers";

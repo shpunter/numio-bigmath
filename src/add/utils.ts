@@ -1,16 +1,16 @@
 import type { Addition } from "./types.ts";
 
 /** This function adds 2 numbers (as array). */
-export const addition: Addition = (arrayL, arrayR, intLenL, intLenR) => {
-  const fracLenL = arrayL.length - intLenL;
-  const fracLenR = arrayR.length - intLenR;
+export const addition: Addition = ([arrL, intL], [arrR, intR]) => {
+  const fracLenL = arrL.length - intL;
+  const fracLenR = arrR.length - intR;
   const fracMaxLen = fracLenL >= fracLenR ? fracLenL : fracLenR;
-  const [left, right] = intLenL >= intLenR ? [arrayL, arrayR] : [arrayR, arrayL];
-  let pl = (intLenL >= intLenR ? intLenL : intLenR) + fracMaxLen - 1;
-  let pr = (intLenL >= intLenR ? intLenR : intLenL) + fracMaxLen - 1;
+  const [left, right] = intL >= intR ? [arrL, arrR] : [arrR, arrL];
+  let pl = (intL >= intR ? intL : intR) + fracMaxLen - 1;
+  let pr = (intL >= intR ? intR : intL) + fracMaxLen - 1;
   let carryOver = 48;
 
-  if (intLenL === left.length && intLenR !== right.length) left.push(46);
+  if (intL === left.length && intR !== right.length) left.push(46);
 
   while (pr >= 0) {
     if (left[pl] === 46 || right[pl] === 46) {

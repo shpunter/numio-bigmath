@@ -1,6 +1,4 @@
 export type Addition = (
-  left: number[],
-  right: number[],
-  intLenL: number,
-  intLenR: number,
+  L:[number[], number],
+  R: [number[], number]
 ) => [number[], number];

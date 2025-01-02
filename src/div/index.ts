@@ -5,8 +5,8 @@ import { division } from "./utils.ts";
 export const div = (left: string, right: string, limit = 20) => {
   if (left === "0") return "0";
 
-  let decNumL = 0;
-  let decNumR = 0;
+  let decL = 0;
+  let decR = 0;
   const arrL: number[] = [];
   const arrR: number[] = [];
 
@@ -15,7 +15,7 @@ export const div = (left: string, right: string, limit = 20) => {
 
     if (arrL.length === 0 && charCode === 48) continue;
     if (charCode === 46) {
-      decNumL += left.length - 1 - i;
+      decL += left.length - 1 - i;
       continue;
     }
 
@@ -27,14 +27,14 @@ export const div = (left: string, right: string, limit = 20) => {
 
     if (arrR.length === 0 && charCode === 48) continue;
     if (charCode === 46) {
-      decNumR += right.length - 1 - i;
+      decR += right.length - 1 - i;
       continue;
     }
 
     arrR.push(charCode - 48);
   }
 
-  const [array, isFloat] = division([arrL, decNumL], [arrR, decNumR], limit);
+  const [array, isFloat] = division([arrL, decL], [arrR, decR], limit);
 
   return (array[0] === 46 ? "0" : "") + createString(0, array, isFloat);
 };

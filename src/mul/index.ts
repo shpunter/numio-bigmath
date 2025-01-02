@@ -5,14 +5,14 @@ import { multiplication } from "./utils.ts";
 export const mul = (left: string, right: string): string => {
   const arrL: number[] = [];
   const arrR: number[] = [];
-  let decNum = 0;
+  let dec = 0;
 
   for (let i = 0; i < left.length; i++) {
     const charCode = left.charCodeAt(i);
 
     if (arrL.length === 0 && charCode === 48) continue;
     if (charCode === 46) {
-      decNum += left.length - 1 - i;
+      dec += left.length - 1 - i;
       continue;
     }
 
@@ -24,14 +24,14 @@ export const mul = (left: string, right: string): string => {
 
     if (arrR.length === 0 && charCode === 48) continue;
     if (charCode === 46) {
-      decNum += right.length - 1 - i;
+      dec += right.length - 1 - i;
       continue;
     }
 
     arrR.push(charCode);
   }
 
-  const [array, carryOver] = multiplication(arrL, arrR, decNum);
+  const [array, carryOver] = multiplication(arrL, arrR, dec);
 
-  return createString(carryOver, array, decNum > 0);
+  return createString(carryOver, array, dec > 0);
 };

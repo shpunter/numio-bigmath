@@ -1,6 +1,4 @@
 export type Subtract = (
-  left: number[],
-  right: number[],
-  intLenL: number,
-  intLenR: number,
+  L: [number[], number],
+  R: [number[], number],
 ) => [number[], boolean];

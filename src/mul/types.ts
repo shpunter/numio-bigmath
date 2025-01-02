@@ -1,5 +1,5 @@
 export type Multiplication = (
-  left: number[],
-  right: number[],
-  decNum: number,
+  arrL: number[],
+  arrR: number[],
+  dec: number,
 ) => [number[], number];

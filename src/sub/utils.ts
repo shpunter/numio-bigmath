@@ -1,17 +1,17 @@
 import type { Subtract } from "./types.ts";
 
 /** This function subtracts 2 numbers (as array). */
-export const subtract: Subtract = (arrayL, arrayR, intLenL, intLenR) => {
-  const lenDiff = (intLenL - intLenR) * (intLenL > intLenR ? 1 : -1);
-  let [left, right] = intLenL >= intLenR ? [arrayL, arrayR] : [arrayR, arrayL];
+export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
+  const lenDiff = (intL - intR) * (intL > intR ? 1 : -1);
+  let [left, right] = intL >= intR ? [arrL, arrR] : [arrR, arrL];
   let pl = lenDiff;
   let pr = 0;
   let isLeftBigger = lenDiff > 0;
   let carryOver = false;
   let isNegative = false;
 
-  if (intLenL === left.length && intLenR !== right.length) left.push(46);
-  if (intLenR === right.length && intLenL !== left.length) right.push(46);
+  if (intL === left.length && intR !== right.length) left.push(46);
+  if (intR === right.length && intL !== left.length) right.push(46);
 
   while (pr < right.length) {
     if (left[pl] === 46 || right[pr] === 46) {

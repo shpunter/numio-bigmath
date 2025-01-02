@@ -2,7 +2,7 @@ import { createString } from "../shared/utils.ts";
 import { division } from "./utils.ts";
 
 /** This function should divide 2 numbers (as string). */
-export const div = (left: string, right: string, limit = 20) => {
+export const div = (left: string, right: string, limit = 20): string => {
   if (left === "0") return "0";
 
   let decL = 0;

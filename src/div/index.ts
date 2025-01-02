@@ -19,7 +19,7 @@ export const div = (left: string, right: string, limit = 20) => {
       continue;
     }
 
-    arrL.push(charCode - 48);
+    arrL.push(charCode);
   }
 
   for (let i = 0; i < right.length; i++) {
@@ -31,10 +31,12 @@ export const div = (left: string, right: string, limit = 20) => {
       continue;
     }
 
-    arrR.push(charCode - 48);
+    arrR.push(charCode);
   }
 
   const [array, isFloat] = division([arrL, decL], [arrR, decR], limit);
 
   return (array[0] === 46 ? "0" : "") + createString(0, array, isFloat);
 };
+
+console.log(div("11", "10"));

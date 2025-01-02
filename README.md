@@ -48,6 +48,15 @@ const int = sub("15", "11");       // 164
 const float = sub("0.01", "0.99"); // 0.0099
 ```
 
+### Divide numbers
+```javascript
+const int = div("9999", "33");       // 303
+const float = div("0.06", "0.2");    // 0.3
+
+// set number of digit after the decimal. By default it's 20
+div("10", "3", 5);                   // 3.33333
+```
+
 Does not have a limitation on the number of digits. You can use any length you'd
 like
 
@@ -78,4 +87,9 @@ import { sub } from "@num/infinite-numbers";
 ```javascript
 // multiply 2 numbers
 import { mul } from "@num/infinite-numbers";
+```
+
+```javascript
+// divide 2 numbers
+import { div } from "@num/infinite-numbers";
 ```

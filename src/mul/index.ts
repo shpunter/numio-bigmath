@@ -1,4 +1,4 @@
-import { createString } from "../shared/utils.ts";
+import { arrayToStr } from "../shared/utils.ts";
 import { multiplication } from "./utils.ts";
 
 /** This function multiplies 2 numbers (as string). */
@@ -33,5 +33,5 @@ export const mul = (left: string, right: string): string => {
 
   const [array, carryOver] = multiplication(arrL, arrR, dec);
 
-  return createString(carryOver, array, dec > 0);
+  return arrayToStr(carryOver, array, dec > 0);
 };

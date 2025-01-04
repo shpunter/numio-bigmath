@@ -1,4 +1,4 @@
-import { createString } from "../shared/utils.ts";
+import { arrayToStr } from "../shared/utils.ts";
 import { division } from "./utils.ts";
 
 /** This function should divide 2 numbers (as string). */
@@ -36,7 +36,5 @@ export const div = (left: string, right: string, limit = 20): string => {
 
   const [array, isFloat] = division([arrL, decL], [arrR, decR], limit);
 
-  return (array[0] === 46 ? "0" : "") + createString(0, array, isFloat);
+  return (array[0] === 46 ? "0" : "") + arrayToStr(0, array, isFloat);
 };
-
-console.log(div("11", "10"));

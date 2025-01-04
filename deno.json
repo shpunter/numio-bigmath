@@ -20,5 +20,10 @@
       "src/**/tests",
       "src/**/bench"
     ]
+  },
+  "lint": {
+    "rules": {
+      "include": ["no-console", "no-debugger"]
+    }
   }
 }

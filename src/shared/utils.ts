@@ -1,6 +1,6 @@
-import type { CreateString, StrToArray } from "./types.ts";
+import type { ArrayToStr, StrToArray } from "./types.ts";
 
-export const createString: CreateString = (carryOver, array, isFloat) => {
+export const arrayToStr: ArrayToStr = (carryOver, array, isFloat) => {
   let isToCheckTail = isFloat;
 
   for (let i = array.length - 1; i >= 0; i--) {
@@ -30,7 +30,7 @@ export const strToArray: StrToArray = (strings) => {
   const ints = Array<number>(len);
   const arrays = Array<number[]>(len);
   let isFloat = false;
-
+  
   for (let i = 0; i < len; i++) {
     ints[i] = strings[i].length;
     arrays[i] = Array<number>(strings[i].length);

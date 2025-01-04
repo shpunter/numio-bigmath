@@ -1,4 +1,4 @@
-export type CreateString = (
+export type ArrayToStr = (
   carryOver: number,
   array: number[],
   isFloat: boolean,

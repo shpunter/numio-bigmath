@@ -1,9 +1,10 @@
 import type { Multiplication } from "./types.ts";
 
 /** This function multiplies 2 numbers (as array). */
-export const multiplication: Multiplication = (arrL, arrR, dec) => {
-  if (arrL.length === 0 || arrR.length === 0) return [[48], 0];
+export const multiplication: Multiplication = ([arrL, decL], [arrR, decR]) => {
+  if (arrL.length === 0 || arrR.length === 0) return [48];
 
+  const dec = decL + decR;
   const [left, right] = arrL.length >= arrR.length
     ? [arrL, arrR]
     : [arrR, arrL];
@@ -22,8 +23,7 @@ export const multiplication: Multiplication = (arrL, arrR, dec) => {
   }
 
   const len = sums.length > dec ? sums.length + 1 : dec + 2;
-  const result = Array(dec ? len : sums.length);
-
+  const result = Array((dec ? len : sums.length) + 1);
   const dotIdx = result.length - 1 - dec;
   const diff = result.length - sums.length;
   let idx = sums.length - 1 + diff;
@@ -31,7 +31,7 @@ export const multiplication: Multiplication = (arrL, arrR, dec) => {
   let currNum = 0;
   let nextNum = 0;
 
-  while (idx >= 0) {
+  while (idx > 0 + (dec ? 1 : 0)) {
     if (dec && idx === 0 && diff === 1) break;
     if (dotIdx === idx && dec) result[idx] = 46;
 
@@ -45,5 +45,7 @@ export const multiplication: Multiplication = (arrL, arrR, dec) => {
     idx -= 1;
   }
 
-  return [result, carryOver ? carryOver + 48 : 0];
+  result[0] = carryOver ? carryOver + 48 : 32;
+
+  return result;
 };

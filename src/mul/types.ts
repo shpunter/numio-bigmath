@@ -1,5 +1,4 @@
 export type Multiplication = (
-  arrL: number[],
-  arrR: number[],
-  dec: number,
-) => [number[], number];
+  arrL: [number[], number],
+  arrR: [number[], number],
+) => number[];

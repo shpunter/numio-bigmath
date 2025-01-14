@@ -5,7 +5,7 @@ for basic operations with decimal numbers (integers and float)
 
 ### News
 
-In ver 0.2.* added division (int & float numbers)
+In ver 0.2.0 added division (int & float numbers)
 
 # Install:
 
@@ -62,7 +62,7 @@ const float = sub("1", "0.99"); // 0.01
 ```javascript
 import { mul } from "@num/infinite-numbers";
 
-const int = mul("15", "11"); // 164
+const int = mul("15", "11"); // 165
 const float = mul("0.01", "0.99"); // 0.0099
 ```
 

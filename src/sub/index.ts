@@ -1,32 +1,11 @@
-import { createString } from "../shared/utils.ts";
+import { a2s, s2aSA } from "../shared/utils.ts";
 import { subtract } from "./utils.ts";
 
 /** This function subtracts 2 numbers (as string). */
-export const sub = (left: string, right: string): string => {
-  let intL = left.length;
-  let intR = right.length;
-  const arrL: number[] = Array(left.length);
-  const arrR: number[] = Array(right.length);
 
-  for (let i = 0; i < left.length; i++) {
-    const charCode = left.charCodeAt(i);
+export const sub = (strL: string, strR: string): string => {
+  const [left, right, isFloat] = s2aSA([strL, strR]);
+  const [array, isNegative] = subtract(left, right);
 
-    if (charCode === 46) intL = i;
-
-    arrL[i] = charCode;
-  }
-
-  for (let i = 0; i < right.length; i++) {
-    const charCode = right.charCodeAt(i);
-
-    if (charCode === 46) intR = i;
-
-    arrR[i] = charCode;
-  }
-
-  const isFloat = intL !== left.length || intR !== right.length;
-  const [array, isNegative] = subtract([arrL, intL], [arrR, intR]);
-  const result = createString(0, array, isFloat);
-
-  return (isNegative ? "-" : "") + result;
+  return (isNegative ? "-" : "") + a2s(array, isFloat);
 };

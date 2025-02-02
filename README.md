@@ -5,7 +5,7 @@ for basic operations with decimal numbers (integers and float)
 
 ### Latest update
 
-In ver 0.3.0 added handling of negative numbers
+In ver 0.3.0 added handling of negative numbers \
 In ver 0.2.0 added division (int & float numbers)
 
 # Install:

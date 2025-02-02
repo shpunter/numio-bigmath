@@ -180,3 +180,43 @@ Deno.test("0.1 - 1119", () => {
   const res = sub("0.1", "1119");
   assertEquals(res, "-1118.9");
 });
+
+Deno.test("5 - 3", () => {
+  const res = sub("5", "3");
+  assertEquals(res, "2");
+});
+
+Deno.test("5 - -3", () => {
+  const res = sub("5", "-3");
+  assertEquals(res, "8");
+});
+
+Deno.test("-5 - -3", () => {
+  const res = sub("-5", "-3");
+  assertEquals(res, "-2");
+});
+
+Deno.test("-5 - 3", () => {
+  const res = sub("-5", "3");
+  assertEquals(res, "-8");
+});
+
+Deno.test("3 - 5", () => {
+  const res = sub("3", "5");
+  assertEquals(res, "-2");
+});
+
+Deno.test("3 - -5", () => {
+  const res = sub("3", "-5");
+  assertEquals(res, "8");
+});
+
+Deno.test("-3 - -5", () => {
+  const res = sub("-3", "-5");
+  assertEquals(res, "2");
+});
+
+Deno.test("-3 - 5", () => {
+  const res = sub("-3", "5");
+  assertEquals(res, "-8");
+});

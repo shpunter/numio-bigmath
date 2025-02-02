@@ -5,8 +5,8 @@ export type A2S = (
 ) => string;
 
 export type S2ASA = (strings: string[]) => [
-  { array: number[]; int: number; negative: 1 | 0 },
-  { array: number[]; int: number; negative: 1 | 0 },
+  { array: number[]; int: number; negative: boolean },
+  { array: number[]; int: number; negative: boolean },
   boolean,
 ];
 

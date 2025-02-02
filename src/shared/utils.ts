@@ -30,25 +30,27 @@ export const s2aSA: S2ASA = (strings) => {
   const { length: len } = strings;
   const int = Array<number>(len);
   const array = Array<number[]>(len);
-  const negative = Array<1 | 0>(len);
+  const negative = Array<boolean>(len);
   let isFloat = false;
 
   for (let i = 0; i < len; i++) {
-    negative[i] = strings[i].charCodeAt(0) === 45 ? 1 : 0;
-    int[i] = strings[i].length - negative[i];
-    array[i] = Array<number>(strings[i].length - negative[i]);
+    negative[i] = strings[i].charCodeAt(0) === 45;
+    const shift = negative[i] ? 1 : 0;
+    int[i] = strings[i].length - shift;
+    array[i] = Array<number>(strings[i].length - shift);
   }
 
   for (let i = 0; i < len; i++) {
-    for (let idx = 0 + negative[i]; idx < strings[i].length; idx++) {
+    const shift = negative[i] ? 1 : 0;
+    for (let idx = 0 + shift; idx < strings[i].length; idx++) {
       const charCode = strings[i].charCodeAt(idx);
 
       if (charCode === 46) {
-        int[i] = idx - negative[i];
+        int[i] = idx - shift;
         isFloat || (isFloat = true);
       }
 
-      array[i][idx - negative[i]] = charCode;
+      array[i][idx - shift] = charCode;
     }
   }
 

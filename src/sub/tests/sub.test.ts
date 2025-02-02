@@ -38,7 +38,7 @@ Deno.test("1589 - 529", () => {
 
 Deno.test("529 - 1589", () => {
   const result = sub("529", "1589");
-  assertEquals(result, "1060");
+  assertEquals(result, "-1060");
 });
 
 Deno.test("621 - 529", () => {
@@ -49,6 +49,11 @@ Deno.test("621 - 529", () => {
 Deno.test("1000 - 1", () => {
   const result = sub("1000", "1");
   assertEquals(result, "999");
+});
+
+Deno.test("1 - 1000", () => {
+  const result = sub("1", "1000");
+  assertEquals(result, "-999");
 });
 
 Deno.test("1001 - 1", () => {
@@ -164,4 +169,54 @@ Deno.test("100.1 - 0.1", () => {
 Deno.test("999.9 - 999.1", () => {
   const result = sub("999.9", "999.1");
   assertEquals(result, "0.8");
+});
+
+Deno.test("5 - 13", () => {
+  const result = sub("5", "13");
+  assertEquals(result, "-8");
+});
+
+Deno.test("0.1 - 1119", () => {
+  const res = sub("0.1", "1119");
+  assertEquals(res, "-1118.9");
+});
+
+Deno.test("5 - 3", () => {
+  const res = sub("5", "3");
+  assertEquals(res, "2");
+});
+
+Deno.test("5 - -3", () => {
+  const res = sub("5", "-3");
+  assertEquals(res, "8");
+});
+
+Deno.test("-5 - -3", () => {
+  const res = sub("-5", "-3");
+  assertEquals(res, "-2");
+});
+
+Deno.test("-5 - 3", () => {
+  const res = sub("-5", "3");
+  assertEquals(res, "-8");
+});
+
+Deno.test("3 - 5", () => {
+  const res = sub("3", "5");
+  assertEquals(res, "-2");
+});
+
+Deno.test("3 - -5", () => {
+  const res = sub("3", "-5");
+  assertEquals(res, "8");
+});
+
+Deno.test("-3 - -5", () => {
+  const res = sub("-3", "-5");
+  assertEquals(res, "2");
+});
+
+Deno.test("-3 - 5", () => {
+  const res = sub("-3", "5");
+  assertEquals(res, "-8");
 });

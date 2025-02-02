@@ -3,8 +3,9 @@
 Infinite-numbers is an arbitrary-precision arithmetic library. It can be used
 for basic operations with decimal numbers (integers and float)
 
-### News
+### Latest update
 
+In ver 0.3.0 added handling of negative numbers
 In ver 0.2.0 added division (int & float numbers)
 
 # Install:
@@ -48,6 +49,7 @@ import { add } from "@num/infinite-numbers";
 
 const int = add("12345", "99"); // 124444
 const float = add("0.1", "0.2"); // 0.3
+const negative = add("0.1", "-0.3"); // -0.2
 ```
 
 ### Subtract numbers
@@ -56,6 +58,7 @@ import { sub } from "@num/infinite-numbers";
 
 const int = sub("150", "99"); // 51
 const float = sub("1", "0.99"); // 0.01
+const negative = sub("-0.1", "-0.3"); // 0.2
 ```
 
 ### Multiply numbers
@@ -64,6 +67,7 @@ import { mul } from "@num/infinite-numbers";
 
 const int = mul("15", "11"); // 165
 const float = mul("0.01", "0.99"); // 0.0099
+const negative = mul("-2", "3"); // -6
 ```
 
 ### Divide numbers
@@ -72,6 +76,7 @@ import { div } from "@num/infinite-numbers";
 
 const int = div("9999", "33"); // 303
 const float = div("0.06", "0.2"); // 0.3
+const negative = div("-2", "-3"); // 6
 
 // set number of digit after the decimal. By default it's 20
 div("10", "3", 5); // 3.33333

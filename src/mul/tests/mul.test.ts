@@ -145,3 +145,26 @@ Deno.test("10 * 0.01", () => {
   const res = mul("10", "0.01");
   assertEquals(res, "0.1");
 });
+
+Deno.test("5 * 3", () => {
+  const res = mul("5", "3");
+  assertEquals(res, "15");
+});
+
+
+Deno.test("5 * -3", () => {
+  const res = mul("5", "-3");
+  assertEquals(res, "-15");
+});
+
+
+Deno.test("-5 * 3", () => {
+  const res = mul("-5", "3");
+  assertEquals(res, "-15");
+});
+
+
+Deno.test("-5 * -3", () => {
+  const res = mul("-5", "-3");
+  assertEquals(res, "15");
+});

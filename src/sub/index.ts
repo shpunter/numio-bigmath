@@ -5,7 +5,7 @@ import { subtract } from "./utils.ts";
 
 export const sub = (strL: string, strR: string): string => {
   const [left, right, isFloat] = s2aSA([strL, strR]);
-  const [array, isNegative] = subtract(left, right);
+  const [array, isNegative] = subtract([left.array, left.int], [right.array, right.int]);
 
   return (isNegative ? "-" : "") + a2s(array, isFloat);
 };

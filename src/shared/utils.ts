@@ -1,7 +1,7 @@
 import type { A2S, S2AMD, S2ASA } from "./types.ts";
 
 // array to string
-export const a2s: A2S = (array, isFloat) => {
+export const a2s: A2S = (array, isFloat, isNegative = false) => {
   let isToCheckTail = isFloat;
 
   for (let i = array.length - 1; i >= 0; i--) {
@@ -22,38 +22,44 @@ export const a2s: A2S = (array, isFloat) => {
     else break;
   }
 
-  return String.fromCharCode(...array).trim();
+  return (isNegative ? "-" : "") + String.fromCharCode(...array).trim();
 };
 
 // string to array (sub, add)
-export const s2aSA: S2ASA = (strings, shiftCO = 0) => {
+export const s2aSA: S2ASA = (strings) => {
   const { length: len } = strings;
-  const ints = Array<number>(len);
-  const arrays = Array<number[]>(len);
+  const int = Array<number>(len);
+  const array = Array<number[]>(len);
+  const negative = Array<1 | 0>(len);
   let isFloat = false;
 
   for (let i = 0; i < len; i++) {
-    ints[i] = strings[i].length;
-    arrays[i] = Array<number>(strings[i].length + shiftCO);
+    negative[i] = strings[i].charCodeAt(0) === 45 ? 1 : 0;
+    int[i] = strings[i].length - negative[i];
+    array[i] = Array<number>(strings[i].length - negative[i]);
   }
 
   for (let i = 0; i < len; i++) {
-    for (let idx = 0 + shiftCO; idx < strings[i].length + shiftCO; idx++) {
-      const charCode = strings[i].charCodeAt(idx - shiftCO);
+    for (let idx = 0 + negative[i]; idx < strings[i].length; idx++) {
+      const charCode = strings[i].charCodeAt(idx);
 
       if (charCode === 46) {
-        ints[i] = idx - shiftCO;
+        int[i] = idx - negative[i];
         isFloat || (isFloat = true);
       }
 
-      arrays[i][idx] = charCode;
+      array[i][idx - negative[i]] = charCode;
     }
   }
 
-  return [[arrays[0], ints[0]], [arrays[1], ints[1]], isFloat];
+  return [
+    { array: array[0], int: int[0], negative: negative[0] },
+    { array: array[1], int: int[1], negative: negative[1] },
+    isFloat,
+  ];
 };
 
-// string to array (mul, dic)
+// string to array (mul, div)
 export const s2aMD: S2AMD = (strings) => {
   const { length: len } = strings;
   const decs = Array<number>(len);

@@ -3,15 +3,15 @@ import type { Subtract } from "./types.ts";
 /** This function subtracts 2 numbers (as array). */
 export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
   const lenDiff = (intL - intR) * (intL > intR ? 1 : -1);
-  let [left, right] = intL >= intR ? [arrL, arrR] : [arrR, arrL];
+  let [left, right, intLeft, intRight] = intL >= intR ? [arrL, arrR, intL, intR] : [arrR, arrL, intR, intL];
   let pl = lenDiff;
   let pr = 0;
   let isLeftBigger = lenDiff > 0;
   let carryOver = false;
-  let isNegative = false;
+  let isNegative = intLeft !== intL;
 
-  if (intL === left.length && intR !== right.length) left.push(46);
-  if (intR === right.length && intL !== left.length) right.push(46);
+  if (intLeft === left.length && intRight !== right.length) left.push(46);
+  if (intRight === right.length && intLeft !== left.length) right.push(46);
 
   while (pr < right.length) {
     if (left[pl] === 46 || right[pr] === 46) {

@@ -70,8 +70,10 @@ export const division: Division = ([arrL, decL], [arrR, decR], initLimit) => {
     digit += 1;
   }
 
+  result[0] === 46 && result.unshift(48);
+
   return [
     result[result.length - 1] === 46 ? [48] : result,
-    isFloat || result[0] === 46,
+    isFloat || result[1] === 46,
   ];
 };

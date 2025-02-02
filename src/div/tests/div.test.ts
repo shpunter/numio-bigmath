@@ -150,4 +150,29 @@ Deno.test("0.1 / 1", () => {
   assertEquals(div("0.1", "1"), "0.1");
 });
 
+Deno.test("0.1000 / 1", () => {
+  assertEquals(div("0.1000", "1"), "0.1");
+});
 
+Deno.test("15 / 3", () => {
+  const res = div("15", "3");
+  assertEquals(res, "5");
+});
+
+
+Deno.test("15 / -3", () => {
+  const res = div("15", "-3");
+  assertEquals(res, "-5");
+});
+
+
+Deno.test("-15 / 3", () => {
+  const res = div("-15", "3");
+  assertEquals(res, "-5");
+});
+
+
+Deno.test("-15 / -3", () => {
+  const res = div("-15", "-3");
+  assertEquals(res, "5");
+});

@@ -8,5 +8,5 @@ export const div = (strL: string, strR: string, limit = 20): string => {
   const [left, right] = s2aMD([strL, strR]);
   const [array, isFloat] = division([left.array, left.dec], [right.array, right.dec], limit);
 
-  return (array[0] === 46 ? "0" : "") + a2s(array, isFloat);
+  return a2s(array, isFloat, left.isNegative !== right.isNegative) || "0";
 };

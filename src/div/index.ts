@@ -6,7 +6,7 @@ export const div = (strL: string, strR: string, limit = 20): string => {
   if (strL === "0") return "0";
 
   const [left, right] = s2aMD([strL, strR]);
-  const [array, isFloat] = division(left, right, limit);
+  const [array, isFloat] = division([left.array, left.dec], [right.array, right.dec], limit);
 
   return (array[0] === 46 ? "0" : "") + a2s(array, isFloat);
 };

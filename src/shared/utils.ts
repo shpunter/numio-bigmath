@@ -55,8 +55,8 @@ export const s2aSA: S2ASA = (strings) => {
   }
 
   return [
-    { array: array[0], int: int[0], negative: negative[0] },
-    { array: array[1], int: int[1], negative: negative[1] },
+    { array: array[0], int: int[0], isNegative: negative[0] },
+    { array: array[1], int: int[1], isNegative: negative[1] },
     isFloat,
   ];
 };
@@ -64,26 +64,33 @@ export const s2aSA: S2ASA = (strings) => {
 // string to array (mul, div)
 export const s2aMD: S2AMD = (strings) => {
   const { length: len } = strings;
-  const decs = Array<number>(len);
-  const arrays = Array<number[]>(len);
+  const dec = Array<number>(len);
+  const array = Array<number[]>(len);
+  const negative = Array<boolean>(len);
 
   for (let i = 0; i < len; i++) {
-    arrays[i] = Array<number>(0);
+    array[i] = Array<number>(0);
+    negative[i] = strings[i].charCodeAt(0) === 45;
   }
 
   for (let i = 0; i < len; i++) {
-    for (let idx = 0; idx < strings[i].length; idx++) {
+    const shift = negative[i] ? 1 : 0;
+
+    for (let idx = 0 + shift; idx < strings[i].length; idx++) {
       const charCode = strings[i].charCodeAt(idx);
 
-      if (arrays[i].length === 0 && charCode === 48) continue;
+      if (array[i].length === 0 && charCode === 48) continue;
       if (charCode === 46) {
-        decs[i] = strings[i].length - 1 - idx;
+        dec[i] = strings[i].length - 1 - idx - shift;
         continue;
       }
 
-      arrays[i].push(charCode);
+      array[i].push(charCode);
     }
   }
 
-  return [[arrays[0], decs[0] ?? 0], [arrays[1], decs[1] ?? 0]];
+  return [
+    { array: array[0], dec: dec[0] ?? 0, isNegative: negative[0] },
+    { array: array[1], dec: dec[1] ?? 0, isNegative: negative[1] },
+  ];
 };

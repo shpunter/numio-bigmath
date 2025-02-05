@@ -5,7 +5,7 @@ for basic operations with decimal numbers (integers and float).
 
 ### Latest update
 
-In version 0.3.0 added handling of negative numbers\
+In version 0.3.0 added handling of negative numbers \
 In version 0.2.0 added division (int & float numbers)
 
 # Install:
@@ -98,5 +98,5 @@ const float = mul(
 ); // 0.00000000000000000000000000000000000000000000000000000000000000000000000000018
 ```
 
-Download from NPM - https://www.npmjs.com/package/infinite-numbers\
+Download from NPM - https://www.npmjs.com/package/infinite-numbers \
 Download from JSR - https://jsr.io/@num/infinite-numbers

@@ -14,10 +14,5 @@
     "@std/internal@1.0.5": {
       "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
     }
-  },
-  "remote": {
-    "https://cdn.jsdelivr.net/npm/big.js@6.2.2/big.min.js": "9a76e9181d253ce7b205030d862ae05d42d8b78bdc7d6438b0347c0dab86e060",
-    "https://raw.githubusercontent.com/mikemcl/big.js/v6.2.2/big.mjs": "4942bb41030bd40ac8522a0fe58d18a1d8bce7e843c3d93d1b8679853443532e",
-    "https://unpkg.com/big.js@6.2.2/big.mjs": "5a2a6199254346c2eea615a93f7f33a449a6d49c890d20816fd3e549199fd9d3"
   }
 }

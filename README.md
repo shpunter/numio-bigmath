@@ -99,4 +99,6 @@ const float = mul(
 ```
 
 Download from NPM - https://www.npmjs.com/package/infinite-numbers \
-Download from JSR - https://jsr.io/@num/infinite-numbers
+Download from JSR - https://jsr.io/@num/infinite-numbers \
+Home page - https://github.com/shpunter/infinite-num/blob/main/README.md
+License - https://github.com/shpunter/infinite-num/blob/main/LICENSE

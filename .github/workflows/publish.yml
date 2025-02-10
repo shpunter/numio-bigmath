@@ -28,10 +28,10 @@ jobs:
       - name: Replace .ts with .js
         run: deno task changeExtension
         # ???
-      - uses: actions/checkout@v4
+      # - uses: actions/checkout@v4
 
-      - name: Publish package
-        run: npx jsr publish
+      # - name: Publish package
+      #   run: npx jsr publish
         
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

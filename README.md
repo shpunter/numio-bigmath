@@ -13,25 +13,25 @@ In version 0.2.0 added division (int & float numbers)
 ### NPM
 
 ```bash
-npx jsr add @num/infinite-numbers
+npm install infinite-numbers
 ```
 
 ### YARN
 
 ```bash
-yarn dlx jsr add @num/infinite-numbers
+yarn add infinite-numbers
 ```
 
 ### BUN
 
 ```bash
-bunx jsr add @num/infinite-numbers
+bun add infinite-numbers
 ```
 
 ### PNPM
 
 ```bash
-pnpm dlx jsr add @num/infinite-numbers
+pnpm add infinite-numbers
 ```
 
 ### DENO
@@ -100,5 +100,5 @@ const float = mul(
 
 Download from NPM - https://www.npmjs.com/package/infinite-numbers \
 Download from JSR - https://jsr.io/@num/infinite-numbers \
-Home page - https://github.com/shpunter/infinite-num/blob/main/README.md
+Home page - https://github.com/shpunter/infinite-num/blob/main/README.md \
 License - https://github.com/shpunter/infinite-num/blob/main/LICENSE

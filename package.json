@@ -1,7 +1,7 @@
 {
   "name": "infinite-numbers",
   "description": "Infinite-numbers is an arbitrary-precision arithmetic library. It can be used for basic operations with decimal numbers (integers and float)",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "keywords": [
     "precision",
     "arithmetic",
@@ -37,7 +37,7 @@
     ".": {
       "import": "./npm/index.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./npm/package.json"
   },
   "author": {
     "name": "Oleksandr Brudnovskyi ",

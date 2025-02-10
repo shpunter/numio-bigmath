@@ -48,6 +48,16 @@ jobs:
       - name: Replace .ts with .js
         run: deno task changeExtension
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm publish ./npm --provenance --access public 
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+
   publish-jsr:
     needs: [test]
     runs-on: ubuntu-latest

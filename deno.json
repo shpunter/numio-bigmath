@@ -1,6 +1,6 @@
 {
   "name": "@num/infinite-numbers",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "license": "MIT",
   "exports": "./index.ts",
   "publish": {
@@ -18,12 +18,20 @@
       ".npmignore",
       ".github",
       "src/**/tests",
-      "src/**/bench"
+      "src/**/bench",
+      "npm",
+      "tsconfig.json",
+      "build.ts"
     ]
   },
   "lint": {
     "rules": {
       "include": ["no-console", "no-debugger"]
     }
+  },
+  "tasks": {
+    "ts2js": "tsc --noResolve --noCheck -p tsconfig.json",
+    "changeExtension": "deno run -A config/build.ts",
+    "build": "deno task ts2js && deno task changeExtension"
   }
 }

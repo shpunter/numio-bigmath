@@ -40,3 +40,6 @@ jobs:
 
       - name: Run tests
         run: deno test -A
+
+      - name: Build npm version
+        run: deno run build

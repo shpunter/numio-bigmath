@@ -1,7 +1,7 @@
 {
   "name": "infinite-numbers",
   "description": "Infinite-numbers is an arbitrary-precision arithmetic library. It can be used for basic operations with decimal numbers (integers and float)",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "keywords": [
     "precision",
     "arithmetic",
@@ -32,7 +32,7 @@
     "type": "git",
     "url": "https://github.com/shpunter/infinite-num.git"
   },
-  "main": "main",
+  "main": "npm/index.js",
   "exports": {
     ".": {
       "import": "./index.ts"

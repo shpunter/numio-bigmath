@@ -2,4 +2,5 @@ src/**/tests
 src/**/bench
 deno*
 
+./build.ts
 .github

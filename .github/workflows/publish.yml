@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +30,7 @@ jobs:
         run: deno task changeExtension
 
   publish-npm: 
-    needs: [test]
+    needs: [unit-tests]
     runs-on: ubuntu-latest
 
     permissions:
@@ -63,7 +63,7 @@ jobs:
 
 
   publish-jsr:
-    needs: [test]
+    needs: [unit-tests]
     runs-on: ubuntu-latest
 
     permissions:
@@ -73,18 +73,4 @@ jobs:
     steps:
       - name: Setup repo
         uses: actions/checkout@v4
-
-      # - name: Publish package
-      #   run: npx jsr publish
-        
-      # - uses: actions/checkout@v4
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '20.x'
-      #     registry-url: 'https://registry.npmjs.org'
-      # - run: npm ci
-      # - run: npm publish ./npm --provenance --access public 
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 

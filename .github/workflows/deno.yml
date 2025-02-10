@@ -41,8 +41,8 @@ jobs:
       - name: Run tests
         run: deno test -A
 
-      - name: Build js version
-        run: deno task ts2js
+      # - name: Build js version
+      #   run: deno task ts2js
 
-      - name: Replace .ts with .js
-        run: deno task changeExtension
+      # - name: Replace .ts with .js
+      #   run: deno task changeExtension

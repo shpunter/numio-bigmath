@@ -18,6 +18,12 @@ jobs:
       - name: Publish package
         run: npx jsr publish
         
+      - name: Build js version
+        run: deno task ts2js
+
+      - name: Replace .ts with .js
+        run: deno task changeExtension
+
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:

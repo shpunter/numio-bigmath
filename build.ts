@@ -25,8 +25,10 @@ await walk(rootPath, ({ path, fileInfo }) => {
   }
 });
 
-// Deno.copyFileSync("LICENSE", "npm/LICENSE");
-// Deno.copyFileSync("README.md", "npm/README.md");
-// Deno.copyFileSync("package.json", "npm/package.json");
+Deno.copyFileSync("LICENSE", "npm/LICENSE");
+Deno.copyFileSync("README.md", "npm/README.md");
+Deno.copyFileSync("package.json", "npm/package.json");
+Deno.copyFileSync("package-lock.json", "npm/package-lock.json");
+
 
 type CB = { path: string; fileInfo: Deno.FileInfo };

@@ -5,12 +5,8 @@ on:
       - main
 
 jobs:
-  publish:
+  test:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      id-token: write
 
     steps:
       - name: Setup repo
@@ -22,16 +18,32 @@ jobs:
         with: 
           deno-version: v2.x
 
+      - name: Run linter
+        run: deno lint
+
+      - name: Run tests
+        run: deno test -A
+
       - name: Build js version
         run: deno task ts2js
 
       - name: Replace .ts with .js
         run: deno task changeExtension
-        # ???
-      # - uses: actions/checkout@v4
+  publish:
+    runs-on: ubuntu-latest
 
-      # - name: Publish package
-      #   run: npx jsr publish
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+
+      - name: Publish package
+        run: npx jsr publish
         
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

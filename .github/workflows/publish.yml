@@ -13,17 +13,26 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Setup repo
+        uses: actions/checkout@v4
 
-      - name: Publish package
-        run: npx jsr publish
-        
+      - name: Setup Deno
+        # uses: denoland/setup-deno@v2
+        uses: denoland/setup-deno@v2
+        with: 
+          deno-version: v2.x
+
       - name: Build js version
         run: deno task ts2js
 
       - name: Replace .ts with .js
         run: deno task changeExtension
+        # ???
+      - uses: actions/checkout@v4
 
+      - name: Publish package
+        run: npx jsr publish
+        
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
@@ -33,3 +42,5 @@ jobs:
       - run: npm publish ./npm --provenance --access public 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+

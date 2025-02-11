@@ -4,10 +4,9 @@ export type A2S = (
   isNegative?: boolean,
 ) => string;
 
-export type S2ASA = (string: string) => [
-  { array: number[]; int: number; isNegative: boolean },
-  boolean,
-];
+export type S2ASA = (
+  string: string,
+) => { array: number[]; int: number; isNegative: boolean; isFloat: boolean };
 
 export type S2AMD = (
   strings: string,

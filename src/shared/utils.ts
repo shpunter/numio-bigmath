@@ -27,58 +27,44 @@ export const a2s: A2S = (array, isFloat, isNegative = false) => {
 
 // string to array (sub, add)
 export const s2aSA: S2ASA = (string) => {
-  const negative = string.charCodeAt(0) === 45;
-  const shift = negative ? 1 : 0;
+  const isNegative = string.charCodeAt(0) === 45;
+  const shift = isNegative ? 1 : 0;
   const array = Array<number>(string.length - shift);
   let int = string.length - shift;
   let isFloat = false;
 
+  for (let idx = 0 + shift; idx < string.length; idx++) {
+    const charCode = string.charCodeAt(idx);
 
-    for (let idx = 0 + shift; idx < string.length; idx++) {
-      const charCode = string.charCodeAt(idx);
-
-      if (charCode === 46) {
-        int = idx - shift;
-        isFloat || (isFloat = true);
-      }
-
-      array[idx - shift] = charCode;
+    if (charCode === 46) {
+      int = idx - shift;
+      isFloat || (isFloat = true);
     }
-  
 
-  return [
-    { array: array, int: int, isNegative: negative },
-    isFloat,
-  ] as const;
+    array[idx - shift] = charCode;
+  }
+
+  return { array, int, isNegative, isFloat };
 };
 
 // string to array (mul, div)
 export const s2aMD: S2AMD = (string) => {
-  // const { length: len } = strings;
   const array = Array<number>(0);
-  const negative = string.charCodeAt(0) === 45;
+  const isNegative = string.charCodeAt(0) === 45;
+  const shift = isNegative ? 1 : 0;
   let dec = 0;
 
-  // for (let i = 0; i < len; i++) {
-  //   array[i] = Array<number>(0);
-  //   negative[i] = strings[i].charCodeAt(0) === 45;
-  // }
+  for (let idx = 0 + shift; idx < string.length; idx++) {
+    const charCode = string.charCodeAt(idx);
 
-  // for (let i = 0; i < len; i++) {
-    const shift = negative ? 1 : 0;
-
-    for (let idx = 0 + shift; idx < string.length; idx++) {
-      const charCode = string.charCodeAt(idx);
-
-      if (array.length === 0 && charCode === 48) continue;
-      if (charCode === 46) {
-        dec = string.length - 1 - idx - shift;
-        continue;
-      }
-
-      array.push(charCode);
+    if (array.length === 0 && charCode === 48) continue;
+    if (charCode === 46) {
+      dec = string.length - 1 - idx - shift;
+      continue;
     }
-  // }
 
-  return { array: array, dec: dec ?? 0, isNegative: negative };
+    array.push(charCode);
+  }
+
+  return { array, dec, isNegative };
 };

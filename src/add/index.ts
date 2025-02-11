@@ -6,9 +6,9 @@ import type { Input } from "../types.ts";
 
 /** This function adds 2 numbers (as string). */
 export function add<T extends string>(strL: Input<T>, strR: Input<T>): string {
-  const [left, isFloatLeft] = s2aSA(strL);
-  const [right, isFloatRight] = s2aSA(strR);
-  const isFloat = isFloatLeft && isFloatRight;
+  const left = s2aSA(strL);
+  const right = s2aSA(strR);
+  const isFloat = left.isFloat || right.isFloat;
 
   if (left.isNegative && !right.isNegative) {
     const [array, isNegative] = subtract(

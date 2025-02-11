@@ -1,7 +1,31 @@
 # Infinite-numbers
 
-Infinite-numbers is an arbitrary-precision arithmetic library. It can be used
-for basic operations with decimal numbers (integers and float).
+Infinite-numbers is an arbitrary-precision arithmetic library. This library provides functions for performing arithmetic operations (addition, subtraction, multiplication, and division) on numbers of arbitrary length. It addresses the limitations of JavaScript's built-in number type, which suffers from precision loss when dealing with very large or very small numbers, or numbers with more than 15 significant digits.
+
+
+## Key Features and Benefits
+
+* **Arbitrary Precision:** Handles numbers of any length, avoiding the limitations of JavaScript's `Number` type. This allows for calculations with extremely large or small numbers without loss of precision.
+* **No Precision Loss:** Eliminates precision errors that occur when using numeric literals with more than 15 significant digits. The library ensures accurate calculations even with very long numbers.
+* **Four Basic Operations:** Provides functions for addition (`add`), subtraction (`sub`), multiplication (`mul`), and division (`div`).
+* **Decimal Handling:** Correctly handles decimal numbers and performs calculations accurately, including scenarios involving negative numbers.
+* **Division Precision Control:** The `div` function allows you to specify the number of digits after the decimal point for the result. The default precision is 20 digits.
+* **Easy to Use:** The library provides simple and intuitive functions for performing arithmetic operations.
+
+
+## How it Solves the Problem
+
+JavaScript's `Number` type uses a 64-bit floating-point representation (IEEE 754), which can lead to precision issues when dealing with numbers that exceed its representable range or require more than 15 significant digits. This library likely uses a different representation internally (e.g., strings or arrays of digits) to store and manipulate numbers, effectively bypassing the limitations of the built-in `Number` type. This allows it to perform calculations on numbers of virtually unlimited size and maintain accuracy.
+
+## Use Cases
+
+This library is particularly useful in scenarios where precise calculations with large numbers are essential, such as:
+
+* **Financial applications:** Dealing with large sums of money or precise interest calculations.
+* **Scientific computing:** Working with very large or small numbers in scientific simulations.
+* **Cryptography:** Implementing cryptographic algorithms that require high precision.
+* **Any application** where exceeding JavaScript's number limits is a concern.
+
 
 ### Latest update
 
@@ -40,7 +64,7 @@ pnpm add infinite-numbers
 deno add jsr:@num/infinite-numbers
 ```
 
-# Example:
+# Examples:
 
 ### Add numbers
 

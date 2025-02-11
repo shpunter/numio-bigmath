@@ -23,6 +23,17 @@ await walk(rootPath, ({ path, fileInfo }) => {
 
     Deno.writeFileSync(path, encoder.encode(fixed));
   }
+
+  if (fileInfo.isFile && path.endsWith(".d.ts")) {
+    const content = decoder.decode(Deno.readFileSync(path));
+    const fixed = content.replaceAll(".ts", ".d.ts");
+
+    Deno.writeFileSync(path, encoder.encode(fixed));
+  }
+
+  if (fileInfo.isFile && path.endsWith("types.js")) {
+    Deno.remove(path);
+  }
 });
 
 Deno.copyFileSync("LICENSE", "npm/LICENSE");

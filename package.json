@@ -33,6 +33,7 @@
     "url": "git+https://github.com/shpunter/infinite-num.git"
   },
   "main": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
       "import": "./index.js"

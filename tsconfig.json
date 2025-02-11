@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES5",
     "module": "ES2022",
     "outDir": "npm",
+    "declaration": true,
   },
-  "exclude": ["./build.ts", "**/*.test.ts", "npm"]
+  "exclude": ["./build.ts", "**/*.test.ts", "npm", "tsconfig.json"]
 }

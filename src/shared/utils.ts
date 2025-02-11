@@ -26,71 +26,59 @@ export const a2s: A2S = (array, isFloat, isNegative = false) => {
 };
 
 // string to array (sub, add)
-export const s2aSA: S2ASA = (strings) => {
-  const { length: len } = strings;
-  const int = Array<number>(len);
-  const array = Array<number[]>(len);
-  const negative = Array<boolean>(len);
+export const s2aSA: S2ASA = (string) => {
+  const negative = string.charCodeAt(0) === 45;
+  const shift = negative ? 1 : 0;
+  const array = Array<number>(string.length - shift);
+  let int = string.length - shift;
   let isFloat = false;
 
-  for (let i = 0; i < len; i++) {
-    negative[i] = strings[i].charCodeAt(0) === 45;
-    const shift = negative[i] ? 1 : 0;
-    int[i] = strings[i].length - shift;
-    array[i] = Array<number>(strings[i].length - shift);
-  }
 
-  for (let i = 0; i < len; i++) {
-    const shift = negative[i] ? 1 : 0;
-    for (let idx = 0 + shift; idx < strings[i].length; idx++) {
-      const charCode = strings[i].charCodeAt(idx);
+    for (let idx = 0 + shift; idx < string.length; idx++) {
+      const charCode = string.charCodeAt(idx);
 
       if (charCode === 46) {
-        int[i] = idx - shift;
+        int = idx - shift;
         isFloat || (isFloat = true);
       }
 
-      array[i][idx - shift] = charCode;
+      array[idx - shift] = charCode;
     }
-  }
+  
 
   return [
-    { array: array[0], int: int[0], isNegative: negative[0] },
-    { array: array[1], int: int[1], isNegative: negative[1] },
+    { array: array, int: int, isNegative: negative },
     isFloat,
-  ];
+  ] as const;
 };
 
 // string to array (mul, div)
-export const s2aMD: S2AMD = (strings) => {
-  const { length: len } = strings;
-  const dec = Array<number>(len);
-  const array = Array<number[]>(len);
-  const negative = Array<boolean>(len);
+export const s2aMD: S2AMD = (string) => {
+  // const { length: len } = strings;
+  const array = Array<number>(0);
+  const negative = string.charCodeAt(0) === 45;
+  let dec = 0;
 
-  for (let i = 0; i < len; i++) {
-    array[i] = Array<number>(0);
-    negative[i] = strings[i].charCodeAt(0) === 45;
-  }
+  // for (let i = 0; i < len; i++) {
+  //   array[i] = Array<number>(0);
+  //   negative[i] = strings[i].charCodeAt(0) === 45;
+  // }
 
-  for (let i = 0; i < len; i++) {
-    const shift = negative[i] ? 1 : 0;
+  // for (let i = 0; i < len; i++) {
+    const shift = negative ? 1 : 0;
 
-    for (let idx = 0 + shift; idx < strings[i].length; idx++) {
-      const charCode = strings[i].charCodeAt(idx);
+    for (let idx = 0 + shift; idx < string.length; idx++) {
+      const charCode = string.charCodeAt(idx);
 
-      if (array[i].length === 0 && charCode === 48) continue;
+      if (array.length === 0 && charCode === 48) continue;
       if (charCode === 46) {
-        dec[i] = strings[i].length - 1 - idx - shift;
+        dec = string.length - 1 - idx - shift;
         continue;
       }
 
-      array[i].push(charCode);
+      array.push(charCode);
     }
-  }
+  // }
 
-  return [
-    { array: array[0], dec: dec[0] ?? 0, isNegative: negative[0] },
-    { array: array[1], dec: dec[1] ?? 0, isNegative: negative[1] },
-  ];
+  return { array: array, dec: dec ?? 0, isNegative: negative };
 };

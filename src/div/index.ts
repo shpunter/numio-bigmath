@@ -5,8 +5,13 @@ import { division } from "./utils.ts";
 export const div = (strL: string, strR: string, limit = 20): string => {
   if (strL === "0") return "0";
 
-  const [left, right] = s2aMD([strL, strR]);
-  const [array, isFloat] = division([left.array, left.dec], [right.array, right.dec], limit);
+  const left = s2aMD(strL);
+  const right = s2aMD(strR);
+  const [array, isFloat] = division(
+    [left.array, left.dec],
+    [right.array, right.dec],
+    limit,
+  );
 
   return a2s(array, isFloat, left.isNegative !== right.isNegative) || "0";
 };

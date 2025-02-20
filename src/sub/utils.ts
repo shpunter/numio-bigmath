@@ -3,7 +3,11 @@ import type { Subtract } from "./types.ts";
 /** This function subtracts 2 numbers (as array). */
 export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
   const lenDiff = (intL - intR) * (intL > intR ? 1 : -1);
-  let [left, right, intLeft, intRight] = intL >= intR ? [arrL, arrR, intL, intR] : [arrR, arrL, intR, intL];
+  let [left, right, intLeft, intRight] = intL >= intR
+    ? [arrL, arrR, intL, intR]
+    : [arrR, arrL, intR, intL];
+  const fracLenL = left.length - intLeft;
+  const fracLenR = right.length - intRight;
   let pl = lenDiff;
   let pr = 0;
   let isLeftBigger = lenDiff > 0;
@@ -27,6 +31,7 @@ export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
 
     if (!isLeftBigger && sub < 48 && lenDiff === 0) {
       [left, right] = [right, left];
+      [intL, intR] = [intR, intL];
       isLeftBigger = true;
       isNegative = true;
       continue;
@@ -67,5 +72,15 @@ export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
     pr += 1;
   }
 
-  return [left, isNegative];
+  while (left[0] === 48 && left[1] !== 46 && left.length > 1) {
+    left.shift();
+    intLeft -= 1;
+  }
+
+  return {
+    array: left,
+    intLength: intLeft,
+    isNegative,
+    isFloat: fracLenL + fracLenR > 0,
+  };
 };

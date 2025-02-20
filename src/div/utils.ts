@@ -1,7 +1,7 @@
 import type { Division } from "./types.ts";
 
-export const division: Division = ([arrL, decL], [arrR, decR], initLimit) => {
-  const decDiff = decL - decR;
+export const division: Division = ([arrL, intL], [arrR, intR], initLimit) => {
+  const decDiff = (arrL.length - intL) - (arrR.length - intR);
   const [L, R] = [[arrR, 1], [arrL, -1]] as const;
   const [array, abs] = decDiff > 0 ? L : R;
 

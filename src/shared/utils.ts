@@ -30,21 +30,21 @@ export const s2aSA: S2ASA = (string) => {
   const isNegative = string.charCodeAt(0) === 45;
   const shift = isNegative ? 1 : 0;
   const array = Array<number>(string.length - shift);
-  let int = string.length - shift;
+  let intLength = string.length - shift;
   let isFloat = false;
 
   for (let idx = 0 + shift; idx < string.length; idx++) {
     const charCode = string.charCodeAt(idx);
 
     if (charCode === 46) {
-      int = idx - shift;
+      intLength = idx - shift;
       isFloat || (isFloat = true);
     }
 
     array[idx - shift] = charCode;
   }
 
-  return { array, int, isNegative, isFloat };
+  return { array, intLength, isNegative, isFloat };
 };
 
 // string to array (mul, div)
@@ -66,5 +66,10 @@ export const s2aMD: S2AMD = (string) => {
     array.push(charCode);
   }
 
-  return { array, dec, isNegative };
+  return {
+    array,
+    intLength: array.length - dec, 
+    isNegative,
+    isFloat: dec > 0,
+  };
 };

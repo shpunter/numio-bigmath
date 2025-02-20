@@ -122,37 +122,6 @@ const float = mul(
 ); // 0.00000000000000000000000000000000000000000000000000000000000000000000000000018
 ```
 
-### Allowed inputs
-
-```javascript
-"123"         // ok
-"1.3"         // ok
-"2"           // ok
-"-123"        // ok
-
-""            // type error
-"1 3"         // type error
-"abc"         // type error
-"a2bc"        // type error
-"."           // type error
-".22"         // type error
-"22."         // type error
-"22...22"     // type error
-"22.22.22"    // type error
-"-"           // type error
-"2-2"         // type error
-"22-"         // type error
-"22--22"      // type error
-"22-22-22"    // type error
-"-.2"         // type error
-".-2"         // type error
-"2+2"         // type error
-"+2"          // type error
-"2,2"         // type error
-"Infinity"    // type error
-"3.333e+56"   // type error
-```
-
 Download from NPM - https://www.npmjs.com/package/infinite-numbers \
 Download from JSR - https://jsr.io/@num/infinite-numbers \
 Home page - https://github.com/shpunter/infinite-num/blob/main/README.md \

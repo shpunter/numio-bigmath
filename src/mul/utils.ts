@@ -1,10 +1,13 @@
 import type { Multiplication } from "./types.ts";
 
 /** This function multiplies 2 numbers (as array). */
-export const multiplication: Multiplication = ([arrL, decL], [arrR, decR]) => {
-  if (arrL.length === 0 || arrR.length === 0) return [48];
+export const multiplication: Multiplication = ([arrL, intL], [arrR, intR]) => {
+  if (arrL.length === 0 || arrR.length === 0) {
+    return { array: [48], intLength: 1, isFloat: false, isNegative: false };
+  }
 
-  const dec = decL + decR;
+  const dec = (arrL.length - intL) + (arrR.length - intR);
+
   const [left, right] = arrL.length >= arrR.length
     ? [arrL, arrR]
     : [arrR, arrL];
@@ -44,8 +47,7 @@ export const multiplication: Multiplication = ([arrL, decL], [arrR, decR]) => {
     result[idx - shift] = nextNum + 48;
     idx -= 1;
   }
-
   result[0] = carryOver ? carryOver + 48 : 32;
 
-  return result;
+  return { array: result, intLength: result.length - dec, isFloat: dec > 0, isNegative: false };
 };

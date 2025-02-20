@@ -1,19 +1,21 @@
 import type { Addition } from "./types.ts";
 
 /** This function adds 2 numbers (as array). */
-export const addition: Addition = ([arrL, intL], [arrR, intR]) => {
-  const fracLenL = arrL.length - intL;
-  const fracLenR = arrR.length - intR;
-  const [left, right, intLeft, intRight] = intL >= intR ? [arrL, arrR, intL, intR] : [arrR, arrL, intR, intL];
-  const fracMaxLen = fracLenL >= fracLenR ? fracLenL : fracLenR;
-  let pl = (intLeft >= intRight ? intLeft : intRight) + fracMaxLen - 1;
-  let pr = (intLeft >= intRight ? intRight : intLeft) + fracMaxLen - 1;
+export const addition: Addition = ([arrL, intL], [arrR, intR], isNegative) => {
+  const [left, right, intLeft, intRight] = intL >= intR
+    ? [arrL, arrR, intL, intR]
+    : [arrR, arrL, intR, intL];
+  const fracLenL = left.length - intLeft;
+  const fracLenR = right.length - intRight;
+  const fracMaxLen = (fracLenL >= fracLenR ? fracLenL : fracLenR) - 1;
+  let pl = (intLeft >= intRight ? intLeft : intRight) + fracMaxLen;
+  let pr = (intLeft >= intRight ? intRight : intLeft) + fracMaxLen;
   let carryOver = 48;
 
   if (fracLenL === 0 && fracLenR > 0) left.push(46);
 
   while (pr >= 0) {
-    if (left[pl] === 46 || right[pl] === 46) {
+    if (left[pl] === 46 || right[pr] === 46) {
       pr -= 1;
       pl -= 1;
     }
@@ -43,5 +45,10 @@ export const addition: Addition = ([arrL, intL], [arrR, intR]) => {
 
   carryOver > 48 && left.unshift(carryOver);
 
-  return left;
+  return {
+    array: left,
+    intLength: left.length -1 - fracMaxLen,
+    isNegative,
+    isFloat: fracLenL + fracLenR > 0,
+  };
 };

@@ -3,13 +3,13 @@ import { division } from "./utils.ts";
 
 /** This function should divide 2 numbers (as string). */
 export const div = (strL: string, strR: string, limit = 20): string => {
-  if (strL === "0") return "0";
+  if (strL === "0") return strL;
 
   const left = s2aMD(strL);
   const right = s2aMD(strR);
   const [array, isFloat] = division(
-    [left.array, left.dec],
-    [right.array, right.dec],
+    [left.array, left.intLength],
+    [right.array, right.intLength],
     limit,
   );
 

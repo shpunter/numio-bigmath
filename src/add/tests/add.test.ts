@@ -265,3 +265,13 @@ Deno.test("5 + -13", () => {
   const res = add("5", "-13");
   assertEquals(res, "-8");
 });
+
+Deno.test("0 + 999.9", () => {
+  const res = add("0", "999.9");
+  assertEquals(res, "999.9");
+});
+
+Deno.test("10891.089 + 990.099", () => {
+  const res = add("10891.089", "990.099");
+  assertEquals(res, "11881.188");
+});

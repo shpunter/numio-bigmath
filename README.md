@@ -29,7 +29,7 @@ This library is particularly useful in scenarios where precise calculations with
 
 ### Latest update
 
-In version 1.0.0 arguments for calculation changed to array \
+In version 1.0.0 arguments for calculation changed to array, which increases performance dramatically \
 In version 0.3.0 added handling of negative numbers \
 In version 0.2.0 added division (int & float numbers)
 

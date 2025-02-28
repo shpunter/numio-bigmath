@@ -29,7 +29,7 @@ This library is particularly useful in scenarios where precise calculations with
 
 ### Latest update
 
-In version 1.0.0 arguments for calculation changed to array, which increases performance dramatically \
+In version 1.0.1 arguments for calculation changed to array, which increases performance dramatically \
 In version 0.3.0 added handling of negative numbers \
 In version 0.2.0 added division (int & float numbers)
 
@@ -104,7 +104,7 @@ const float = div(["0.06", "0.2"]); // 0.3
 const negative = div(["-2", "-3", "2"]); // 3
 
 // set number of digit after the decimal. By default it's 20
-div("10", "3", 5); // 3.33333
+div("10", "3"); // 3.33333
 ```
 
 Does not have a limitation on the number of digits. You can use any length you'd

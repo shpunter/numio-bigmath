@@ -29,6 +29,7 @@ This library is particularly useful in scenarios where precise calculations with
 
 ### Latest update
 
+In version 1.0.0 arguments for calculation changed to array \
 In version 0.3.0 added handling of negative numbers \
 In version 0.2.0 added division (int & float numbers)
 
@@ -71,36 +72,36 @@ deno add jsr:@num/infinite-numbers
 ```javascript
 import { add } from "@num/infinite-numbers";
 
-const int = add("12345", "99"); // 124444
-const float = add("0.1", "0.2"); // 0.3
-const negative = add("0.1", "-0.3"); // -0.2
+const int = add(["12345", "99"]); // 124444
+const float = add(["0.1", "0.2", "0.3"]); // 0.6
+const negative = add(["0.1", "-0.3", "0.1"]); // -0.1
 ```
 
 ### Subtract numbers
 ```javascript
 import { sub } from "@num/infinite-numbers";
 
-const int = sub("150", "99"); // 51
-const float = sub("1", "0.99"); // 0.01
-const negative = sub("-0.1", "-0.3"); // 0.2
+const int = sub(["150", "99"]); // 51
+const float = sub(["1", "0.99"]); // 0.01
+const negative = sub(["-0.1", "-0.3", "0.4"]); // -0.2
 ```
 
 ### Multiply numbers
 ```javascript
 import { mul } from "@num/infinite-numbers";
 
-const int = mul("15", "11"); // 165
-const float = mul("0.01", "0.99"); // 0.0099
-const negative = mul("-2", "3"); // -6
+const int = mul(["15", "11", "2"]); // 330
+const float = mul(["0.01", "0.99"]); // 0.0099
+const negative = mul(["-2", "3"]); // -6
 ```
 
 ### Divide numbers
 ```javascript
 import { div } from "@num/infinite-numbers";
 
-const int = div("9999", "33"); // 303
-const float = div("0.06", "0.2"); // 0.3
-const negative = div("-2", "-3"); // 6
+const int = div(["9999", "33"]); // 
+const float = div(["0.06", "0.2"]); // 0.3
+const negative = div(["-2", "-3", "2"]); // 3
 
 // set number of digit after the decimal. By default it's 20
 div("10", "3", 5); // 3.33333

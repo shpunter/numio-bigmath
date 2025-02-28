@@ -1,12 +1,17 @@
 import type { Division } from "./types.ts";
 
-export const division: Division = ([arrL, intL], [arrR, intR], initLimit) => {
+export const division: Division = (
+  [arrL, intL],
+  [arrR, intR],
+  isNegative,
+  initLimit,
+) => {
   const decDiff = (arrL.length - intL) - (arrR.length - intR);
   const [L, R] = [[arrR, 1], [arrL, -1]] as const;
-  const [array, abs] = decDiff > 0 ? L : R;
+  const [arr, abs] = decDiff > 0 ? L : R;
 
   for (let i = 0; i < decDiff * abs; i++) {
-    array.push(48);
+    arr.push(48);
   }
 
   let digit = 48;
@@ -14,24 +19,27 @@ export const division: Division = ([arrL, intL], [arrR, intR], initLimit) => {
   let isFloat = false;
   let l = 0;
   let r = arrR.length - 1;
+  let intLength = 0;
   const result: number[] = [];
   const lenArrayL = r - arrL.length;
 
   for (let i = 0; i <= lenArrayL; i++) {
-    result.length ? result.push(48) : result.push(46);
-    isFloat || (isFloat = true);
+    if (i === 0) {
+      isFloat = true;
+      intLength = 1;
+    }
+
+    result.push(48);
     arrL.push(48);
     limit -= 1;
   }
 
   while (r < arrL.length && limit >= 0) {
-    let hasNum = false;
     let comp = false;
 
     if (arrL[l] === 48) l += 1;
 
     for (let i = 0; i < arrR.length; i++) {
-      if (!hasNum && arrL[l + i] > 48) hasNum = true;
       if ((r - l + 1) < arrR.length) comp = true;
       if ((r - l + 1) !== arrR.length) break;
 
@@ -43,11 +51,12 @@ export const division: Division = ([arrL, intL], [arrR, intR], initLimit) => {
 
     if (comp) {
       if (r < arrL.length && (result.length > 0 || digit !== 48)) {
+        if (!isFloat) intLength += 1;
         result.push(digit);
       }
 
-      if (r >= arrL.length - 1 && hasNum) {
-        !isFloat && initLimit === limit && result.push(46);
+      if (r >= arrL.length - 1) {
+        if (initLimit === limit) isFloat = true;
         arrL.push(48);
         limit -= 1;
       }
@@ -64,16 +73,38 @@ export const division: Division = ([arrL, intL], [arrR, intR], initLimit) => {
       if (arrL[idx] < arrR[i]) {
         arrL[idx] = arrL[idx] - arrR[i] + 58;
         arrL[idx - 1] -= 1;
-      } else arrL[idx] = arrL[idx] - arrR[i] + 48;
+      } else {
+        arrL[idx] = arrL[idx] - arrR[i] + 48;
+      }
     }
 
     digit += 1;
   }
 
-  result[0] === 46 && result.unshift(48);
+  const multipliedResult = [];
+  let count = 0;
 
-  return [
-    result[result.length - 1] === 46 ? [48] : result,
-    isFloat || result[1] === 46,
-  ];
+  if (result[0] === 48) {
+    let isGrZero = false;
+
+    for (let i = 0; i < result.length; i++) {
+      if (!isGrZero) result[i] > 48 ? isGrZero = true : count += 1;
+
+      isGrZero && multipliedResult.push(result[i]);
+    }
+
+    for (let i = 0; i < count; i++) {
+      multipliedResult.push(48);
+      intLength -= 1;
+    }
+  }
+
+  const isZero = result.length === count;
+
+  return {
+    array: result[0] === 48 ? multipliedResult : result,
+    isFloat: isZero ? false : isFloat,
+    isNegative: isZero ? false : isNegative,
+    intLength: isZero ? 1 : intLength,
+  };
 };

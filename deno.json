@@ -1,6 +1,6 @@
 {
   "name": "@num/infinite-numbers",
-  "version": "0.3.17",
+  "version": "1.0.0",
   "license": "MIT",
   "exports": "./index.ts",
   "publish": {

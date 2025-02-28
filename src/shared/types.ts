@@ -4,6 +4,7 @@ export type A2S = (
   array: number[],
   isFloat: boolean,
   isNegative?: boolean,
+  intLength?: number
 ) => string;
 
 export type S2ASA = (

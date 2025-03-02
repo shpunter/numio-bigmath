@@ -26,11 +26,12 @@
     "plus",
     "minus",
     "divide",
-    "long division"
+    "long division",
+    "bigmath"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shpunter/infinite-num.git"
+    "url": "git+https://github.com/shpunter/bigmath.git"
   },
   "main": "./index.js",
   "types": "./index.d.ts",

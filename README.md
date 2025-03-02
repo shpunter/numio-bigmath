@@ -125,5 +125,5 @@ const float = mul(
 
 Download from NPM - https://www.npmjs.com/package/@num/bigmath \
 Download from JSR - https://jsr.io/@num/bigmath \
-Home page - https://github.com/shpunter/infinite-num/blob/main/README.md \
-License - https://github.com/shpunter/infinite-num/blob/main/LICENSE
+Home page - https://github.com/shpunter/bigmath/blob/main/README.md \
+License - https://github.com/shpunter/bigmath/blob/main/LICENSE

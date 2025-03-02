@@ -1,6 +1,6 @@
-# Infinite-numbers
+# @num/bigmath
 
-Infinite-numbers is an arbitrary-precision arithmetic library. This library provides functions for performing arithmetic operations (addition, subtraction, multiplication, and division) on numbers of arbitrary length. It addresses the limitations of JavaScript's built-in number type, which suffers from precision loss when dealing with very large or very small numbers, or numbers with more than 15 significant digits.
+@num/bigmath is an arbitrary-precision arithmetic library. This library provides functions for performing arithmetic operations (addition, subtraction, multiplication, and division) on numbers of arbitrary length. It addresses the limitations of JavaScript's built-in number type, which suffers from precision loss when dealing with very large or very small numbers, or numbers with more than 15 significant digits.
 
 
 ## Key Features and Benefits
@@ -38,31 +38,31 @@ In version 0.2.0 added division (int & float numbers)
 ### NPM
 
 ```bash
-npm install infinite-numbers
+npm install @num/bigmath
 ```
 
 ### YARN
 
 ```bash
-yarn add infinite-numbers
+yarn add @num/bigmath
 ```
 
 ### BUN
 
 ```bash
-bun add infinite-numbers
+bun add @num/bigmath
 ```
 
 ### PNPM
 
 ```bash
-pnpm add infinite-numbers
+pnpm add @num/bigmath
 ```
 
 ### DENO
 
 ```bash
-deno add jsr:@num/infinite-numbers
+deno add jsr:@num/bigmath
 ```
 
 # Examples:
@@ -70,7 +70,7 @@ deno add jsr:@num/infinite-numbers
 ### Add numbers
 
 ```javascript
-import { add } from "@num/infinite-numbers";
+import { add } from "@num/bigmath;
 
 const int = add(["12345", "99"]); // 124444
 const float = add(["0.1", "0.2", "0.3"]); // 0.6
@@ -79,7 +79,7 @@ const negative = add(["0.1", "-0.3", "0.1"]); // -0.1
 
 ### Subtract numbers
 ```javascript
-import { sub } from "@num/infinite-numbers";
+import { sub } from "@num/bigmath";
 
 const int = sub(["150", "99"]); // 51
 const float = sub(["1", "0.99"]); // 0.01
@@ -88,7 +88,7 @@ const negative = sub(["-0.1", "-0.3", "0.4"]); // -0.2
 
 ### Multiply numbers
 ```javascript
-import { mul } from "@num/infinite-numbers";
+import { mul } from "@num/bigmath";
 
 const int = mul(["15", "11", "2"]); // 330
 const float = mul(["0.01", "0.99"]); // 0.0099
@@ -97,7 +97,7 @@ const negative = mul(["-2", "3"]); // -6
 
 ### Divide numbers
 ```javascript
-import { div } from "@num/infinite-numbers";
+import { div } from "@num/bigmath";
 
 const int = div(["9999", "33"]); // 
 const float = div(["0.06", "0.2"]); // 0.3
@@ -123,7 +123,7 @@ const float = mul(
 ); // 0.00000000000000000000000000000000000000000000000000000000000000000000000000018
 ```
 
-Download from NPM - https://www.npmjs.com/package/infinite-numbers \
-Download from JSR - https://jsr.io/@num/infinite-numbers \
+Download from NPM - https://www.npmjs.com/package/@num/bigmath \
+Download from JSR - https://jsr.io/@num/bigmath \
 Home page - https://github.com/shpunter/infinite-num/blob/main/README.md \
 License - https://github.com/shpunter/infinite-num/blob/main/LICENSE

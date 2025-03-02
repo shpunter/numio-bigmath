@@ -1,5 +1,5 @@
 {
-  "name": "@num/infinite-numbers",
+  "name": "@num/bigmath",
   "version": "1.0.1",
   "license": "MIT",
   "exports": "./index.ts",

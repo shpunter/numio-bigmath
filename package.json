@@ -1,6 +1,6 @@
 {
-  "name": "@num/bigmath",
-  "description": "@num/bigmath is an arbitrary-precision arithmetic library. It can be used for basic operations with decimal numbers (integers and float)",
+  "name": "@numio/bigmath",
+  "description": "@numio/bigmath is an arbitrary-precision arithmetic library. It can be used for basic operations with decimal numbers (integers and float)",
   "version": "1.0.1",
   "keywords": [
     "precision",
@@ -27,11 +27,12 @@
     "minus",
     "divide",
     "long division",
-    "bigmath"
+    "bigmath",
+    "numio"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shpunter/bigmath.git"
+    "url": "git+https://github.com/shpunter/numio-bigmath.git"
   },
   "main": "./index.js",
   "types": "./index.d.ts",

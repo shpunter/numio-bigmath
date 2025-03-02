@@ -1,5 +1,5 @@
 {
-  "name": "@num/bigmath",
+  "name": "@numio/bigmath",
   "version": "1.0.1",
   "license": "MIT",
   "exports": "./index.ts",

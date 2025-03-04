@@ -1,7 +1,7 @@
 import { a2sMD, s2aMD } from "../shared/utils.ts";
 import { division } from "./utils.ts";
 
-/** This function should divide 2 numbers (as string). */
+/** This function should divide numbers (as string). */
 export const div = (strs: string[], limit = 20): string => {
   if (strs[0] === "0") return strs[0];
 

@@ -29,9 +29,15 @@ This library is particularly useful in scenarios where precise calculations with
 
 ### Latest update
 
-In version 1.0.0 arguments for calculation changed to array, which increases performance dramatically \
-In version 0.3.0 added handling of negative numbers \
-In version 0.2.0 added division (int & float numbers)
+Added rounding
+* round up
+* round down
+* half-up
+* half-down
+* half-even
+* half-odd
+* decimal places to be rounded
+* significant figures decimals to be rounded
 
 # Install:
 
@@ -105,6 +111,59 @@ const negative = div(["-2", "-3", "2"]); // 3
 
 // set number of digit after the decimal. By default it's 20
 div("10", "3"); // 3.33333
+```
+
+### Round
+```javascript
+round("-1.12345"); // -1
+round("1.5"); // 2
+round("1.0"); // 1
+round("0.00001"); // 0
+round("9.9"); // 10
+```
+
+### Round at position
+```javascript
+round("1.12345", { decimals: 1 }); // 1.1
+round("1.12345", { decimals: 2 }); // 1.12
+round("1.12234", { decimals: 0 }); // 1
+round("9.999", { decimals: 2 }); // 10
+```
+
+### Round modes
+```javascript
+round("1.11", { decimals: 1, roundMode: "up" }); // 1.2
+round("1.19", { decimals: 1, roundMode: "up" }); // 1.2
+
+round("1.11", { decimals: 1, roundMode: "down" }); // 1.1
+round("1.19", { decimals: 1, roundMode: "down" }); // 1.1
+
+round("1.15", { decimals: 1, roundMode: "half-up" }); // 1.2
+round("1.15", { decimals: 1, roundMode: "half-down" }); // 1.1
+
+round("1.15", { decimals: 1, roundMode: "half-even" }); // 1.2
+round("1.25", { decimals: 1, roundMode: "half-even" }); // 1.2
+round("1.35", { decimals: 1, roundMode: "half-even" }); // 1.4
+round("1.45", { decimals: 1, roundMode: "half-even" }); // 1.4
+round("1.55", { decimals: 1, roundMode: "half-even" }); // 1.6
+
+round("1.15", { decimals: 1, roundMode: "half-odd" }); // 1.1
+round("1.25", { decimals: 1, roundMode: "half-odd" }); // 1.3
+round("1.35", { decimals: 1, roundMode: "half-odd" }); // 1.3
+round("1.45", { decimals: 1, roundMode: "half-odd" }); // 1.5
+round("1.55", { decimals: 1, roundMode: "half-odd" }); // 1.5
+```
+
+### Round with "significant figures" flag
+```javascript
+round("0.000119", { decimals: 2, sigFig: false }); // 0
+round("0.000119", { decimals: 2, sigFig: true }); // 0.00012
+
+round("0.0019", { decimals: 1, sigFig: true, roundMode: "down" }); // 0.001
+round("0.0011", { decimals: 1, sigFig: true, roundMode: "up" }); // 0.002
+
+round("1.000119", { decimals: 2, sigFig: false }); // 1
+round("1.000119", { decimals: 2, sigFig: true }); // 1
 ```
 
 Does not have a limitation on the number of digits. You can use any length you'd

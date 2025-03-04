@@ -2,7 +2,7 @@ import { a2sSA, s2aSA } from "../shared/utils.ts";
 import { subtract } from "../sub/utils.ts";
 import { addition } from "./utils.ts";
 
-/** This function adds 2 numbers (as string). */
+/** This function adds numbers (as string). */
 export function add(strs: string[]): string {
   const arrays = strs.map((str) => s2aSA(str));
 

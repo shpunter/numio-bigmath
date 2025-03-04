@@ -1,6 +1,6 @@
 {
   "name": "@numio/bigmath",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "exports": "./index.ts",
   "publish": {
@@ -32,6 +32,7 @@
   "tasks": {
     "ts2js": "tsc --noResolve --noCheck -p tsconfig.json",
     "changeExtension": "deno run -A build.ts",
-    "build": "deno task ts2js && deno task changeExtension"
+    "build": "deno task ts2js && deno task changeExtension",
+    "test:coverage": "deno test --coverage=cov_profile && deno coverage --lcov --output=cov.lcov cov_profile/ && genhtml -o html_cov cov.lcov"
   }
 }

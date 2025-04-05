@@ -1,4 +1,6 @@
+import type { InputData } from "../types.ts";
 import type { Subtract } from "./types.ts";
+import { addition } from "../add/utils.ts";
 
 /** This function subtracts 2 numbers (as array). */
 export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
@@ -14,15 +16,11 @@ export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
   let carryOver = false;
   let isNegative = intLeft !== intL;
 
-  if (intLeft === left.length && intRight !== right.length) left.push(46);
-  if (intRight === right.length && intLeft !== left.length) right.push(46);
+  while (pl > left.length - 1) {
+    left.push(48);
+  }
 
   while (pr < right.length) {
-    if (left[pl] === 46 || right[pr] === 46) {
-      pr += 1;
-      pl += 1;
-    }
-
     let sub = ((left[pl] ?? 48) - (right[pr] ?? 48)) + 48;
 
     if (!isLeftBigger && left[pl] > right[pr]) {
@@ -46,11 +44,6 @@ export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
     let prReverse = pr - 1;
 
     while (carryOver) {
-      if (left[plReverse] === 46 || right[prReverse] === 46) {
-        plReverse -= 1;
-        prReverse -= 1;
-      }
-
       if (left[plReverse] !== 48) {
         plReverse >= 0 && (left[plReverse] -= 1);
         prReverse >= 0 && (right[prReverse] -= 1);
@@ -72,7 +65,7 @@ export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
     pr += 1;
   }
 
-  while (left[0] === 48 && left[1] !== 46 && left.length > 1) {
+  while (left[0] === 48 && left.length > 1 && fracLenL < left.length - 1) {
     left.shift();
     intLeft -= 1;
   }
@@ -83,4 +76,30 @@ export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
     isNegative,
     isFloat: fracLenL + fracLenR > 0,
   };
+};
+
+export const subRoute = (input: InputData[], initValue: InputData) => {
+  return input.reduce((left, right) => {
+    if (left.array.length === 0) return right;
+
+    if (left.isNegative && right.isNegative) {
+      return subtract(
+        [right.array, right.intLength],
+        [left.array, left.intLength],
+      );
+    }
+
+    if (!left.isNegative && !right.isNegative) {
+      return subtract(
+        [left.array, left.intLength],
+        [right.array, right.intLength],
+      );
+    }
+
+    return addition(
+      [left.array, left.intLength],
+      [right.array, right.intLength],
+      left.isNegative,
+    );
+  }, initValue);
 };

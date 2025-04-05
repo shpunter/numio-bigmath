@@ -1,3 +1,5 @@
+import { subtract } from "../sub/utils.ts";
+import type { InputData } from "../types.ts";
 import type { Addition } from "./types.ts";
 
 /** This function adds 2 numbers (as array). */
@@ -12,14 +14,11 @@ export const addition: Addition = ([arrL, intL], [arrR, intR], isNegative) => {
   let pr = (intLeft >= intRight ? intRight : intLeft) + fracMaxLen;
   let carryOver = 48;
 
-  if (fracLenL === 0 && fracLenR > 0) left.push(46);
+  while (pl > left.length - 1) {
+    left.push(48);
+  }
 
   while (pr >= 0) {
-    if (left[pl] === 46 || right[pr] === 46) {
-      pr -= 1;
-      pl -= 1;
-    }
-
     const sum = ((left[pl] ?? 48) + (right[pr] ?? 48) + carryOver) -
       3 * 48;
 
@@ -47,8 +46,34 @@ export const addition: Addition = ([arrL, intL], [arrR, intR], isNegative) => {
 
   return {
     array: left,
-    intLength: left.length -1 - fracMaxLen,
+    intLength: left.length - 1 - fracMaxLen,
     isNegative,
     isFloat: fracLenL + fracLenR > 0,
   };
+};
+
+export const addRoute = (input: InputData[], initValue: InputData) => {
+  return input.reduce((left, right) => {
+    if (left.array.length === 0) return right;
+
+    if (left.isNegative && !right.isNegative) {
+      return subtract(
+        [right.array, right.intLength],
+        [left.array, left.intLength],
+      );
+    }
+
+    if (!left.isNegative && right.isNegative) {
+      return subtract(
+        [left.array, left.intLength],
+        [right.array, right.intLength],
+      );
+    }
+
+    return addition(
+      [left.array, left.intLength],
+      [right.array, right.intLength],
+      left.isNegative && right.isNegative,
+    );
+  }, initValue);
 };

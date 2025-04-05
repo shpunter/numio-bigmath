@@ -1,16 +1,7 @@
 import type { InputData } from "../types.ts";
 
-export type A2S = (
-  array: number[],
-  isFloat: boolean,
-  isNegative?: boolean,
-  intLength?: number
-) => string;
+export type A2S = (input: InputData) => string;
 
-export type S2ASA = (
-  string: string,
-) => InputData;
-
-export type S2AMD = (
+export type S2A = (
   strings: string,
 ) => InputData;

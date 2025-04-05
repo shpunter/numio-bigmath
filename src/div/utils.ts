@@ -1,3 +1,4 @@
+import type { InputData } from "../types.ts";
 import type { Division } from "./types.ts";
 
 export const division: Division = (
@@ -99,12 +100,34 @@ export const division: Division = (
     }
   }
 
-  const isZero = result.length === count;
+  return result.length === count
+    ? {
+      array: [48],
+      isFloat: false,
+      isNegative: false,
+      intLength: 1,
+    }
+    : {
+      array: result[0] === 48 ? multipliedResult : result,
+      isFloat,
+      isNegative,
+      intLength,
+    };
+};
 
-  return {
-    array: result[0] === 48 ? multipliedResult : result,
-    isFloat: isZero ? false : isFloat,
-    isNegative: isZero ? false : isNegative,
-    intLength: isZero ? 1 : intLength,
-  };
+export const divRoute = (
+  input: InputData[],
+  initValue: InputData,
+  limit: number,
+) => {
+  return input.reduce((left, right) => {
+    if (left.array.length === 0) return right;
+
+    return division(
+      [left.array, left.intLength],
+      [right.array, right.intLength],
+      left.isNegative !== right.isNegative,
+      limit,
+    );
+  }, initValue);
 };

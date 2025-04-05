@@ -26,7 +26,7 @@
   },
   "lint": {
     "rules": {
-      "include": ["no-console", "no-debugger"]
+      "include": ["no-console", "no-debugger", "no-slow-types"]
     }
   },
   "tasks": {

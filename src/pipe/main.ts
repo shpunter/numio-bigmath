@@ -45,4 +45,4 @@ class Pipe {
   }
 }
 
-export const pipe = new Pipe();
+export const pipe: Pipe = new Pipe();

@@ -1,5 +1,5 @@
 import { addition } from "../add/utils.ts";
-import type { InputData, Route } from "../../types.ts";
+import type { Route } from "../../types.ts";
 import type { Subtract } from "./types.ts";
 
 /** This function subtracts 2 numbers (as array). */

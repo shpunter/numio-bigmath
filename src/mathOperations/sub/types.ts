@@ -1,4 +1,4 @@
-import type { InputData } from "../types.ts";
+import type { InputData } from "../../types.ts";
 
 export type Subtract = (
   L: [number[], number],

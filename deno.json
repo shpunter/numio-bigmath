@@ -1,6 +1,6 @@
 {
   "name": "@numio/bigmath",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "exports": "./index.ts",
   "publish": {

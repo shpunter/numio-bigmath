@@ -1,5 +1,5 @@
 import { subtract } from "../sub/utils.ts";
-import type { InputData } from "../types.ts";
+import type { Route } from "../../types.ts";
 import type { Addition } from "./types.ts";
 
 /** This function adds 2 numbers (as array). */
@@ -52,7 +52,7 @@ export const addition: Addition = ([arrL, intL], [arrR, intR], isNegative) => {
   };
 };
 
-export const addRoute = (input: InputData[], initValue: InputData) => {
+export const addRoute: Route = (input, initValue) => {
   return input.reduce((left, right) => {
     if (left.array.length === 0) return right;
 

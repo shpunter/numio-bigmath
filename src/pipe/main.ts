@@ -1,9 +1,10 @@
-import { addRoute } from "../add/utils.ts";
-import { divRoute } from "../div/utils.ts";
-import { mulRoute } from "../mul/utils.ts";
+
 import { DEFAULT } from "../shared/constant.ts";
 import { a2s, s2a } from "../shared/utils.ts";
-import { subRoute } from "../sub/utils.ts";
+import { subRoute } from "../mathOperations/sub/utils.ts";
+import { addRoute } from "../mathOperations/add/utils.ts";
+import { divRoute } from "../mathOperations/div/utils.ts";
+import { mulRoute } from "../mathOperations/mul/utils.ts";
 
 import type { A2S } from "../shared/types.ts";
 import type { InputData } from "../types.ts";

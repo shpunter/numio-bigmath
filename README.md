@@ -50,7 +50,9 @@ large numbers are essential, such as:
 
 ### Latest update
 
-Added pipe functionality
+Added quartile functionality. When you might need it?
+Understanding Distribution. Quartiles (Q1, Q2, and Q3) split a dataset into four groups, each representing 25% of the data. 
+Identifying Outliers. They help visualize the shape and spread of the data, revealing whether it's skewed or symmetrical. 
 
 # Install:
 
@@ -210,6 +212,16 @@ pipe.add(addNums) // 6
   .mul(mulNums) // 1 * 2 * 5 * 0.2 = 2
   .calc()
 ```
+
+### Quartile
+```javascript
+import { quartile } from "@numio/bigmath";
+
+quartile(["1", "2", "3", "4", "5", "6", "7", "8", "9"]) // { Q1: "2.5", Q2: "5", Q3: "7.5" }
+quartile(["0.001", "0.3", "0.4", "1"]) // { Q1: "0.1505", Q2: "0.35", Q3: "0.7" }
+
+```
+
 
 Does not have a limitation on the number of digits. You can use any length you'd
 like

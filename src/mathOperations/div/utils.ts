@@ -1,5 +1,4 @@
-import type { InputData } from "../types.ts";
-import type { Division } from "./types.ts";
+import type { Division, DivRoute } from "./types.ts";
 
 export const division: Division = (
   [arrL, intL],
@@ -115,11 +114,7 @@ export const division: Division = (
     };
 };
 
-export const divRoute = (
-  input: InputData[],
-  initValue: InputData,
-  limit: number,
-) => {
+export const divRoute: DivRoute = (input, initValue, limit) => {
   return input.reduce((left, right) => {
     if (left.array.length === 0) return right;
 

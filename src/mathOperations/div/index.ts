@@ -1,5 +1,6 @@
-import { DEFAULT } from "../shared/constant.ts";
-import { a2s, s2a } from "../shared/utils.ts";
+
+import { DEFAULT } from "../../shared/constant.ts";
+import { a2s, s2a } from "../../shared/utils.ts";
 import { divRoute } from "./utils.ts";
 
 /** This function should divide numbers (as string). */

@@ -1,7 +1,7 @@
-import type { InputData } from "../types.ts";
+import type { InputData } from "../../types.ts";
 
 export type Multiplication = (
   arrL: [number[], number],
   arrR: [number[], number],
-  isNegative: boolean
+  isNegative: boolean,
 ) => InputData;

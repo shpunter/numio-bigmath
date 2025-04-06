@@ -1,4 +1,4 @@
-import type { InputData } from "../types.ts";
+import type { InputData, Route } from "../../types.ts";
 import type { Multiplication } from "./types.ts";
 
 /** This function multiplies 2 numbers (as array). */
@@ -56,7 +56,7 @@ export const multiplication: Multiplication = (
   };
 };
 
-export const mulRoute = (input: InputData[], initValue: InputData) => {
+export const mulRoute: Route = (input: InputData[], initValue: InputData) => {
   return input.reduce((left, right) => {
     if (left.array.length === 0) return right;
 

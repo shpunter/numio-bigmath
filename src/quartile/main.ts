@@ -5,6 +5,7 @@ const mean: Mean = (idx, array) => {
   return pipe.add([array[idx], array[idx - 1]]).div(["2"]).calc();
 };
 
+/** This function returns Q1, Q2, Q3 (quartile). */
 export const quartile: Quartile = (array) => {
   if (array.length < 3) {
     throw Error("To calculate quartile you need at least 3 elements");

@@ -67,12 +67,14 @@ export const minRawFn: MinRawFn = (array) => {
   return min;
 };
 
+/** This function returns max number. */
 export const max: Max = (strs) => {
   const array = strs.map((str) => s2a(str));
 
   return a2s(maxRawFn(array));
 };
 
+/** This function returns min number. */
 export const min: Min = (strs) => {
   const array = strs.map((str) => s2a(str));
 

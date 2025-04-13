@@ -113,12 +113,12 @@ const negative = mul(["-2", "3"]); // -6
 ```javascript
 import { div } from "@numio/bigmath";
 
-const int = div(["9999", "33"]); //
+const int = div(["9999", "33"]); // 303
 const float = div(["0.06", "0.2"]); // 0.3
-const negative = div(["-2", "-3", "2"]); // 3
+const negative = div(["-2", "-3", "2"]); //0.33333333333333333333
 
 // set number of digit after the decimal. By default it's 20
-div("10", "3"); // 3.33333
+div(["10", "3"], 4); // 3.3333
 ```
 
 ### Round

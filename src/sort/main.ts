@@ -37,6 +37,7 @@ const sortRawFn: SortRawFn = (array, sorting) => {
   return array;
 };
 
+/** Using this function sort an array. */
 export const sort: Sort = (array, sorting = ASC) => {
   const inputDataArray = array.map((str) => s2a(str));
 

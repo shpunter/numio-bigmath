@@ -1,4 +1,3 @@
-
 import { DEFAULT } from "../shared/constant.ts";
 import { a2s, s2a } from "../shared/utils.ts";
 import { subRoute } from "../mathOperations/sub/utils.ts";
@@ -46,4 +45,5 @@ class Pipe {
   }
 }
 
+/** Using this function you can chain operations (add, sub, div, mul). */
 export const pipe: Pipe = new Pipe();

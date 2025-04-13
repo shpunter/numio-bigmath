@@ -9,13 +9,13 @@ export const round: Round = (value, options) => {
   let sigFig = options?.sigFig ?? false;
   let decimals = options?.decimals ?? 0;
   let isFloat = false;
-  let isNill = true;
+  let isNil = true;
 
   for (let i = 0; i < value.length; i++) {
     const charCode = value.charCodeAt(i);
 
     if (sigFig && charCode > 48) sigFig = false;
-    if (isNill && charCode > 48) isNill = false;
+    if (isNil && charCode > 48) isNil = false;
     if (isFloat && !sigFig) decimals -= 1;
     if (charCode === 46) isFloat = true;
 
@@ -44,7 +44,7 @@ export const round: Round = (value, options) => {
 
   handleTail(array, isFloat);
 
-  return (isNill && array[array.length - 1] <= 48)
+  return (isNil && array[array.length - 1] <= 48)
     ? "0"
     : String.fromCharCode(...array);
 };

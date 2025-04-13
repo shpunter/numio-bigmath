@@ -1,7 +1,10 @@
 import type { InputData } from "../types.ts";
 import type { A2S, S2A } from "./types.ts";
 
-const convert = (isNegative: InputData["isNegative"], array: InputData["array"]) => {
+const convert = (
+  isNegative: InputData["isNegative"],
+  array: InputData["array"],
+) => {
   return (isNegative ? "-" : "") + String.fromCharCode(...array);
 };
 
@@ -36,9 +39,7 @@ export const a2s: A2S = ({ array, isFloat, isNegative, intLength }) => {
       }
     }
 
-    result.at(-1) === 46 && result.pop();
-
-    return convert(isNegative, result);
+    return result.at(-1) === 46 ? "0" : convert(isNegative, result);
   }
 
   return convert(isNegative, array);
@@ -49,12 +50,11 @@ export const s2a: S2A = (string) => {
   const isNegative = string.charCodeAt(0) === 45;
   const shift = isNegative ? 1 : 0;
   let dec = 0;
+  const isNil = string.length === 1 && string.charCodeAt(0) === 48;
+  const isNegNil = string.length === 2 && string.charCodeAt(0) === 45 &&
+    string.charCodeAt(1) === 48;
 
-  if (
-    (string.length === 1 && string.charCodeAt(0) === 48) ||
-    string.length === 2 && string.charCodeAt(0) === 45 &&
-      string.charCodeAt(1) === 48
-  ) {
+  if (isNil || isNegNil) {
     return {
       array: [48],
       intLength: 1,

@@ -1,6 +1,6 @@
 {
   "name": "@numio/bigmath",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "exports": "./index.ts",
   "publish": {
@@ -21,7 +21,8 @@
       "src/**/bench",
       "npm",
       "tsconfig.json",
-      "build.ts"
+      "build.ts",
+      ".gitignore"
     ]
   },
   "lint": {

@@ -96,3 +96,27 @@ Deno.test("1.89", () => {
     "1.89",
   );
 });
+
+Deno.test("0.000", () => {
+  assertEquals(
+    a2s({
+      array: [48, 48, 48],
+      intLength: 0,
+      isNegative: false,
+      isFloat: true,
+    }),
+    "0",
+  );
+});
+
+Deno.test("2.000", () => {
+  assertEquals(
+    a2s({
+      array: [50, 48, 48, 48],
+      intLength: 1,
+      isNegative: false,
+      isFloat: true,
+    }),
+    "2",
+  );
+});

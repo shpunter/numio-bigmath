@@ -1,4 +1,9 @@
+import type { InputData } from "../types.ts";
 import type { A2S, S2A } from "./types.ts";
+
+const convert = (isNegative: InputData["isNegative"], array: InputData["array"]) => {
+  return (isNegative ? "-" : "") + String.fromCharCode(...array);
+};
 
 export const a2s: A2S = ({ array, isFloat, isNegative, intLength }) => {
   const result: number[] = [];
@@ -26,16 +31,17 @@ export const a2s: A2S = ({ array, isFloat, isNegative, intLength }) => {
       }
     } else {
       for (let i = 0; i < lastValuableIdx; i++) {
-        if (i === intLength) result.push(46);
-
+        i === intLength && result.push(46);
         result.push(array[i]);
       }
     }
 
-    return (isNegative ? "-" : "") + String.fromCharCode(...result);
+    result.at(-1) === 46 && result.pop();
+
+    return convert(isNegative, result);
   }
 
-  return (isNegative ? "-" : "") + String.fromCharCode(...array).trim();
+  return convert(isNegative, array);
 };
 
 export const s2a: S2A = (string) => {

@@ -2,7 +2,7 @@
   "version": "4",
   "specifiers": {
     "jsr:@std/assert@*": "1.0.8",
-    "jsr:@std/internal@^1.0.5": "1.0.5"
+    "jsr:@std/internal@^1.0.6": "1.0.6"
   },
   "jsr": {
     "@std/assert@1.0.8": {
@@ -11,7 +11,7 @@
         "jsr:@std/internal"
       ]
     },
-    "@std/internal@1.0.5": {
+    "@std/internal@1.0.6": {
       "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
     }
   }

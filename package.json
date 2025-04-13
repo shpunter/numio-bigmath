@@ -1,7 +1,7 @@
 {
   "name": "@numio/bigmath",
   "description": "@numio/bigmath is an arbitrary-precision arithmetic library. It can be used for basic operations with decimal numbers (integers and float)",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "keywords": [
     "precision",
     "arithmetic",
@@ -33,7 +33,12 @@
     "Q1",
     "Q2",
     "Q3",
-    "round"
+    "round",
+    "min",
+    "max",
+    "sort",
+    "mean",
+    "significant figures"
   ],
   "repository": {
     "type": "git",

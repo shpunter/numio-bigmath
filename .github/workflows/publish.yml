@@ -17,17 +17,18 @@ jobs:
         with: 
           deno-version: v2.x
 
+      - name: Build js version
+        run: deno task ts2js
+    
+      - name: Replace .ts with .js
+        run: deno task changeExtension
+
       - name: Run linter
         run: deno lint
 
       - name: Run tests
         run: deno test -A
 
-      - name: Build js version
-        run: deno task ts2js
-
-      - name: Replace .ts with .js
-        run: deno task changeExtension
 
   publish-npm: 
     needs: [unit-tests]

@@ -1,54 +1,44 @@
-# @numio/bigmath
+# @numio/bigmath: Precise Arithmetic Beyond JavaScript's Limits
 
-@numio/bigmath is an arbitrary-precision arithmetic library. This library
-provides functions for performing arithmetic operations (addition, subtraction,
-multiplication, and division) on numbers of arbitrary length. It addresses the
-limitations of JavaScript's built-in number type, which suffers from precision
-loss when dealing with very large or very small numbers, or numbers with more
-than 15 significant digits.
+**Do you struggle with inaccurate calculations involving very large or very small numbers, or decimal numbers with high precision in JavaScript?**
 
-## Key Features and Benefits
+`@numio/bigmath` is your solution! This library provides a robust set of functions for performing **arbitrary-precision arithmetic**, effectively overcoming the limitations of JavaScript's built-in `Number` type. Say goodbye to unexpected rounding errors and precision loss when dealing with numbers that exceed 15 significant digits or involve complex decimal operations.
 
-- **Arbitrary Precision:** Handles numbers of any length, avoiding the
-  limitations of JavaScript's `Number` type. This allows for calculations with
-  extremely large or small numbers without loss of precision.
-- **No Precision Loss:** Eliminates precision errors that occur when using
-  numeric literals with more than 15 significant digits. The library ensures
-  accurate calculations even with very long numbers.
-- **Four Basic Operations:** Provides functions for addition (`add`),
-  subtraction (`sub`), multiplication (`mul`), and division (`div`).
-- **Decimal Handling:** Correctly handles decimal numbers and performs
-  calculations accurately, including scenarios involving negative numbers.
-- **Division Precision Control:** The `div` function allows you to specify the
-  number of digits after the decimal point for the result. The default precision
-  is 20 digits.
-- **Easy to Use:** The library provides simple and intuitive functions for
-  performing arithmetic operations.
+## Why Choose @numio/bigmath?
 
-## How it Solves the Problem
+**Solve Precision Problems:**
 
-JavaScript's `Number` type uses a 64-bit floating-point representation (IEEE
-754), which can lead to precision issues when dealing with numbers that exceed
-its representable range or require more than 15 significant digits. This library
-likely uses a different representation internally (e.g., strings or arrays of
-digits) to store and manipulate numbers, effectively bypassing the limitations
-of the built-in `Number` type. This allows it to perform calculations on numbers
-of virtually unlimited size and maintain accuracy.
+* **Handle Numbers of Any Size:** Perform calculations on integers and decimals of virtually unlimited length, without the risk of JavaScript's `Number` limitations.
+* **Eliminate Precision Loss:** Achieve accurate results even with numeric literals exceeding 15 significant digits, ensuring the integrity of your calculations.
+* **Precise Decimal Operations:** Execute addition, subtraction, multiplication, and division on decimal numbers with guaranteed accuracy, including scenarios with negative values.
 
-## Use Cases
+**Unlock Advanced Numerical Operations:**
 
-This library is particularly useful in scenarios where precise calculations with
-large numbers are essential, such as:
+* **Control Division Precision:** Specify the exact number of digits after the decimal point for division results, with a default precision of 20 digits for high accuracy.
+* **Flexible Rounding:** Round numbers to the nearest integer or a specific number of decimal places with various rounding modes (up, down, half-up, half-down, half-even, half-odd) to meet your exact requirements.
+* **Round Based on Significant Figures:** Control rounding based on the number of significant figures, crucial for scientific and engineering applications.
+* **Chain Operations with Pipe:** Simplify complex calculations by chaining arithmetic operations in a readable and intuitive manner.
+* **Analyze Data Distribution:** Calculate quartiles (Q1, Q2, Q3) to understand the spread and central tendency of your numerical data, helping identify outliers and the shape of the distribution.
+* **Sort Numbers Accurately:** Sort arrays of numbers, including negative and decimal values, in ascending or descending order, correctly handling string representations of numbers that JavaScript's native sort might misinterpret.
+* **Calculate Central Tendency:** Easily compute the mean (average) of a set of numbers.
+* **Identify Extremes:** Find the maximum and minimum values within an array of numbers.
 
-- **Financial applications:** Dealing with large sums of money or precise
-  interest calculations.
-- **Scientific computing:** Working with very large or small numbers in
-  scientific simulations.
-- **Cryptography:** Implementing cryptographic algorithms that require high
-  precision.
-- **Any application** where exceeding JavaScript's number limits is a concern.
+## When is @numio/bigmath essential?
+
+This library is particularly invaluable in applications where numerical accuracy and the ability to handle large numbers are paramount:
+
+* **Financial Applications:** Accurate calculations for large sums of money, precise interest rates, and complex financial modeling.
+* **Scientific Computing:** Working with extremely large or small numbers in simulations, data analysis, and research.
+* **Cryptography:** Implementing cryptographic algorithms that rely on high-precision arithmetic.
+* **E-commerce and Payments:** Handling precise amounts and avoiding rounding errors in transactions.
+* **Data Analysis and Statistics:** Performing accurate statistical calculations on datasets with varying scales.
+* **Any Scenario Exceeding JavaScript's Number Limits:** Ensuring the reliability of your calculations when dealing with numbers beyond the safe integer limit or requiring more than 15 significant digits.
+
+With `@numio/bigmath`, you can confidently perform complex arithmetic operations with the assurance of accuracy, regardless of the size or precision of the numbers involved.
 
 ### Latest update
+
+Added sorting, min/max, mean.
 
 Added quartile functionality. When you might need it?
 Understanding Distribution. Quartiles (Q1, Q2, and Q3) split a dataset into four groups, each representing 25% of the data. 
@@ -210,7 +200,7 @@ pipe.add(addNums) // 6
   .div(divNums) // 6 / 4 = 1.5 
   .sub(subNums) // 1.5 - 0.2 - 0.3 = 1
   .mul(mulNums) // 1 * 2 * 5 * 0.2 = 2
-  .calc()
+  .calc() // convert end result to readable string
 ```
 
 ### Quartile
@@ -222,6 +212,45 @@ quartile(["0.001", "0.3", "0.4", "1"]) // { Q1: "0.1505", Q2: "0.35", Q3: "0.7" 
 
 ```
 
+### Sort
+```javascript
+import { sort } from "@numio/bigmath";
+
+// native js sort for strings
+["1", "10", "11", "101", "11", "10", "1"].sort() // ["1", "1", "10", "10", "101", "11", "11"]
+
+// sort from "@numio/bigmath"
+sort(["1", "10", "11", "101", "11", "10", "1"]) // ["1", "1", "10", "10", "11", "11", "101"]
+
+// ASC sorting
+sort(["-0.1", "0.1", "-1"], "asc") // ["-1", "-0.1", "0.1"]
+
+// DESC sorting
+sort(["-0.1", "0.1", "-1"], "desc") // ["0.1", "-0.1", "1"]
+
+```
+
+### Mean 
+```javascript
+import { mean } from "@numio/bigmath";
+
+mean(["5", "4", "3", "2", "1", "0"]) // "2.5"
+mean(["0.5", "0.4", "0.3", "0.2", "0.1", "0"]) // "0.25"
+```
+
+### Max 
+```javascript
+import { max } from "@numio/bigmath";
+
+max(["2", "-1", "0.1"]) // 2;
+```
+
+### Min
+```javascript
+import { min } from "@numio/bigmath";
+
+min(["2", "-1", "0.1"]) // -1;
+```
 
 Does not have a limitation on the number of digits. You can use any length you'd
 like
@@ -239,7 +268,10 @@ const float = mul(
 ); // 0.00000000000000000000000000000000000000000000000000000000000000000000000000018
 ```
 
-Download from NPM - https://www.npmjs.com/package/@numio/bigmath\
-Download from JSR - https://jsr.io/@numio/bigmath\
-Home page - https://github.com/shpunter/numio-bigmath/blob/main/README.md\
+Download from NPM - https://www.npmjs.com/package/@numio/bigmath
+
+Download from JSR - https://jsr.io/@numio/bigmath
+
+Home page - https://github.com/shpunter/numio-bigmath/blob/main/README.md
+
 License - https://github.com/shpunter/numio-bigmath/blob/main/LICENSE

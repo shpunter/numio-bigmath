@@ -4,3 +4,4 @@ deno*
 
 ./build.ts
 .github
+.gitignore

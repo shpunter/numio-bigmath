@@ -1,6 +1,6 @@
 import { a2s, s2a } from "../shared/utils.ts";
 import type { InputData } from "../types.ts";
-import type { CompareRawFn } from "./types.ts";
+import type { CompareRawFn, Max, MaxRawFn, Min, MinRawFn } from "./types.ts";
 
 export const compareRawFn: CompareRawFn = (l, r) => {
   let idx = 0;
@@ -16,7 +16,7 @@ export const compareRawFn: CompareRawFn = (l, r) => {
 
   if (lIsNeg && !rIsNeg) return [r, false];
   if (!lIsNeg && rIsNeg) return [l, true];
-  
+
   if (bothPos && bothIntPos && lIntLen < rIntLen) return [r, false];
   if (bothPos && bothIntNeg && lIntLen < rIntLen) return [r, false];
   if (bothNeg && bothIntPos && lIntLen < rIntLen) return [l, true];
@@ -47,7 +47,7 @@ export const compareRawFn: CompareRawFn = (l, r) => {
   return [l, true];
 };
 
-export const maxRawFn = (array: InputData[]) => {
+export const maxRawFn: MaxRawFn = (array: InputData[]) => {
   let max = array[0];
 
   for (let i = 1; i < array.length; i++) {
@@ -57,7 +57,7 @@ export const maxRawFn = (array: InputData[]) => {
   return max;
 };
 
-export const minRawFn = (array: InputData[]) => {
+export const minRawFn: MinRawFn = (array) => {
   let min = array[0];
 
   for (let i = 1; i < array.length; i++) {
@@ -67,13 +67,13 @@ export const minRawFn = (array: InputData[]) => {
   return min;
 };
 
-export const max = (strs: string[]) => {
+export const max: Max = (strs) => {
   const array = strs.map((str) => s2a(str));
 
   return a2s(maxRawFn(array));
 };
 
-export const min = (strs: string[]) => {
+export const min: Min = (strs) => {
   const array = strs.map((str) => s2a(str));
 
   return a2s(minRawFn(array));

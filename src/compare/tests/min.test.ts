@@ -81,6 +81,14 @@ Deno.test("min 9.11 & 11.1", () => {
   assertEquals(min(["9.11", "11.1"]), "9.11");
 });
 
+Deno.test("min 2 & 0.3", () => {
+  assertEquals(min(["2", "0.3"]), "0.3");
+});
+
+Deno.test("min 0.3 & 2", () => {
+  assertEquals(min(["0.3", "2"]), "0.3");
+});
+
 // negative left & right
 
 Deno.test("min -2 & -1", () => {
@@ -163,6 +171,14 @@ Deno.test("min -9.11 & -11.1", () => {
   assertEquals(min(["-9.11", "-11.1"]), "-11.1");
 });
 
+Deno.test("min -2 & -0.3", () => {
+  assertEquals(min(["-2", "-0.3"]), "-2");
+});
+
+Deno.test("min -0.3 & -2", () => {
+  assertEquals(min(["-0.3", "-2"]), "-2");
+});
+
 // neg left & pos right
 
 Deno.test("min -2 & 1", () => {
@@ -198,7 +214,7 @@ Deno.test("min -0.9919999 & 0.9919999", () => {
 });
 
 Deno.test("min -0 & 0.1", () => {
-  assertEquals(min(["-0", "0.1"]), "0");
+  assertEquals(min(["-0", "0.1"]), "-0");
 });
 
 Deno.test("min -0.11 & 0.001", () => {
@@ -241,8 +257,16 @@ Deno.test("min -11.1 & 9.11", () => {
   assertEquals(min(["-11.1", "9.11"]), "-11.1");
 });
 
-Deno.test("min -9.11 & -11.1", () => {
-  assertEquals(min(["-9.11", "-11.1"]), "-11.1");
+Deno.test("min -9.11 & 11.1", () => {
+  assertEquals(min(["-9.11", "11.1"]), "-9.11");
+});
+
+Deno.test("min -2 & 0.3", () => {
+  assertEquals(min(["-2", "0.3"]), "-2");
+});
+
+Deno.test("min -0.3 & 2", () => {
+  assertEquals(min(["-0.3", "2"]), "-0.3");
 });
 
 // pos left & neg right
@@ -326,6 +350,15 @@ Deno.test("min 11.1 & -9.11", () => {
 Deno.test("min 9.11 & -11.1", () => {
   assertEquals(min(["9.11", "-11.1"]), "-11.1");
 });
+
+Deno.test("min 2 & -0.3", () => {
+  assertEquals(min(["2", "-0.3"]), "-0.3");
+});
+
+Deno.test("min 0.3 & -2", () => {
+  assertEquals(min(["0.3", "-2"]), "-2");
+});
+
 // > 2 elements
 
 Deno.test("min [1, 12, 11]", () => {

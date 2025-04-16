@@ -1,8 +1,8 @@
 import type { InputData, Route } from "../../types.ts";
-import type { Multiplication } from "./types.ts";
+import type { MulInner } from "./types.ts";
 
 /** This function multiplies 2 numbers (as array). */
-export const multiplication: Multiplication = (
+export const mulInner: MulInner = (
   [arrL, intL],
   [arrR, intR],
   isNegative,
@@ -60,7 +60,7 @@ export const mulRoute: Route = (input: InputData[], initValue: InputData) => {
   return input.reduce((left, right) => {
     if (left.array.length === 0) return right;
 
-    return multiplication(
+    return mulInner(
       [left.array, left.intLength],
       [right.array, right.intLength],
       left.isNegative !== right.isNegative,

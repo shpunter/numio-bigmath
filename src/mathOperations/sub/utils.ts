@@ -1,9 +1,9 @@
-import { addition } from "../add/utils.ts";
+import { addInner } from "../add/utils.ts";
 import type { Route } from "../../types.ts";
-import type { Subtract } from "./types.ts";
+import type { SubInner } from "./types.ts";
 
 /** This function subtracts 2 numbers (as array). */
-export const subtract: Subtract = ([arrL, intL], [arrR, intR]) => {
+export const subInner: SubInner = ([arrL, intL], [arrR, intR]) => {
   const lenDiff = (intL - intR) * (intL > intR ? 1 : -1);
   let [left, right, intLeft, intRight] = intL >= intR
     ? [arrL, arrR, intL, intR]
@@ -83,20 +83,20 @@ export const subRoute: Route = (input, initValue) => {
     if (left.array.length === 0) return right;
 
     if (left.isNegative && right.isNegative) {
-      return subtract(
+      return subInner(
         [right.array, right.intLength],
         [left.array, left.intLength],
       );
     }
 
     if (!left.isNegative && !right.isNegative) {
-      return subtract(
+      return subInner(
         [left.array, left.intLength],
         [right.array, right.intLength],
       );
     }
 
-    return addition(
+    return addInner(
       [left.array, left.intLength],
       [right.array, right.intLength],
       left.isNegative,

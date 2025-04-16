@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { sub } from "../index.ts";
+import { sub } from "../main.ts";
 
 const randInRange = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);

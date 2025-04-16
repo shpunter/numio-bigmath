@@ -8,10 +8,12 @@ import { mulRoute } from "../mathOperations/mul/utils.ts";
 import type { A2S } from "../shared/types.ts";
 import type { InputData } from "../types.ts";
 
-class Pipe {
-  result: InputData = DEFAULT;
+export class Pipe {
+  result: InputData;
 
-  constructor() {}
+  constructor(array: InputData) {
+    this.result = array
+  }
 
   add(strs: string[]): Pipe {
     this.result = addRoute(strs.map((str) => s2a(str)), this.result);
@@ -46,4 +48,4 @@ class Pipe {
 }
 
 /** Using this function you can chain operations (add, sub, div, mul). */
-export const pipe: Pipe = new Pipe();
+export const pipe: Pipe = new Pipe(DEFAULT);

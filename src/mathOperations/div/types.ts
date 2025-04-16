@@ -1,6 +1,6 @@
 import type { InputData } from "../../types.ts";
 
-export type Division = (
+export type DivInner = (
   L: [number[], number],
   R: [number[], number],
   isNegative: boolean,

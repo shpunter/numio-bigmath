@@ -81,6 +81,14 @@ Deno.test("max 9.11 & 11.1", () => {
   assertEquals(max(["9.11", "11.1"]), "11.1");
 });
 
+Deno.test("max 2 & 0.3", () => {
+  assertEquals(max(["2", "0.3"]), "2");
+});
+
+Deno.test("max 0.3 & 2", () => {
+  assertEquals(max(["0.3", "2"]), "2");
+});
+
 // negative left & right
 
 Deno.test("max -2 & -1", () => {
@@ -116,7 +124,7 @@ Deno.test("max -0.9919999 & -0.9919999", () => {
 });
 
 Deno.test("max -0 & -0.1", () => {
-  assertEquals(max(["-0", "-0.1"]), "0");
+  assertEquals(max(["-0", "-0.1"]), "-0");
 });
 
 Deno.test("max -0.11 & -0.001", () => {
@@ -161,6 +169,14 @@ Deno.test("max -11.1 & -9.11", () => {
 
 Deno.test("max -9.11 & -11.1", () => {
   assertEquals(max(["-9.11", "-11.1"]), "-9.11");
+});
+
+Deno.test("max -2 & -0.3", () => {
+  assertEquals(max(["-2", "-0.3"]), "-0.3");
+});
+
+Deno.test("max -0.3 & -2", () => {
+  assertEquals(max(["-0.3", "-2"]), "-0.3");
 });
 
 // neg left & pos right
@@ -245,6 +261,14 @@ Deno.test("max -9.11 & 11.1", () => {
   assertEquals(max(["-9.11", "11.1"]), "11.1");
 });
 
+Deno.test("max -2 & 0.3", () => {
+  assertEquals(max(["-2", "0.3"]), "0.3");
+});
+
+Deno.test("max -0.3 & 2", () => {
+  assertEquals(max(["-0.3", "2"]), "2");
+});
+
 // pos left & neg right
 
 Deno.test("max 2 & -1", () => {
@@ -325,6 +349,14 @@ Deno.test("max 11.1 & -9.11", () => {
 
 Deno.test("max 9.11 & -11.1", () => {
   assertEquals(max(["9.11", "-11.1"]), "9.11");
+});
+
+Deno.test("max 2 & -0.3", () => {
+  assertEquals(max(["2", "-0.3"]), "2");
+});
+
+Deno.test("max 0.3 & -2", () => {
+  assertEquals(max(["0.3", "-2"]), "0.3");
 });
 
 // > 2 elements

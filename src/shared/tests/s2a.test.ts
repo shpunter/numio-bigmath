@@ -40,7 +40,16 @@ Deno.test("-95", () => {
 Deno.test("-0", () => {
   assertEquals(s2a("-0"), {
     array: [48],
-    intLength: 1,
+    intLength: 0,
+    isNegative: true,
+    isFloat: false,
+  });
+});
+
+Deno.test("0", () => {
+  assertEquals(s2a("0"), {
+    array: [48],
+    intLength: 0,
     isNegative: false,
     isFloat: false,
   });

@@ -1,6 +1,6 @@
-import type { Division, DivRoute } from "./types.ts";
+import type { DivInner, DivRoute } from "./types.ts";
 
-export const division: Division = (
+export const divInner: DivInner = (
   [arrL, intL],
   [arrR, intR],
   isNegative,
@@ -118,7 +118,7 @@ export const divRoute: DivRoute = (input, initValue, limit) => {
   return input.reduce((left, right) => {
     if (left.array.length === 0) return right;
 
-    return division(
+    return divInner(
       [left.array, left.intLength],
       [right.array, right.intLength],
       left.isNegative !== right.isNegative,

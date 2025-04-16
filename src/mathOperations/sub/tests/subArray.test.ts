@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { sub } from "../index.ts";
+import { sub } from "../main.ts";
 
 Deno.test("-999 - -999 - -999", () => {
   const result = sub(["-999", "-999", "-999"]);

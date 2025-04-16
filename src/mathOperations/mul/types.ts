@@ -1,6 +1,6 @@
 import type { InputData } from "../../types.ts";
 
-export type Multiplication = (
+export type MulInner = (
   arrL: [number[], number],
   arrR: [number[], number],
   isNegative: boolean,

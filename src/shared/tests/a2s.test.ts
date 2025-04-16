@@ -53,11 +53,23 @@ Deno.test("-0", () => {
   assertEquals(
     a2s({
       array: [48],
-      intLength: 1,
+      intLength: 0,
       isNegative: true,
       isFloat: false,
     }),
     "-0",
+  );
+});
+
+Deno.test("0", () => {
+  assertEquals(
+    a2s({
+      array: [48],
+      intLength: 0,
+      isNegative: false,
+      isFloat: false,
+    }),
+    "0",
   );
 });
 

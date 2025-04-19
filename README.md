@@ -44,8 +44,8 @@ With `@numio/bigmath`, you can confidently perform complex arithmetic operations
 
 ### Latest update
 
-Added `isEqual` and `isLeftGreater` - to compare 2 numbers.
-Added `MAD` - Median Absolute Deviation.
+Added `isEqual` and `isLeftGreater` - to compare 2 numbers.\
+Added `MAD` - Median Absolute Deviation.\
 Added `IQR` - Interquartile Range.
 
 # Install:

@@ -1,10 +1,10 @@
 import { addRoute } from "../mathOperations/add/utils.ts";
 import { divRoute } from "../mathOperations/div/utils.ts";
 import { DEFAULT } from "../shared/constant.ts";
-import type { Mean, QuartileInner } from "./types.ts";
+import type { MeanQ, QuartileInner } from "./types.ts";
 
-const mean: Mean = (idx, array) => {
-  const sum = addRoute([structuredClone(array[idx]), array[idx - 1]], DEFAULT);
+const meanQ: MeanQ = (idx, array) => {
+  const sum = addRoute([structuredClone(array[idx]), structuredClone(array[idx - 1])], DEFAULT);
 
   return divRoute(
     [sum, {
@@ -30,8 +30,8 @@ export const quartileInner: QuartileInner = (array) => {
   const isEvenHalf = Q2Idx % 2 !== 0;
 
   return {
-    Q1: isEvenHalf ? array[Q1Idx] : mean(Q1Idx, array),
-    Q2: length % 2 !== 0 ? array[Q2Idx] : mean(Q2Idx, array),
-    Q3: isEvenHalf ? array[Q3Idx - 1] : mean(Q3Idx, array),
+    Q1: isEvenHalf ? array[Q1Idx] : meanQ(Q1Idx, array),
+    Q2: length % 2 !== 0 ? array[Q2Idx] : meanQ(Q2Idx, array),
+    Q3: isEvenHalf ? array[Q3Idx - 1] : meanQ(Q3Idx, array),
   };
 };

@@ -8,11 +8,11 @@ const heapify: Heapify = (array, len, i, sorting) => {
   let idx = i;
 
   if (sorting === ASC) {
-    if (idxL < len && compareInner(array[idxL], array[idx])[1]) idx = idxL;
-    if (idxR < len && compareInner(array[idxR], array[idx])[1]) idx = idxR;
+    if (idxL < len && compareInner(array[idxL], array[idx])[1] >= 0) idx = idxL;
+    if (idxR < len && compareInner(array[idxR], array[idx])[1] >= 0) idx = idxR;
   } else {
-    if (idxL < len && compareInner(array[idx], array[idxL])[1]) idx = idxL;
-    if (idxR < len && compareInner(array[idx], array[idxR])[1]) idx = idxR;
+    if (idxL < len && compareInner(array[idx], array[idxL])[1] >= 0) idx = idxL;
+    if (idxR < len && compareInner(array[idx], array[idxR])[1] >= 0) idx = idxR;
   }
 
   if (idx !== i) {

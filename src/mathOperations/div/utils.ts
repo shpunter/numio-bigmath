@@ -1,3 +1,4 @@
+import { NIL } from "../../shared/constant.ts";
 import type { DivInner, DivRoute } from "./types.ts";
 
 export const divInner: DivInner = (
@@ -100,12 +101,7 @@ export const divInner: DivInner = (
   }
 
   return result.length === count
-    ? {
-      array: [48],
-      isFloat: false,
-      isNegative: false,
-      intLength: 1,
-    }
+    ? NIL
     : {
       array: result[0] === 48 ? multipliedResult : result,
       isFloat,

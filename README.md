@@ -18,7 +18,13 @@
 * **Flexible Rounding:** Round numbers to the nearest integer or a specific number of decimal places with various rounding modes (up, down, half-up, half-down, half-even, half-odd) to meet your exact requirements.
 * **Round Based on Significant Figures:** Control rounding based on the number of significant figures, crucial for scientific and engineering applications.
 * **Chain Operations with Pipe:** Simplify complex calculations by chaining arithmetic operations in a readable and intuitive manner.
-* **Analyze Data Distribution:** Calculate quartiles (Q1, Q2, Q3) to understand the spread and central tendency of your numerical data, helping identify outliers and the shape of the distribution.
+* **Analyze Data Distribution:**
+    * **Calculate Quartiles (Q1, Q2, Q3):** Understand the spread and central tendency of your numerical data, helping identify outliers and the shape of the distribution.
+    * **Calculate Median Absolute Deviation (MAD):** Measure the dispersion of a dataset, providing a robust alternative to standard deviation that is less sensitive to outliers.
+    * **Calculate Interquartile Range (IQR):** Determine the spread of the middle 50% of your data, useful for identifying the central bulk and potential outliers.
+* **Compare Numbers:**
+    * **Check for Equality (`isEqual`):** Accurately determine if two arbitrary-precision numbers are equal.
+    * **Check if Left is Greater (`isLeftGreater`):** Precisely compare two arbitrary-precision numbers to see if the left operand is greater than the right.
 * **Sort Numbers Accurately:** Sort arrays of numbers, including negative and decimal values, in ascending or descending order, correctly handling string representations of numbers that JavaScript's native sort might misinterpret.
 * **Calculate Central Tendency:** Easily compute the mean (average) of a set of numbers.
 * **Identify Extremes:** Find the maximum and minimum values within an array of numbers.
@@ -38,11 +44,9 @@ With `@numio/bigmath`, you can confidently perform complex arithmetic operations
 
 ### Latest update
 
-Added sorting, min/max, mean.
-
-Added quartile functionality. When you might need it?
-Understanding Distribution. Quartiles (Q1, Q2, and Q3) split a dataset into four groups, each representing 25% of the data. 
-Identifying Outliers. They help visualize the shape and spread of the data, revealing whether it's skewed or symmetrical. 
+Added `isEqual` and `isLeftGreater` - to compare 2 numbers.
+Added `MAD` - Median Absolute Deviation.
+Added `IQR` - Interquartile Range.
 
 # Install:
 
@@ -83,7 +87,7 @@ deno add jsr:@numio/bigmath
 ```javascript
 import { add } from "@numio/bigmath";
 
-const int = add(["12345", "99"]); // 124444
+const int = add(["12345", "99"]); // 12444
 const float = add(["0.1", "0.2", "0.3"]); // 0.6
 const negative = add(["0.1", "-0.3", "0.1"]); // -0.1
 ```
@@ -250,6 +254,38 @@ max(["2", "-1", "0.1"]) // 2;
 import { min } from "@numio/bigmath";
 
 min(["2", "-1", "0.1"]) // -1;
+```
+
+### IsEqual
+```javascript
+import { isEqual } from "@numio/bigmath";
+
+isEqual({left: "0.1", right: "0.1"}) // true;
+isEqual({left: "2", right: "0.1"}) // false;
+```
+
+### IsLeftGreater
+```javascript
+import { isLeftGreater } from "@numio/bigmath";
+
+isLeftGreater({left: "0.1", right: "2"}) // false;
+isLeftGreater({left: "2", right: "0.1"}) // true;
+isLeftGreater({left: "0.1", right: "0.1"}) // false;
+isLeftGreater({left: "0.1", right: "-0.1"}) // true;
+```
+
+### MAD - Median Absolute Deviation
+```javascript
+import { MAD } from "@numio/bigmath";
+
+MAD(["7", "15", "36", "39", "40", "41"]) // 3;
+```
+
+### IQR - Interquartile Range
+```javascript
+import { IQR } from "@numio/bigmath";
+
+IQR(["7", "15", "36", "39", "40", "41"]) // 25;
 ```
 
 Does not have a limitation on the number of digits. You can use any length you'd

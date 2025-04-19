@@ -220,3 +220,8 @@ Deno.test("-3 - 5", () => {
   const res = sub(["-3", "5"]);
   assertEquals(res, "-8");
 });
+
+Deno.test("6 - 6", () => {
+  const res = sub(["6", "6"]);
+  assertEquals(res, "0");
+});

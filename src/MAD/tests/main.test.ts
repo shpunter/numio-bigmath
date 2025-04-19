@@ -1,17 +1,35 @@
 import { assertEquals } from "jsr:@std/assert/equals";
-import { MADQ2 } from "../main.ts";
+import { MAD } from "../main.ts";
 
-Deno.test("MADQ2 [11, 12, 12, 14, 15, 16]", () => {
-  const res = MADQ2(["11", "12", "12", "14", "15", "16"]);
+Deno.test("MAD [11, 12, 12, 14, 15, 16]", () => {
+  const res = MAD(["11", "12", "12", "14", "15", "16"]);
   assertEquals(res, "1.5");
 });
 
-Deno.test("MADQ2 [1, 1, 1, 1, 1, 1, 100]", () => {
-  const res = MADQ2(["1", "1", "1", "1", "1", "1", "100"]);
-  assertEquals(res, "14.14285714285714285714");
+Deno.test("MAD [1, 1, 1, 1, 1, 1, 100]", () => {
+  const res = MAD(["1", "1", "1", "1", "1", "1", "100"]);
+  assertEquals(res, "0");
 });
 
-Deno.test("MADQ2 [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 100]", () => {
-  const res = MADQ2(["0.1", "0.1", "0.1", "0.1", "0.1", "0.1", "100"]);
-  assertEquals(res, "14.27142857142857142857");
+Deno.test("MAD [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 100]", () => {
+  const res = MAD(["0.1", "0.1", "0.1", "0.1", "0.1", "0.1", "100"]);
+  assertEquals(res, "0");
+});
+
+Deno.test("MAD [7, 15, 36, 39, 40, 41]", () => {
+  const res = MAD(["7", "15", "36", "39", "40", "41"]);
+
+  assertEquals(res, "3");
+});
+
+Deno.test("MAD [1, 1, 2, 2, 4, 6, 9]", () => {
+  const res = MAD(["1", "1", "2", "2", "4", "6", "9"]);
+
+  assertEquals(res, "1");
+});
+
+Deno.test("MAD [1, 1, 1, 1, 1, 1, 100]", () => {
+  const res = MAD(["1", "1", "1", "1", "1", "1", "100"]);
+
+  assertEquals(res, "0");
 });

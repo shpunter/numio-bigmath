@@ -56,7 +56,7 @@ export const s2a: S2A = (string) => {
   if (isNil || isNegNil) {
     return {
       array: [48],
-      intLength: 0,
+      intLength: 1,
       isNegative: isNegNil,
       isFloat: false,
     };

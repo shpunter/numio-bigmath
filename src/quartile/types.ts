@@ -6,7 +6,7 @@ export type Quartile = (array: string[]) => {
   Q3: string;
 };
 
-export type Mean = (index: number, array: InputData[]) => InputData;
+export type MeanQ = (index: number, array: InputData[]) => InputData;
 export type QuartileInner = (array: InputData[]) => {
   Q1: InputData;
   Q2: InputData;

@@ -1,3 +1,4 @@
+import { NIL } from "../../shared/constant.ts";
 import type { InputData, Route } from "../../types.ts";
 import type { MulInner } from "./types.ts";
 
@@ -12,7 +13,7 @@ export const mulInner: MulInner = (
     (arrL.length === 1 && arrL[0] === 48) ||
     (arrR.length === 1 && arrR[0] === 48)
   ) {
-    return { array: [48], intLength: 1, isFloat: false, isNegative: false };
+    return NIL;
   }
 
   const dec = (arrL.length - intL) + (arrR.length - intR);

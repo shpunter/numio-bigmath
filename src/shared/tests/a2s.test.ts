@@ -1,5 +1,6 @@
 import { assertEquals } from "jsr:@std/assert";
 import { a2s } from "../utils.ts";
+import { NIL } from "../constant.ts";
 
 Deno.test("-9.5", () => {
   assertEquals(
@@ -62,15 +63,7 @@ Deno.test("-0", () => {
 });
 
 Deno.test("0", () => {
-  assertEquals(
-    a2s({
-      array: [48],
-      intLength: 0,
-      isNegative: false,
-      isFloat: false,
-    }),
-    "0",
-  );
+  assertEquals(a2s(NIL), "0");
 });
 
 Deno.test("0.1", () => {

@@ -7,6 +7,24 @@ import { pipe } from "./src/pipe/main.ts";
 import { quartile } from "./src/quartile/main.ts";
 import { sort } from "./src/sort/main.ts";
 import { mean } from "./src/mean/main.ts";
-import { min, max } from "./src/compare/main.ts";
+import { isEqual, isLeftGreater, max, min } from "./src/compare/main.ts";
+import { IQR } from "./src/IQR/main.ts";
+import { MAD } from "./src/MAD/main.ts";
 
-export { add, div, max, mean, min, mul, pipe, quartile, round, sort, sub };
+export {
+  add,
+  div,
+  IQR,
+  isEqual,
+  isLeftGreater,
+  MAD,
+  max,
+  mean,
+  min,
+  mul,
+  pipe,
+  quartile,
+  round,
+  sort,
+  sub,
+};

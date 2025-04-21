@@ -80,3 +80,54 @@ Deno.test("pipe.add.sub.mul.div", () => {
 
   assertEquals(res, "2");
 });
+
+Deno.test("pipe.add.", () => {
+  const addNums = ["9.999", "999.9", "9.999", "999.9"];
+  const res = pipe.add(addNums).calc();
+
+  assertEquals(res, "2019.798");
+});
+
+Deno.test("pipe.add.add", () => {
+  const addNums = ["9.999", "999.9", "9.999", "999.9"];
+  const res = pipe.add(addNums).add(addNums).calc();
+
+  assertEquals(res, "4039.596");
+});
+
+Deno.test("pipe.add.sub", () => {
+  const addNums = ["9.999", "999.9", "9.999", "999.9"];
+  const subNums = ["9.999", "999.9", "9.999"];
+
+  const res = pipe.add(addNums).sub(subNums).calc();
+
+  assertEquals(res, "999.9");
+});
+
+Deno.test("pipe.add.sub.div", () => {
+  const addNums = ["9.999", "999.9", "9.999", "999.9"];
+  const subNums = ["9.999", "999.9", "9.999"];
+  const divNums = ["4"];
+
+  const res = pipe.add(addNums)
+    .sub(subNums)
+    .div(divNums)
+    .calc();
+
+  assertEquals(res, "249.975");
+});
+
+Deno.test("pipe.add.sub.div.mul", () => {
+  const addNums = ["9.999", "999.9", "9.999", "999.9"];
+  const subNums = ["9.999", "999.9", "9.999"];
+  const divNums = ["4"];
+  const mulNums = ["2", "5", "0.2"];
+
+  const res = pipe.add(addNums)
+    .sub(subNums)
+    .div(divNums)
+    .mul(mulNums)
+    .calc();
+
+  assertEquals(res, "499.95");
+});

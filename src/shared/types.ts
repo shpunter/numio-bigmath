@@ -10,3 +10,5 @@ export type Convert = (
   isNegative: InputData["isNegative"],
   array: InputData["array"],
 ) => string;
+
+export type CloneInner = (inner: InputData) => InputData;

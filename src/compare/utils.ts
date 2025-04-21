@@ -39,33 +39,35 @@ export const compareInner: CompareInner = (l, r) => {
   const bothIntNeg = lIntLen <= 0 && rIntLen <= 0;
   const isNilL = l.array.length === 1 && l.array[0] === 48;
   const isNilR = r.array.length === 1 && r.array[0] === 48;
-
-  if (lIsNeg && !rIsNeg) return [r, -1];
   if (!lIsNeg && rIsNeg) return [l, 1];
-
-  if (bothPos && isNilL && !isNilR) return [r, -1];
+  if (lIsNeg && !rIsNeg) return [r, -1];
+  
   if (bothPos && !isNilL && isNilR) return [l, 1];
-
+  if (bothPos && isNilL && !isNilR) return [r, -1];
+  
   if (bothNeg && isNilL && !isNilR) return [l, 1];
   if (bothNeg && !isNilL && isNilR) return [r, -1];
-
+  
+  if (bothPos && lIntLen > rIntLen) return [l, 1];
+  if (bothPos && lIntLen < rIntLen) return [r, -1];
+  
   if (bothPos && lIntLen > 0 && rIntLen === 0) return [l, 1];
   if (bothPos && lIntLen === 0 && rIntLen > 0) return [r, -1];
-
-  if (!bothPos && lIntLen > 0 && rIntLen === 0) return [r, -1];
+  
   if (!bothPos && lIntLen === 0 && rIntLen > 0) return [l, 1];
-
-  if (bothPos && bothIntPos && lIntLen < rIntLen) return [r, -1];
-  if (bothPos && bothIntNeg && lIntLen < rIntLen) return [r, -1];
-
-  if (bothNeg && bothIntPos && lIntLen < rIntLen) return [l, 1];
-  if (bothNeg && bothIntNeg && lIntLen < rIntLen) return [l, 1];
-
-  if (bothNeg && bothIntNeg && lIntLen > rIntLen) return [r, -1];
-  if (bothNeg && bothIntPos && lIntLen > rIntLen) return [r, -1];
+  if (!bothPos && lIntLen > 0 && rIntLen === 0) return [r, -1];
 
   if (bothPos && bothIntPos && lIntLen > rIntLen) return [l, 1];
+  if (bothPos && bothIntPos && lIntLen < rIntLen) return [r, -1];
+  
+  if (bothNeg && bothIntNeg && lIntLen < rIntLen) return [l, 1];
+  if (bothNeg && bothIntNeg && lIntLen > rIntLen) return [r, -1];
+  
+  if (bothNeg && bothIntPos && lIntLen < rIntLen) return [l, 1];
+  if (bothNeg && bothIntPos && lIntLen > rIntLen) return [r, -1];
+  
   if (bothPos && bothIntNeg && lIntLen > rIntLen) return [l, 1];
+  if (bothPos && bothIntNeg && lIntLen < rIntLen) return [r, -1];
 
   if (bothNeg) [left, right] = [r, l];
 

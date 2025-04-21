@@ -17,6 +17,8 @@
 * **Control Division Precision:** Specify the exact number of digits after the decimal point for division results, with a default precision of 20 digits for high accuracy.
 * **Flexible Rounding:** Round numbers to the nearest integer or a specific number of decimal places with various rounding modes (up, down, half-up, half-down, half-even, half-odd) to meet your exact requirements.
 * **Round Based on Significant Figures:** Control rounding based on the number of significant figures, crucial for scientific and engineering applications.
+* **Calculate Roots:**
+    * **Calculate Square Root (`sqrt`):** Compute the square root of a number with arbitrary precision. You can also specify the desired precision of the result.
 * **Chain Operations with Pipe:** Simplify complex calculations by chaining arithmetic operations in a readable and intuitive manner.
 * **Analyze Data Distribution:**
     * **Calculate Quartiles (Q1, Q2, Q3):** Understand the spread and central tendency of your numerical data, helping identify outliers and the shape of the distribution.
@@ -44,6 +46,7 @@ With `@numio/bigmath`, you can confidently perform complex arithmetic operations
 
 ### Latest update
 
+Added `sqrt` - square root of a number\
 Added `isEqual` and `isLeftGreater` - to compare 2 numbers.\
 Added `MAD` - Median Absolute Deviation.\
 Added `IQR` - Interquartile Range.
@@ -286,6 +289,18 @@ MAD(["7", "15", "36", "39", "40", "41"]) // 3;
 import { IQR } from "@numio/bigmath";
 
 IQR(["7", "15", "36", "39", "40", "41"]) // 25;
+```
+
+### SQRT - square root of a number
+```javascript
+import { sqrt } from "@numio/bigmath";
+
+sqrt("81") // 9;
+sqrt("3") // 1.7320508075689;
+
+// you can change precision of a result (second parameter), 
+sqrt("3", "0.01") // 1.732;
+sqrt("3", "0.000000000000000000001") // 1.732050807568877293527;
 ```
 
 Does not have a limitation on the number of digits. You can use any length you'd

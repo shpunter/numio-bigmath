@@ -1,21 +1,17 @@
-import { addRoute } from "../mathOperations/add/utils.ts";
-import { divRoute } from "../mathOperations/div/utils.ts";
-import { DEFAULT } from "../shared/constant.ts";
+import { PipeInner } from "../pipe/utils.ts";
+import { cloneInner } from "../shared/utils.ts";
 import type { MeanQ, QuartileInner } from "./types.ts";
 
 const meanQ: MeanQ = (idx, array) => {
-  const sum = addRoute([structuredClone(array[idx]), structuredClone(array[idx - 1])], DEFAULT);
-
-  return divRoute(
-    [sum, {
-      array: [50],
-      intLength: 1,
-      isFloat: false,
-      isNegative: false,
-    }],
-    DEFAULT,
-    20,
-  );
+  return new PipeInner().addInner([
+    cloneInner(array[idx]),
+    cloneInner(array[idx - 1]),
+  ]).divInner([{
+    array: [50],
+    intLength: 1,
+    isFloat: false,
+    isNegative: false,
+  }]).result;
 };
 
 export const quartileInner: QuartileInner = (array) => {

@@ -65,7 +65,7 @@ export const subInner: SubInner = ([arrL, intL], [arrR, intR]) => {
     pr += 1;
   }
 
-  while (left[0] === 48 && left.length > 1 && fracLenL < left.length - 1) {
+  while (left[0] === 48 && left.length > 1) {
     left.shift();
     intLeft -= 1;
   }

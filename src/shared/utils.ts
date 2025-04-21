@@ -1,4 +1,4 @@
-import type { A2S, Convert, S2A } from "./types.ts";
+import type { A2S, CloneInner, Convert, S2A } from "./types.ts";
 
 const convert: Convert = (isNegative, array) => {
   return (isNegative ? "-" : "") + String.fromCharCode(...array);
@@ -79,5 +79,21 @@ export const s2a: S2A = (string) => {
     intLength: array.length - dec,
     isNegative,
     isFloat: dec > 0,
+  };
+};
+
+export const cloneInner: CloneInner = (inner) => {
+  const len = inner.array.length;
+  const clone = Array(len);
+
+  for (let i = 0; i < len; i++) {
+    clone[i] = inner.array[i];
+  }
+
+  return {
+    intLength: inner.intLength,
+    isFloat: inner.isFloat,
+    isNegative: inner.isNegative,
+    array: clone,
   };
 };

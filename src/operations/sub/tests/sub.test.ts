@@ -225,3 +225,8 @@ Deno.test("6 - 6", () => {
   const res = sub(["6", "6"]);
   assertEquals(res, "0");
 });
+
+Deno.test("6.001 - 6", () => {
+  const res = sub(["16.001", "6", "5", "5"]);
+  assertEquals(res, "0.001");
+});

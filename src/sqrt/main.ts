@@ -1,9 +1,10 @@
 import { round } from "../round/main.ts";
 import { a2s, s2a } from "../shared/utils.ts";
+import type { Sqrt } from "./types.ts";
 import { sqrtInner } from "./utils.ts";
 
 /** Find square root of a number */
-export const sqrt = (str: string, precision?: string) => {
+export const sqrt: Sqrt = (str, precision) => {
   const inputInner = s2a(str);
 
   const [outputInner, decimals] = sqrtInner(

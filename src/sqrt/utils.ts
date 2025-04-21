@@ -18,7 +18,6 @@ const precDef = {
 };
 
 export const sqrtInner: SqrtInner = (input, prec = precDef, max = 100) => {
-
   let guess = cloneInner(input);
 
   for (let i = 0; i < max; i++) {

@@ -1,6 +1,6 @@
 import { subInner } from "../sub/utils.ts";
 import type { Route } from "../../types.ts";
-import type { AddInner } from "./types.ts";
+import type { AddInner, FillHead, TrimTail } from "./types.ts";
 
 /** This function adds 2 numbers (as array). */
 export const addInner: AddInner = ([arrL, intL], [arrR, intR], isNegative) => {
@@ -76,4 +76,29 @@ export const addRoute: Route = (input, initValue) => {
       left.isNegative && right.isNegative,
     );
   }, initValue);
+};
+
+export const fillHead: FillHead = (len, fpe, isNeg, hasBefore) => {
+  let head = (isNeg ? "-" : "") + (hasBefore ? "" : "0.");
+
+  while (len < fpe) {
+    head = head + "0";
+    len += 1;
+  }
+
+  return head;
+};
+
+export const trimTail: TrimTail = (str) => {
+  if (str[str.length - 1] !== "0") return str;
+
+  let count = 0;
+
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    if (str[i] !== "0") return str.slice(0, str.length - count);
+
+    count += 1;
+  }
+
+  return str;
 };

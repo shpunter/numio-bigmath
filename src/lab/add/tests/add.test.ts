@@ -290,5 +290,3 @@ Deno.test("0.8 + -0.99", () => {
   const res = add(["0.8", "-0.99"]);
   assertEquals(res, "-0.19");
 });
-
-

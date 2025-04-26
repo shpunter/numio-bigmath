@@ -4,6 +4,7 @@ import type {
   CalcInner,
   CloneInner,
   Convert,
+  DivInner,
   FillHead,
   S2A,
   TrimTail,
@@ -206,4 +207,61 @@ export const trimTail: TrimTail = (str) => {
   }
 
   return str;
+};
+
+export const divInner: DivInner = (array, limit) => {
+  let bigInt = 0n;
+  let fpe = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    const str = array[i];
+    const fpi = str.indexOf(".");
+    let dpLen = fpi === -1 ? 0 : str.length - 1 - fpi;
+    const bigStr = dpLen ? str.slice(0, fpi) + str.slice(fpi + 1) : str;
+    const bigCurrent = BigInt(bigStr);
+    let remained = 0n;
+
+    if (i === 0) {
+      bigInt = bigCurrent;
+      fpe = dpLen;
+      continue;
+    }
+
+    if (bigInt === 0n && fpe === 0) return [0n, 0];
+
+    if (fpe === dpLen) {
+      fpe = 0;
+      dpLen = 0;
+    }
+
+    if (dpLen > 0 && fpe < dpLen) {
+      bigInt *= 10n ** BigInt(dpLen - fpe);
+      fpe = 0;
+    }
+
+    if (dpLen > 0 && fpe > dpLen) fpe = fpe - dpLen;
+
+    while ((bigInt < 0 ? bigInt * -1n : bigInt) < bigCurrent) {
+      if (limit <= fpe) return [bigInt / bigCurrent, fpe];
+
+      fpe += 1;
+      bigInt *= 10n;
+    }
+
+    const q = bigInt / bigCurrent;
+    remained = bigInt - q * bigCurrent;
+    bigInt = q;
+
+    while (remained > 0 && fpe < limit) {
+      const nextBigInt = remained * 10n;
+      const nextQ = nextBigInt / bigCurrent;
+      const nextRemained = nextBigInt - nextQ * bigCurrent;
+
+      bigInt = bigInt * 10n + nextQ;
+      remained = nextRemained;
+      fpe += 1;
+    }
+  }
+
+  return [bigInt, fpe];
 };

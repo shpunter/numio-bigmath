@@ -27,4 +27,9 @@ export type CalcInner = (
   op: (a: bigint, b: bigint) => bigint,
 ) => [bigint, number];
 
+export type DivInner = (
+  array: string[],
+  limit: number
+) => [bigint, number];
+
 export type BI2S = (bigInt: bigint, fpe: number) => string;

@@ -6,13 +6,4 @@ export type AddInner = (
   isNegative: boolean,
 ) => InputData;
 
-export type FillHead = (
-  len: number,
-  fpe: number,
-  isNeg: boolean,
-  hasBefore: boolean,
-) => string;
-
-export type TrimTail = (str: string) => string;
-
 export type Add = (input: string[]) => string;

@@ -12,3 +12,19 @@ export type Convert = (
 ) => string;
 
 export type CloneInner = (inner: InputData) => InputData;
+
+export type FillHead = (
+  len: number,
+  fpe: number,
+  isNeg: boolean,
+  hasBefore: boolean,
+) => string;
+
+export type TrimTail = (str: string) => string;
+
+export type CalcInner = (
+  array: string[],
+  op: (a: bigint, b: bigint) => bigint,
+) => [bigint, number];
+
+export type BI2S = (bigInt: bigint, fpe: number) => string;

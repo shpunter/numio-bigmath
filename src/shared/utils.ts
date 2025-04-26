@@ -1,4 +1,13 @@
-import type { A2S, BI2S, CalcInner, CloneInner, Convert, FillHead, S2A, TrimTail } from "./types.ts";
+import type {
+  A2S,
+  BI2S,
+  CalcInner,
+  CloneInner,
+  Convert,
+  FillHead,
+  S2A,
+  TrimTail,
+} from "./types.ts";
 
 const convert: Convert = (isNegative, array) => {
   return (isNegative ? "-" : "") + String.fromCharCode(...array);
@@ -99,29 +108,32 @@ export const cloneInner: CloneInner = (inner) => {
 };
 
 export const bi2s: BI2S = (bigInt, fpe) => {
-    const isNeg = bigInt < 0;
-    isNeg && (bigInt *= -1n);
-  
-    const dp = bigInt % (10n ** BigInt(fpe));
-    const bigStr = bigInt.toString();
-    let fpIdx = bigStr.length - fpe;
-  
-    if (fpIdx < 0) fpIdx = 0;
-  
-    const before = bigStr.slice(0, fpIdx);
-    const after = bigStr.slice(fpIdx);
-  
-    if (before) {
-      return fillHead(bigStr.length, fpe, isNeg, true) +
-        (fpe > 0 && dp > 0 ? trimTail(`${before}.${after}`) : before);
-    }
-  
-    return `${fillHead(bigStr.length, fpe, isNeg, false)}${trimTail(after)}`;
-}
+  if (bigInt === 0n) return "0";
+
+  const isNeg = bigInt < 0n;
+  isNeg && (bigInt *= -1n);
+
+  const dp = bigInt % (10n ** BigInt(fpe));
+  const bigStr = bigInt.toString();
+  let fpIdx = bigStr.length - fpe;
+
+  if (fpIdx < 0) fpIdx = 0;
+
+  const before = bigStr.slice(0, fpIdx);
+  const after = bigStr.slice(fpIdx);
+
+  if (before) {
+    return fillHead(bigStr.length, fpe, isNeg, true) +
+      (fpe > 0 && dp > 0 ? trimTail(`${before}.${after}`) : before);
+  }
+
+  return `${fillHead(bigStr.length, fpe, isNeg, false)}${trimTail(after)}`;
+};
 
 export const calcInner: CalcInner = (array, op) => {
   let bigInt = 0n;
   let fpe = 0;
+  const opm = op(1n, 1n);
 
   for (let i = 0; i < array.length; i++) {
     const current = array[i];
@@ -134,28 +146,38 @@ export const calcInner: CalcInner = (array, op) => {
     }
 
     const dpLen = fpi === -1 ? 0 : current.length - 1 - fpi;
-
     const bigStr = fpi >= 0
       ? current.slice(0, fpi) + current.slice(fpi + 1)
       : current;
 
-    if (i === 0) {
-      bigInt = BigInt(bigStr);
+    if (opm === 1n) {
+      if (i === 0) {
+        bigInt = BigInt(bigStr);
+        fpe += dpLen;
+        continue;
+      }
+
+      bigInt = op(bigInt, BigInt(bigStr));
+      fpe += dpLen;
+    } else {
+      if (i === 0) {
+        bigInt = BigInt(bigStr);
+        if (fpe < dpLen) fpe = dpLen;
+        continue;
+      }
+
+      if (fpe < dpLen) {
+        const fpDiff = dpLen - fpe;
+        bigInt = op(bigInt * (10n ** BigInt(fpDiff)), BigInt(bigStr));
+      }
+
+      if (fpe > dpLen) {
+        bigInt = op(bigInt, BigInt(bigStr) * (10n ** BigInt(fpe - dpLen)));
+      }
+
+      if (fpe === dpLen) bigInt = op(bigInt, BigInt(bigStr));
       if (fpe < dpLen) fpe = dpLen;
-      continue;
     }
-
-    if (fpe < dpLen) {
-      const fpDiff = dpLen - fpe;
-      bigInt = op(bigInt * (10n ** BigInt(fpDiff)), BigInt(bigStr));
-    }
-
-    if (fpe > dpLen) {
-      bigInt = op(bigInt, BigInt(bigStr) * (10n ** BigInt(fpe - dpLen)));
-    }
-
-    if (fpe === dpLen)   bigInt = op(bigInt, BigInt(bigStr));
-    if (fpe < dpLen) fpe = dpLen;
   }
 
   return [bigInt, fpe] as const;

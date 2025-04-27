@@ -207,3 +207,24 @@ Deno.test("0.098 / 8.2", () => {
   const res = div(["0.098", "8.2"], 10);
   assertEquals(res, "0.0119512195");
 });
+
+Deno.test("75 / 2", () => {
+  const res = div(["75", "2"]);
+  assertEquals(res, "37.5");
+});
+
+Deno.test("-75 / 2", () => {
+  const res = div(["-75", "2"]);
+  assertEquals(res, "-37.5");
+});
+
+Deno.test("75 / -2", () => {
+  const res = div(["75", "-2"]);
+  assertEquals(res, "-37.5");
+});
+
+Deno.test("-75 / -2", () => {
+  const res = div(["-75", "-2"]);
+  assertEquals(res, "37.5");
+});
+

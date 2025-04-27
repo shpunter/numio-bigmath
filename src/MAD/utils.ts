@@ -7,7 +7,7 @@ import type { TMADInner } from "./types.ts";
 
 export const MADInner: TMADInner = (array) => {
   const median = quartileInner(array).Q2;
-
+  
   const madArray = array.map<BI>((el) => {
     const [bi, fpe] = new PipeInner().sub([el, median]).calc();
 

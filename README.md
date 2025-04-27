@@ -11,6 +11,8 @@
 * **Handle Numbers of Any Size:** Perform calculations on integers and decimals of virtually unlimited length, without the risk of JavaScript's `Number` limitations.
 * **Eliminate Precision Loss:** Achieve accurate results even with numeric literals exceeding 15 significant digits, ensuring the integrity of your calculations.
 * **Precise Decimal Operations:** Execute addition, subtraction, multiplication, and division on decimal numbers with guaranteed accuracy, including scenarios with negative values.
+* ****NEW! Multi-Base Number Support:** Seamlessly perform arithmetic operations involving **hexadecimal (HEX), octal, binary, and decimal numbers**, offering unparalleled flexibility in handling various number formats.
+
 
 **Unlock Advanced Numerical Operations:**
 
@@ -40,16 +42,15 @@ This library is particularly invaluable in applications where numerical accuracy
 * **Cryptography:** Implementing cryptographic algorithms that rely on high-precision arithmetic.
 * **E-commerce and Payments:** Handling precise amounts and avoiding rounding errors in transactions.
 * **Data Analysis and Statistics:** Performing accurate statistical calculations on datasets with varying scales.
+* **Low-Level Operations:** Working with different number representations commonly found in computer systems.
 * **Any Scenario Exceeding JavaScript's Number Limits:** Ensuring the reliability of your calculations when dealing with numbers beyond the safe integer limit or requiring more than 15 significant digits.
 
 With `@numio/bigmath`, you can confidently perform complex arithmetic operations with the assurance of accuracy, regardless of the size or precision of the numbers involved.
 
 ### Latest update
 
-Added `sqrt` - square root of a number\
-Added `isEqual` and `isLeftGreater` - to compare 2 numbers.\
-Added `MAD` - Median Absolute Deviation.\
-Added `IQR` - Interquartile Range.
+The performance was improved. Adding, subtracting, dividing, and multiplying are now **2** to **5** times faster than before.\
+Adding, subtracting, dividing, and multiplying support operations on HEX, octal, binary, and decimal numbers. Mixed-type calculations are allowed, with the final result converted to decimal.
 
 # Install:
 
@@ -126,6 +127,17 @@ const negative = div(["-2", "-3", "2"]); //0.33333333333333333333
 
 // set number of digit after the decimal. By default it's 20
 div(["10", "3"], 4); // 3.3333
+```
+
+### HEX, decimal, octal, binary
+```javascript
+import { add, sub } from "@numio/bigmath";
+
+add(["0xA", "0x5"]) // HEX + HEX, 10 + 5 = 15
+add(["0xA", "2"]) // HEX + decimal, 10 + 2 = 12
+sub(["35", "0b11"]) // decimal - binary, 35 - 3 = 32 
+sub(["0x1A", "0o31", "0b101", ]) // HEX - octal - binary, 26 - 25 - 5 = -4
+
 ```
 
 ### Round

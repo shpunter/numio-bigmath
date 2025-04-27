@@ -25,11 +25,13 @@ export type TrimTail = (str: string) => string;
 export type CalcInner = (
   array: BI[],
   op: (a: bigint, b: bigint) => bigint,
+  def?: BI 
 ) => BI;
 
 export type DivInner = (
   array: BI[],
-  limit: number
+  limit: number,
+  def?: BI
 ) => BI;
 
 export type BI2S = (bigInt: bigint, fpe: number) => string;

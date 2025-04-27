@@ -1,5 +1,6 @@
 import { isEqualInner } from "../compare/utils.ts";
 import { MADInner } from "../MAD/utils.ts";
+import { PipeInner } from "../pipe/utils.ts";
 
 import { quartileInner } from "../quartile/utils.ts";
 import type { BI } from "../shared/types.ts";
@@ -10,7 +11,8 @@ export const MIN_LENGTH_FOR_MAD = 30;
 
 export const IQRInner: TIQRInner = (array, sigNum = false) => {
   const { Q1, Q3 } = quartileInner(array);
-  const sub = calcInner([Q3, Q1], (a, b) => a - b);
+  const sub = new PipeInner().sub([Q3, Q1]).calc();
+  // const sub = calcInner([Q3, Q1], (a, b) => a - b);
 
   if (sigNum) {
     const isEqual = isEqualInner({ left: Q3, right: Q1 });

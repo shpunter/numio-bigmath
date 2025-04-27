@@ -1,6 +1,6 @@
+import { PipeInner } from "../pipe/utils.ts";
 import { quartileInner } from "../quartile/utils.ts";
 import type { BI } from "../shared/types.ts";
-import { calcInner } from "../shared/utils.ts";
 import { ASC } from "../sort/constants.ts";
 import { sortInner } from "../sort/utils.ts";
 import type { TMADInner } from "./types.ts";
@@ -9,7 +9,7 @@ export const MADInner: TMADInner = (array) => {
   const median = quartileInner(array).Q2;
 
   const madArray = array.map<BI>((el) => {
-    const [bi, fpe] = calcInner([el, median], (a, b) => a - b)
+    const [bi, fpe] = new PipeInner().sub([el, median]).calc();
 
     return bi < 0n ? [bi * -1n, fpe] : [bi, fpe];
   });

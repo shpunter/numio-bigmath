@@ -13,7 +13,7 @@ Deno.test("pipe.add", () => {
   assertEquals(res, "1.89");
 });
 
-Deno.test("pipe.add", () => {
+Deno.test("pipe.add.add", () => {
   const res = pipe
     .add(["1", "2", "3", "4", "5"])
     .add(["0.9", "0.99", "0.999", "1.099", "1.009"])
@@ -22,7 +22,7 @@ Deno.test("pipe.add", () => {
   assertEquals(res, "19.997");
 });
 
-Deno.test("pipe.add.sub", () => {
+Deno.test("pipe.add.add.sub", () => {
   const res = pipe
     .add(["1", "2", "3", "4", "5"])
     .add(["0.9", "0.99", "0.999", "1.099", "1.009"])
@@ -32,7 +32,7 @@ Deno.test("pipe.add.sub", () => {
   assertEquals(res, "15.9");
 });
 
-Deno.test("pipe.add.sub", () => {
+Deno.test("pipe.add.sub.add", () => {
   const res = pipe
     .add(["1", "2", "3", "4", "5"])
     .sub(["1.009", "1.099", "0.999", "0.99"])
@@ -42,7 +42,7 @@ Deno.test("pipe.add.sub", () => {
   assertEquals(res, "15.9");
 });
 
-Deno.test("pipe.add.sub", () => {
+Deno.test("pipe.add.sub.add", () => {
   const res = pipe
     .add(["0.9", "0.99", "0.999", "1.099", "1.009"])
     .sub(["1.009", "1.099", "0.999", "0.99"])
@@ -52,7 +52,7 @@ Deno.test("pipe.add.sub", () => {
   assertEquals(res, "15.9");
 });
 
-Deno.test("pipe.add.sub.mul.div", () => {
+Deno.test("pipe.add.sub.add.sub.mul.div.add", () => {
   const res = pipe
     .add(["0.9", "0.99", "0.999", "1.099", "1.009"])
     .sub(["1.009", "1.099", "0.999", "0.99"])
@@ -66,7 +66,7 @@ Deno.test("pipe.add.sub.mul.div", () => {
   assertEquals(res, "20");
 });
 
-Deno.test("pipe.add.sub.mul.div", () => {
+Deno.test("pipe.add.div.sub.mul", () => {
   const addNums = ["1", "2", "3"];
   const subNums = ["0.2", "0.3"];
   const divNums = ["4"];
@@ -131,3 +131,15 @@ Deno.test("pipe.add.sub.div.mul", () => {
 
   assertEquals(res, "499.95");
 });
+
+Deno.test("pipe.div", () => {
+  const res = pipe.div(["8", "4"]).calc();
+
+  assertEquals(res, "2");
+});
+
+Deno.test("pipe.add.div", () => {
+  const res = pipe.add(["1", "7"]).div(["4"]).calc();
+
+  assertEquals(res, "2");
+})

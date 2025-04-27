@@ -143,44 +143,23 @@ export const s2bi: S2BI = (str) => {
   ] as const;
 };
 
-export const calcInner: CalcInner = (array, op) => {
-  let bigInt = 0n;
-  let fpe = 0;
+export const calcInner: CalcInner = (array, op, def) => {
+  let bigInt = def ? def[0] : array[0][0];
+  let fpe = def ? def[1] : array[0][1];
   const opm = op(1n, 1n);
 
-  for (let i = 0; i < array.length; i++) {
+  for (let i = (def ? 0 : 1); i < array.length; i++) {
     const [bigCurrent, dpLen] = array[i];
 
-    // const current = array[i];
-    // const fpi = current.indexOf(".");
-
     if (dpLen === 0 && fpe === 0) {
-      if (i === 0) bigInt = bigCurrent;
-      else bigInt = op(bigInt, bigCurrent);
+      bigInt = op(bigInt, bigCurrent);
       continue;
     }
 
-    // const dpLen = fpi === -1 ? 0 : current.length - 1 - fpi;
-    // const bigStr = fpi >= 0
-    //   ? current.slice(0, fpi) + current.slice(fpi + 1)
-    //   : current;
-
     if (opm === 1n) {
-      if (i === 0) {
-        bigInt = bigCurrent;
-        fpe += dpLen;
-        continue;
-      }
-
       bigInt = op(bigInt, bigCurrent);
       fpe += dpLen;
     } else {
-      if (i === 0) {
-        bigInt = bigCurrent;
-        if (fpe < dpLen) fpe = dpLen;
-        continue;
-      }
-
       if (fpe < dpLen) {
         const fpDiff = dpLen - fpe;
         bigInt = op(bigInt * (10n ** BigInt(fpDiff)), bigCurrent);
@@ -223,21 +202,15 @@ export const trimTail: TrimTail = (str) => {
   return str;
 };
 
-export const divInner: DivInner = (array, limit) => {
-  let biTotal = 0n;
-  let fpe = 0;
+export const divInner: DivInner = (array, limit, def) => {
+  let bigInt = def ? def[0] : array[0][0];
+  let fpe = def ? def[1] : array[0][1];
 
-  for (let i = 0; i < array.length; i++) {
+  for (let i = (def ? 0 : 1); i < array.length; i++) {
     let [bigCurrent, dpLen] = array[i];
     let remained = 0n;
 
-    if (i === 0) {
-      biTotal = bigCurrent;
-      fpe = dpLen;
-      continue;
-    }
-
-    if (biTotal === 0n && fpe === 0) return [0n, 0];
+    if (bigInt === 0n && fpe === 0) return [0n, 0];
 
     if (fpe === dpLen) {
       fpe = 0;
@@ -245,33 +218,33 @@ export const divInner: DivInner = (array, limit) => {
     }
 
     if (dpLen > 0 && fpe < dpLen) {
-      biTotal *= 10n ** BigInt(dpLen - fpe);
+      bigInt *= 10n ** BigInt(dpLen - fpe);
       fpe = 0;
     }
 
     if (dpLen > 0 && fpe > dpLen) fpe = fpe - dpLen;
 
-    while ((biTotal < 0 ? biTotal * -1n : biTotal) < bigCurrent) {
-      if (limit <= fpe) return [biTotal / bigCurrent, fpe];
+    while ((bigInt < 0 ? bigInt * -1n : bigInt) < bigCurrent) {
+      if (limit <= fpe) return [bigInt / bigCurrent, fpe];
 
       fpe += 1;
-      biTotal *= 10n;
+      bigInt *= 10n;
     }
 
-    const q = biTotal / bigCurrent;
-    remained = biTotal - q * bigCurrent;
-    biTotal = q;
+    const q = bigInt / bigCurrent;
+    remained = bigInt - q * bigCurrent;
+    bigInt = q;
 
     while (remained > 0 && fpe < limit) {
       const nextBigInt = remained * 10n;
       const nextQ = nextBigInt / bigCurrent;
       const nextRemained = nextBigInt - nextQ * bigCurrent;
 
-      biTotal = biTotal * 10n + nextQ;
+      bigInt = bigInt * 10n + nextQ;
       remained = nextRemained;
       fpe += 1;
     }
   }
 
-  return [biTotal, fpe];
+  return [bigInt, fpe];
 };

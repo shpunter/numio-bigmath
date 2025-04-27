@@ -1,48 +1,38 @@
-import { DEFAULT } from "../shared/constant.ts";
-import { a2s, cloneInner } from "../shared/utils.ts";
-import { subRoute } from "../operations/sub/utils.ts";
-import { addRoute } from "../operations/add/utils.ts";
-import { divRoute } from "../operations/div/utils.ts";
-import { mulRoute } from "../operations/mul/utils.ts";
+import { calcInner, divInner } from "../shared/utils.ts";
 
-import type { A2S } from "../shared/types.ts";
-import type { InputData } from "../types.ts";
+import type { BI } from "../shared/types.ts";
 
 export class PipeInner {
-  result: InputData;
+  result: BI | undefined;
 
-  constructor() {
-    this.result = DEFAULT;
-  }
+  constructor() {}
 
-  addInner(array: InputData[]): PipeInner {
-    this.result = addRoute(array, cloneInner(this.result));
+  add(array: BI[]): PipeInner {
+    this.result = calcInner(array, (a, b) => a + b, this.result);
 
     return this;
   }
 
-  subInner(array: InputData[]): PipeInner {
-    this.result = subRoute(array, cloneInner(this.result));
+  sub(array: BI[]): PipeInner {
+    this.result = calcInner(array, (a, b) => a - b, this.result);
 
     return this;
   }
 
-  divInner(array: InputData[]): PipeInner {
-    this.result = divRoute(array, cloneInner(this.result), 20);
+  div(array: BI[], limit = 20): PipeInner {
+    this.result = divInner(array, limit, this.result);
 
     return this;
   }
 
-  mulInner(array: InputData[]): PipeInner {
-    this.result = mulRoute(array, cloneInner(this.result));
+  mul(array: BI[]): PipeInner {
+    this.result = calcInner(array, (a, b) => a * b, this.result);
 
     return this;
   }
 
-  calc(): ReturnType<A2S> {
-    const result = a2s(this.result);
-    this.result = DEFAULT;
-
-    return result;
+  calc(): BI {
+    const res =  this.result ?? [0n, 0];
+    return res;
   }
 }

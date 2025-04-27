@@ -1,47 +1,48 @@
-import { DEFAULT } from "../shared/constant.ts";
-import { a2s, s2a } from "../shared/utils.ts";
-import { subRoute } from "../operations/sub/utils.ts";
-import { addRoute } from "../operations/add/utils.ts";
-import { divRoute } from "../operations/div/utils.ts";
-import { mulRoute } from "../operations/mul/utils.ts";
+import { bi2s, calcInner, divInner, s2bi } from "../shared/utils.ts";
 
-import type { A2S } from "../shared/types.ts";
-import type { InputData } from "../types.ts";
+import type { A2S, BI, BI2S } from "../shared/types.ts";
 
 export class Pipe {
-  #result: InputData;
+  #result: BI | undefined;
 
-  constructor() {
-    this.#result = DEFAULT;
-  }
+  constructor() {}
 
-  add(strs: string[]): Pipe {
-    this.#result = addRoute(strs.map((str) => s2a(str)), this.#result);
+  add(array: string[]): Pipe {
+    const arrayInner = array.map((str) => s2bi(str));
 
-    return this;
-  }
-
-  sub(strs: string[]): Pipe {
-    this.#result = subRoute(strs.map((str) => s2a(str)), this.#result);
+    this.#result = calcInner(arrayInner, (a, b) => a + b, this.#result);
 
     return this;
   }
 
-  div(strs: string[], limit = 20): Pipe {
-    this.#result = divRoute(strs.map((str) => s2a(str)), this.#result, limit);
+  sub(array: string[]): Pipe {
+    const arrayInner = array.map((str) => s2bi(str));
+
+    this.#result = calcInner(arrayInner, (a, b) => a - b, this.#result);
 
     return this;
   }
 
-  mul(strs: string[]): Pipe {
-    this.#result = mulRoute(strs.map((str) => s2a(str)), this.#result);
+  div(array: string[], limit = 20): Pipe {
+    const arrayInner = array.map((str) => s2bi(str));
+
+    this.#result = divInner(arrayInner, limit, this.#result);
 
     return this;
   }
 
-  calc(): ReturnType<A2S> {
-    const result = a2s(this.#result);
-    this.#result = DEFAULT;
+  mul(array: string[]): Pipe {
+    const arrayInner = array.map((str) => s2bi(str));
+
+    this.#result = calcInner(arrayInner, (a, b) => a * b, this.#result);
+
+    return this;
+  }
+
+  calc(): ReturnType<BI2S> {
+    const [bi, fpe] = this.#result ?? [0n, 0];
+    const result = bi2s(bi, fpe);
+    this.#result = undefined;
 
     return result;
   }

@@ -1,12 +1,12 @@
-import { a2s, s2a } from "../shared/utils.ts";
+import { bi2s, s2bi } from "../shared/utils.ts";
 import type { Mean } from "./types.ts";
 import { meanInner } from "./utils.ts";
 
 /** This function returns mean of an array. */
-export const mean: Mean = (strs) => {
-  const array = strs.map((str) => s2a(str));
+export const mean: Mean = (array) => {
+  const arrayInner = array.map((str) => s2bi(str));
 
-  const res = meanInner(array);
+  const [bi, fpe] = meanInner(arrayInner);
 
-  return a2s(res);
+  return bi2s(bi, fpe);
 };

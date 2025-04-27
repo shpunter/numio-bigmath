@@ -7,6 +7,7 @@ import type {
   DivInner,
   FillHead,
   S2A,
+  S2BI,
   TrimTail,
 } from "./types.ts";
 
@@ -131,52 +132,65 @@ export const bi2s: BI2S = (bigInt, fpe) => {
   return `${fillHead(bigStr.length, fpe, isNeg, false)}${trimTail(after)}`;
 };
 
+export const s2bi: S2BI = (str) => {
+  const fpi = str.indexOf(".");
+
+  if (fpi === -1) return [BigInt(str), 0];
+
+  return [
+    BigInt(str.slice(0, fpi) + str.slice(fpi + 1)),
+    fpi === -1 ? 0 : str.length - 1 - fpi,
+  ] as const;
+};
+
 export const calcInner: CalcInner = (array, op) => {
   let bigInt = 0n;
   let fpe = 0;
   const opm = op(1n, 1n);
 
   for (let i = 0; i < array.length; i++) {
-    const current = array[i];
-    const fpi = current.indexOf(".");
+    const [bigCurrent, dpLen] = array[i];
 
-    if (fpi === -1 && fpe === 0) {
-      if (i === 0) bigInt = BigInt(current);
-      else bigInt = op(bigInt, BigInt(current));
+    // const current = array[i];
+    // const fpi = current.indexOf(".");
+
+    if (dpLen === 0 && fpe === 0) {
+      if (i === 0) bigInt = bigCurrent;
+      else bigInt = op(bigInt, bigCurrent);
       continue;
     }
 
-    const dpLen = fpi === -1 ? 0 : current.length - 1 - fpi;
-    const bigStr = fpi >= 0
-      ? current.slice(0, fpi) + current.slice(fpi + 1)
-      : current;
+    // const dpLen = fpi === -1 ? 0 : current.length - 1 - fpi;
+    // const bigStr = fpi >= 0
+    //   ? current.slice(0, fpi) + current.slice(fpi + 1)
+    //   : current;
 
     if (opm === 1n) {
       if (i === 0) {
-        bigInt = BigInt(bigStr);
+        bigInt = bigCurrent;
         fpe += dpLen;
         continue;
       }
 
-      bigInt = op(bigInt, BigInt(bigStr));
+      bigInt = op(bigInt, bigCurrent);
       fpe += dpLen;
     } else {
       if (i === 0) {
-        bigInt = BigInt(bigStr);
+        bigInt = bigCurrent;
         if (fpe < dpLen) fpe = dpLen;
         continue;
       }
 
       if (fpe < dpLen) {
         const fpDiff = dpLen - fpe;
-        bigInt = op(bigInt * (10n ** BigInt(fpDiff)), BigInt(bigStr));
+        bigInt = op(bigInt * (10n ** BigInt(fpDiff)), bigCurrent);
       }
 
       if (fpe > dpLen) {
-        bigInt = op(bigInt, BigInt(bigStr) * (10n ** BigInt(fpe - dpLen)));
+        bigInt = op(bigInt, bigCurrent * (10n ** BigInt(fpe - dpLen)));
       }
 
-      if (fpe === dpLen) bigInt = op(bigInt, BigInt(bigStr));
+      if (fpe === dpLen) bigInt = op(bigInt, bigCurrent);
       if (fpe < dpLen) fpe = dpLen;
     }
   }
@@ -210,24 +224,20 @@ export const trimTail: TrimTail = (str) => {
 };
 
 export const divInner: DivInner = (array, limit) => {
-  let bigInt = 0n;
+  let biTotal = 0n;
   let fpe = 0;
 
   for (let i = 0; i < array.length; i++) {
-    const str = array[i];
-    const fpi = str.indexOf(".");
-    let dpLen = fpi === -1 ? 0 : str.length - 1 - fpi;
-    const bigStr = dpLen ? str.slice(0, fpi) + str.slice(fpi + 1) : str;
-    const bigCurrent = BigInt(bigStr);
+    let [bigCurrent, dpLen] = array[i];
     let remained = 0n;
 
     if (i === 0) {
-      bigInt = bigCurrent;
+      biTotal = bigCurrent;
       fpe = dpLen;
       continue;
     }
 
-    if (bigInt === 0n && fpe === 0) return [0n, 0];
+    if (biTotal === 0n && fpe === 0) return [0n, 0];
 
     if (fpe === dpLen) {
       fpe = 0;
@@ -235,33 +245,33 @@ export const divInner: DivInner = (array, limit) => {
     }
 
     if (dpLen > 0 && fpe < dpLen) {
-      bigInt *= 10n ** BigInt(dpLen - fpe);
+      biTotal *= 10n ** BigInt(dpLen - fpe);
       fpe = 0;
     }
 
     if (dpLen > 0 && fpe > dpLen) fpe = fpe - dpLen;
 
-    while ((bigInt < 0 ? bigInt * -1n : bigInt) < bigCurrent) {
-      if (limit <= fpe) return [bigInt / bigCurrent, fpe];
+    while ((biTotal < 0 ? biTotal * -1n : biTotal) < bigCurrent) {
+      if (limit <= fpe) return [biTotal / bigCurrent, fpe];
 
       fpe += 1;
-      bigInt *= 10n;
+      biTotal *= 10n;
     }
 
-    const q = bigInt / bigCurrent;
-    remained = bigInt - q * bigCurrent;
-    bigInt = q;
+    const q = biTotal / bigCurrent;
+    remained = biTotal - q * bigCurrent;
+    biTotal = q;
 
     while (remained > 0 && fpe < limit) {
       const nextBigInt = remained * 10n;
       const nextQ = nextBigInt / bigCurrent;
       const nextRemained = nextBigInt - nextQ * bigCurrent;
 
-      bigInt = bigInt * 10n + nextQ;
+      biTotal = biTotal * 10n + nextQ;
       remained = nextRemained;
       fpe += 1;
     }
   }
 
-  return [bigInt, fpe];
+  return [biTotal, fpe];
 };

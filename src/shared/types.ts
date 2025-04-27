@@ -1,5 +1,5 @@
 import type { InputData } from "../types.ts";
-
+export type BI = [bigint, number];
 export type A2S = (input: InputData) => string;
 
 export type S2A = (
@@ -23,13 +23,16 @@ export type FillHead = (
 export type TrimTail = (str: string) => string;
 
 export type CalcInner = (
-  array: string[],
+  array: BI[],
   op: (a: bigint, b: bigint) => bigint,
-) => [bigint, number];
+) => BI;
 
 export type DivInner = (
-  array: string[],
+  array: BI[],
   limit: number
-) => [bigint, number];
+) => BI;
 
 export type BI2S = (bigInt: bigint, fpe: number) => string;
+export type S2BI = (str: string) => BI;
+
+

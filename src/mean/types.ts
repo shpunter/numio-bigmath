@@ -1,4 +1,4 @@
-import type { InputData } from "../types.ts";
+import type { BI } from "../shared/types.ts";
 
 export type Mean = (array: string[]) => string;
-export type MeanInner = (array: InputData[]) => InputData;
+export type MeanInner = (array: BI[]) => BI;

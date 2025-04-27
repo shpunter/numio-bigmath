@@ -1,12 +1,10 @@
-import { addRoute } from "../operations/add/utils.ts";
-import { PipeInner } from "../pipe/utils.ts";
-import { DEFAULT } from "../shared/constant.ts";
-import { s2a } from "../shared/utils.ts";
+import type { BI } from "../shared/types.ts";
+import { calcInner, divInner } from "../shared/utils.ts";
 import type { MeanInner } from "./types.ts";
 
 export const meanInner: MeanInner = (array) => {
-  const left = addRoute(array, DEFAULT);
-  const right = s2a(array.length.toString());
+  const left = calcInner(array, (a, b) => a + b);
+  const right: BI = [BigInt(array.length), 0];
 
-  return new PipeInner().divInner([left, right]).result;
+  return divInner([left, right], 20);
 };

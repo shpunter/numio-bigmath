@@ -1,6 +1,7 @@
-import { calcInner, divInner } from "../shared/utils.ts";
+import { calcInner } from "../shared/utils.ts";
 
 import type { BI } from "../shared/types.ts";
+import { divInner } from "../operations/div/utils.ts";
 
 export class PipeInner {
   result: BI | undefined;

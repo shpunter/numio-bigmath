@@ -1,113 +1,4 @@
-import type {
-  A2S,
-  BI2S,
-  CalcInner,
-  CloneInner,
-  Convert,
-  DivInner,
-  FillHead,
-  S2A,
-  S2BI,
-  TrimTail,
-} from "./types.ts";
-
-const convert: Convert = (isNegative, array) => {
-  return (isNegative ? "-" : "") + String.fromCharCode(...array);
-};
-
-export const a2s: A2S = ({ array, isFloat, isNegative, intLength }) => {
-  const result: number[] = [];
-  let lastValuableIdx = array.length;
-  const isNil = array.length === 1 && array[0] === 48;
-
-  if (isNil) return convert(isNegative, array);
-
-  if (isFloat) {
-    let idx = array.length - 1;
-
-    while (array[idx] === 48 && idx >= intLength) {
-      lastValuableIdx = idx;
-      idx -= 1;
-    }
-  }
-
-  if (intLength !== array.length) {
-    if (intLength <= 0) {
-      result.push(48, 46);
-
-      for (let i = intLength; i < 0; i++) {
-        result.push(48);
-      }
-
-      for (let i = 0; i < lastValuableIdx; i++) {
-        result.push(array[i]);
-      }
-    } else {
-      for (let i = 0; i < lastValuableIdx; i++) {
-        i === intLength && result.push(46);
-        result.push(array[i]);
-      }
-    }
-
-    return result.at(-1) === 46 ? "0" : convert(isNegative, result);
-  }
-
-  return convert(isNegative, array);
-};
-
-export const s2a: S2A = (string) => {
-  const array = Array<number>(0);
-  const isNegative = string.charCodeAt(0) === 45;
-  const shift = isNegative ? 1 : 0;
-  let dec = 0;
-  const isNil = string.length === 1 && string.charCodeAt(0) === 48;
-  const isNegNil = string.length === 2 && isNegative &&
-    string.charCodeAt(1) === 48;
-
-  if (isNil || isNegNil) {
-    return {
-      array: [48],
-      intLength: 1,
-      isNegative: isNegNil,
-      isFloat: false,
-    };
-  }
-
-  for (let idx = 0 + shift; idx < string.length; idx++) {
-    const charCode = string.charCodeAt(idx);
-
-    if (array.length === 0 && charCode === 48) continue;
-    if (charCode === 46) {
-      dec = string.length - 1 - idx;
-      continue;
-    }
-
-    array.push(charCode);
-  }
-
-  return {
-    array,
-    intLength: array.length - dec,
-    isNegative,
-    isFloat: dec > 0,
-  };
-};
-
-export const cloneInner: CloneInner = (inner) => {
-  const len = inner.array.length;
-  const clone = Array(len);
-
-  for (let i = 0; i < len; i++) {
-    clone[i] = inner.array[i];
-  }
-
-  return {
-    intLength: inner.intLength,
-    isFloat: inner.isFloat,
-    isNegative: inner.isNegative,
-    array: clone,
-  };
-};
+import type { BI2S, CalcInner, FillHead, S2BI, TrimTail } from "./types.ts";
 
 export const bi2s: BI2S = (bigInt, fpe) => {
   if (bigInt === 0n) return "0";
@@ -148,7 +39,7 @@ export const calcInner: CalcInner = (array, op, def) => {
   let fpe = def ? def[1] : array[0][1];
   const opm = op(1n, 1n);
 
-  for (let i = (def ? 0 : 1); i < array.length; i++) {
+  for (let i = def ? 0 : 1; i < array.length; i++) {
     const [bigCurrent, dpLen] = array[i];
 
     if (dpLen === 0 && fpe === 0) {
@@ -200,51 +91,4 @@ export const trimTail: TrimTail = (str) => {
   }
 
   return str;
-};
-
-export const divInner: DivInner = (array, limit, def) => {
-  let bigInt = def ? def[0] : array[0][0];
-  let fpe = def ? def[1] : array[0][1];
-
-  for (let i = (def ? 0 : 1); i < array.length; i++) {
-    let [bigCurrent, dpLen] = array[i];
-    let remained = 0n;
-
-    if (bigInt === 0n && fpe === 0) return [0n, 0];
-
-    if (fpe === dpLen) {
-      fpe = 0;
-      dpLen = 0;
-    }
-
-    if (dpLen > 0 && fpe < dpLen) {
-      bigInt *= 10n ** BigInt(dpLen - fpe);
-      fpe = 0;
-    }
-
-    if (dpLen > 0 && fpe > dpLen) fpe = fpe - dpLen;
-
-    while ((bigInt < 0 ? bigInt * -1n : bigInt) < bigCurrent) {
-      if (limit <= fpe) return [bigInt / bigCurrent, fpe];
-
-      fpe += 1;
-      bigInt *= 10n;
-    }
-
-    const q = bigInt / bigCurrent;
-    remained = bigInt - q * bigCurrent;
-    bigInt = q;
-
-    while (remained > 0 && fpe < limit) {
-      const nextBigInt = remained * 10n;
-      const nextQ = nextBigInt / bigCurrent;
-      const nextRemained = nextBigInt - nextQ * bigCurrent;
-
-      bigInt = bigInt * 10n + nextQ;
-      remained = nextRemained;
-      fpe += 1;
-    }
-  }
-
-  return [bigInt, fpe];
 };

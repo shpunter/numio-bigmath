@@ -1,6 +1,7 @@
-import { bi2s, calcInner, divInner, s2bi } from "../shared/utils.ts";
+import { bi2s, calcInner, s2bi } from "../shared/utils.ts";
 
-import type { A2S, BI, BI2S } from "../shared/types.ts";
+import type { BI, BI2S } from "../shared/types.ts";
+import { divInner } from "../operations/div/utils.ts";
 
 export class Pipe {
   #result: BI | undefined;

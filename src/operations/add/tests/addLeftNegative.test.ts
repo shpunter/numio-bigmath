@@ -245,3 +245,18 @@ Deno.test("-10891.089 + 990.099", () => {
   const res = add(["-10891.089", "990.099"]);
   assertEquals(res, "-9900.99");
 });
+
+Deno.test("-1.8 + 1.8", () => {
+  const res = add(["-1.8", "1.8"]);
+  assertEquals(res, "0");
+});
+
+Deno.test("-0.8 + 0.8", () => {
+  const res = add(["-0.8", "0.8"]);
+  assertEquals(res, "0");
+});
+
+Deno.test("-0.08 + 0.08", () => {
+  const res = add(["-0.08", "0.08"]);
+  assertEquals(res, "0");
+});

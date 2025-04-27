@@ -1,17 +1,10 @@
 import { PipeInner } from "../pipe/utils.ts";
-import { cloneInner } from "../shared/utils.ts";
 import type { MeanQ, QuartileInner } from "./types.ts";
 
 const meanQ: MeanQ = (idx, array) => {
-  return new PipeInner().addInner([
-    cloneInner(array[idx]),
-    cloneInner(array[idx - 1]),
-  ]).divInner([{
-    array: [50],
-    intLength: 1,
-    isFloat: false,
-    isNegative: false,
-  }]).result;
+  const left = new PipeInner().add([array[idx], array[idx - 1]]).calc();
+
+  return new PipeInner().div([left, [2n, 0]]).calc();
 };
 
 export const quartileInner: QuartileInner = (array) => {

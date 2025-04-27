@@ -1,4 +1,4 @@
-import type { InputData } from "../types.ts";
+import type { BI } from "../shared/types.ts";
 
 export type Quartile = (array: string[]) => {
   Q1: string;
@@ -6,9 +6,9 @@ export type Quartile = (array: string[]) => {
   Q3: string;
 };
 
-export type MeanQ = (index: number, array: InputData[]) => InputData;
-export type QuartileInner = (array: InputData[]) => {
-  Q1: InputData;
-  Q2: InputData;
-  Q3: InputData;
+export type MeanQ = (index: number, array: BI[]) => BI;
+export type QuartileInner = (array: BI[]) => {
+  Q1: BI;
+  Q2: BI;
+  Q3: BI;
 };

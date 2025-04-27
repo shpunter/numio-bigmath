@@ -1,15 +1,16 @@
-import { a2s, s2a } from "../shared/utils.ts";
+import { bi2s, s2bi } from "../shared/utils.ts";
 import type { Quartile } from "./types.ts";
 import { quartileInner } from "./utils.ts";
 
 /** This function returns Q1, Q2, Q3 (quartile). */
-export const quartile: Quartile = (strs) => {
-  const array = strs.map((str) => s2a(str));
-  const Qs = quartileInner(array);
+export const quartile: Quartile = (array) => {
+  const arrayInner = array.map((str) => s2bi(str));
+  const { Q1: [Q1bi, Q1fpe], Q2: [Q2bi, Q2fpe], Q3: [Q3bi, Q3fpe] } =
+    quartileInner(arrayInner);
 
   return {
-    Q1: a2s(Qs.Q1),
-    Q2: a2s(Qs.Q2),
-    Q3: a2s(Qs.Q3),
+    Q1: bi2s(Q1bi, Q1fpe),
+    Q2: bi2s(Q2bi, Q2fpe),
+    Q3: bi2s(Q3bi, Q3fpe),
   };
 };

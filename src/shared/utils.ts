@@ -1,99 +1,94 @@
-import type { A2S, CloneInner, Convert, S2A } from "./types.ts";
+import type { BI2S, CalcInner, FillHead, S2BI, TrimTail } from "./types.ts";
 
-const convert: Convert = (isNegative, array) => {
-  return (isNegative ? "-" : "") + String.fromCharCode(...array);
+export const bi2s: BI2S = (bigInt, fpe) => {
+  if (bigInt === 0n) return "0";
+
+  const isNeg = bigInt < 0n;
+  isNeg && (bigInt *= -1n);
+
+  const dp = bigInt % (10n ** BigInt(fpe));
+  const bigStr = bigInt.toString();
+  let fpIdx = bigStr.length - fpe;
+
+  if (fpIdx < 0) fpIdx = 0;
+
+  const before = bigStr.slice(0, fpIdx);
+  const after = bigStr.slice(fpIdx);
+
+  if (before) {
+    return fillHead(bigStr.length, fpe, isNeg, true) +
+      (fpe > 0 && dp > 0 ? trimTail(`${before}.${after}`) : before);
+  }
+
+  return `${fillHead(bigStr.length, fpe, isNeg, false)}${trimTail(after)}`;
 };
 
-export const a2s: A2S = ({ array, isFloat, isNegative, intLength }) => {
-  const result: number[] = [];
-  let lastValuableIdx = array.length;
-  const isNil = array.length === 1 && array[0] === 48;
+export const s2bi: S2BI = (str) => {
+  const fpi = str.indexOf(".");
 
-  if (isNil) return convert(isNegative, array);
+  if (fpi === -1) return [BigInt(str), 0];
 
-  if (isFloat) {
-    let idx = array.length - 1;
-
-    while (array[idx] === 48 && idx >= intLength) {
-      lastValuableIdx = idx;
-      idx -= 1;
-    }
-  }
-
-  if (intLength !== array.length) {
-    if (intLength <= 0) {
-      result.push(48, 46);
-
-      for (let i = intLength; i < 0; i++) {
-        result.push(48);
-      }
-
-      for (let i = 0; i < lastValuableIdx; i++) {
-        result.push(array[i]);
-      }
-    } else {
-      for (let i = 0; i < lastValuableIdx; i++) {
-        i === intLength && result.push(46);
-        result.push(array[i]);
-      }
-    }
-
-    return result.at(-1) === 46 ? "0" : convert(isNegative, result);
-  }
-
-  return convert(isNegative, array);
+  return [
+    BigInt(str.slice(0, fpi) + str.slice(fpi + 1)),
+    fpi === -1 ? 0 : str.length - 1 - fpi,
+  ] as const;
 };
 
-export const s2a: S2A = (string) => {
-  const array = Array<number>(0);
-  const isNegative = string.charCodeAt(0) === 45;
-  const shift = isNegative ? 1 : 0;
-  let dec = 0;
-  const isNil = string.length === 1 && string.charCodeAt(0) === 48;
-  const isNegNil = string.length === 2 && isNegative &&
-    string.charCodeAt(1) === 48;
+export const calcInner: CalcInner = (array, op, def) => {
+  let bigInt = def ? def[0] : array[0][0];
+  let fpe = def ? def[1] : array[0][1];
+  const opm = op(1n, 1n);
 
-  if (isNil || isNegNil) {
-    return {
-      array: [48],
-      intLength: 1,
-      isNegative: isNegNil,
-      isFloat: false,
-    };
-  }
+  for (let i = def ? 0 : 1; i < array.length; i++) {
+    const [bigCurrent, dpLen] = array[i];
 
-  for (let idx = 0 + shift; idx < string.length; idx++) {
-    const charCode = string.charCodeAt(idx);
-
-    if (array.length === 0 && charCode === 48) continue;
-    if (charCode === 46) {
-      dec = string.length - 1 - idx;
+    if (dpLen === 0 && fpe === 0) {
+      bigInt = op(bigInt, bigCurrent);
       continue;
     }
 
-    array.push(charCode);
+    if (opm === 1n) {
+      bigInt = op(bigInt, bigCurrent);
+      fpe += dpLen;
+    } else {
+      if (fpe < dpLen) {
+        const fpDiff = dpLen - fpe;
+        bigInt = op(bigInt * (10n ** BigInt(fpDiff)), bigCurrent);
+      }
+
+      if (fpe > dpLen) {
+        bigInt = op(bigInt, bigCurrent * (10n ** BigInt(fpe - dpLen)));
+      }
+
+      if (fpe === dpLen) bigInt = op(bigInt, bigCurrent);
+      if (fpe < dpLen) fpe = dpLen;
+    }
   }
 
-  return {
-    array,
-    intLength: array.length - dec,
-    isNegative,
-    isFloat: dec > 0,
-  };
+  return [bigInt, fpe] as const;
 };
 
-export const cloneInner: CloneInner = (inner) => {
-  const len = inner.array.length;
-  const clone = Array(len);
+export const fillHead: FillHead = (len, fpe, isNeg, hasBefore) => {
+  let head = (isNeg ? "-" : "") + (hasBefore ? "" : "0.");
 
-  for (let i = 0; i < len; i++) {
-    clone[i] = inner.array[i];
+  while (len < fpe) {
+    head = head + "0";
+    len += 1;
   }
 
-  return {
-    intLength: inner.intLength,
-    isFloat: inner.isFloat,
-    isNegative: inner.isNegative,
-    array: clone,
-  };
+  return head;
+};
+
+export const trimTail: TrimTail = (str) => {
+  if (str[str.length - 1] !== "0") return str;
+
+  let count = 0;
+
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    if (str[i] !== "0") return str.slice(0, str.length - count);
+
+    count += 1;
+  }
+
+  return str;
 };

@@ -1,124 +1,47 @@
-import { NIL } from "../../shared/constant.ts";
-import type { DivInner, DivRoute } from "./types.ts";
+import type { DivInner } from "./types.ts";
 
-export const divInner: DivInner = (
-  [arrL, intL],
-  [arrR, intR],
-  isNegative,
-  initLimit,
-) => {
-  const decDiff = (arrL.length - intL) - (arrR.length - intR);
-  const [L, R] = [[arrR, 1], [arrL, -1]] as const;
-  const [arr, abs] = decDiff > 0 ? L : R;
+export const divInner: DivInner = (array, limit, def) => {
+  let bigInt = def ? def[0] : array[0][0];
+  let fpe = def ? def[1] : array[0][1];
+  const isNeg = bigInt < 0n;
 
-  for (let i = 0; i < decDiff * abs; i++) {
-    arr.push(48);
-  }
+  for (let i = def ? 0 : 1; i < array.length; i++) {
+    let [bigCurrent, dpLen] = array[i];
+    let r = 0n;
 
-  let digit = 48;
-  let limit = initLimit;
-  let isFloat = false;
-  let l = 0;
-  let r = arrR.length - 1;
-  let intLength = 0;
-  const result: number[] = [];
-  const lenArrayL = r - arrL.length;
+    if (bigInt === 0n && fpe === 0) return [0n, 0];
 
-  for (let i = 0; i <= lenArrayL; i++) {
-    if (i === 0) {
-      isFloat = true;
-      intLength = 1;
+    if (fpe === dpLen) {
+      fpe = 0;
+      dpLen = 0;
     }
-
-    result.push(48);
-    arrL.push(48);
-    limit -= 1;
-  }
-
-  while (r < arrL.length && limit >= 0) {
-    let comp = false;
-
-    if (arrL[l] === 48) l += 1;
-
-    for (let i = 0; i < arrR.length; i++) {
-      if ((r - l + 1) < arrR.length) comp = true;
-      if ((r - l + 1) !== arrR.length) break;
-
-      if (arrL[l + i] !== arrR[i]) {
-        comp = arrL[l + i] < arrR[i];
-        break;
-      }
+    
+    if (dpLen > 0 && fpe < dpLen) {
+      bigInt *= 10n ** BigInt(dpLen - fpe);
+      fpe = 0;
     }
+    
+    if (dpLen > 0 && fpe > dpLen) fpe = fpe - dpLen;
 
-    if (comp) {
-      if (r < arrL.length && (result.length > 0 || digit !== 48)) {
-        if (!isFloat) intLength += 1;
-        result.push(digit);
-      }
-
-      if (r >= arrL.length - 1) {
-        if (initLimit === limit) isFloat = true;
-        arrL.push(48);
-        limit -= 1;
-      }
-
-      r += 1;
-      digit = 48;
-
-      continue;
+    while ((bigInt < 0 ? bigInt * -1n : bigInt) < bigCurrent) {
+      if (limit <= fpe) return [bigInt / bigCurrent, fpe];
+      
+      fpe += 1;
+      bigInt *= 10n;
     }
+    const q = bigInt / bigCurrent;
+    r = bigInt - q * bigCurrent;
+    bigInt = q;
 
-    for (let i = arrR.length - 1; i >= 0; i--) {
-      const idx = r - (arrR.length - 1 - i);
-
-      if (arrL[idx] < arrR[i]) {
-        arrL[idx] = arrL[idx] - arrR[i] + 58;
-        arrL[idx - 1] -= 1;
-      } else {
-        arrL[idx] = arrL[idx] - arrR[i] + 48;
-      }
-    }
-
-    digit += 1;
-  }
-
-  const multipliedResult = [];
-  let count = 0;
-
-  if (result[0] === 48) {
-    let isGrZero = false;
-
-    for (let i = 0; i < result.length; i++) {
-      if (!isGrZero) result[i] > 48 ? isGrZero = true : count += 1;
-
-      isGrZero && multipliedResult.push(result[i]);
-    }
-
-    for (let i = 0; i < count; i++) {
-      multipliedResult.push(48);
-      intLength -= 1;
+    while ((isNeg ? r < 0n: r > 0n) && fpe < limit) {
+      const nextBigInt = r * 10n;
+      const nextQ = nextBigInt / bigCurrent;
+      const nextRemained = nextBigInt - nextQ * bigCurrent;
+      bigInt = bigInt * 10n + nextQ;
+      r = nextRemained;
+      fpe += 1;
     }
   }
 
-  return result.length === count
-    ? NIL
-    : {
-      array: result[0] === 48 ? multipliedResult : result,
-      isFloat,
-      isNegative,
-      intLength,
-    };
-};
-
-export const divRoute: DivRoute = (input, initValue, limit) => {
-  return input.reduce((left, right) => {
-    if (left.array.length === 0) return right;
-
-    return divInner(
-      [left.array, left.intLength],
-      [right.array, right.intLength],
-      left.isNegative !== right.isNegative,
-      limit,
-    );
-  }, initValue);
+  return [bigInt, fpe];
 };

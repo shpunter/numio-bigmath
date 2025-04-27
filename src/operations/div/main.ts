@@ -1,10 +1,10 @@
-import { DEFAULT } from "../../shared/constant.ts";
-import { a2s, s2a } from "../../shared/utils.ts";
-import { divRoute } from "./utils.ts";
+import { bi2s, s2bi } from "../../shared/utils.ts";
+import { divInner } from "./utils.ts";
 
 /** This function should divide numbers (as string). */
-export const div = (strs: string[], limit = 20): string => {
-  if (strs[0] === "0") return strs[0];
+export const div = (array: string[], limit = 20): string => {
+  const arrayInner = array.map((str) => s2bi(str));
+  const [bigInt, fpe] = divInner(arrayInner, limit ?? 20);
 
-  return a2s(divRoute(strs.map((str) => s2a(str)), DEFAULT, limit));
+  return bi2s(bigInt, fpe);
 };

@@ -1,10 +1,11 @@
-import { a2s, s2a } from "../shared/utils.ts";
+import { bi2s, s2bi } from "../shared/utils.ts";
 import type { TIQR } from "./types.ts";
 import { IQRInner } from "./utils.ts";
 
 //** This function returns Interquartile Range */
-export const IQR: TIQR = (strs, sigNum) => {
-  const array = strs.map((str) => s2a(str));
+export const IQR: TIQR = (array, sigNum) => {
+  const arrayInner = array.map((str) => s2bi(str));
+  const [bi, fpe] = IQRInner(arrayInner, sigNum);
 
-  return a2s(IQRInner(array, sigNum));
+  return bi2s(bi, fpe);
 };

@@ -1,9 +1,9 @@
-import type { InputData } from "../types.ts";
+import type { BI } from "../shared/types.ts";
 
 export type SqrtInner = (
-  input: InputData,
-  prec?: InputData,
+  input: BI,
+  prec?: BI,
   max?: number,
-) => [InputData, number];
+) => [BI, number];
 
 export type Sqrt = (str: string, precision?: string) => string; 

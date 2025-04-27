@@ -52,5 +52,5 @@ Deno.test("left: 0, right: 0", () => {
 Deno.test("left: -0, right: 0", () => {
   const res = isEqual({ left: "-0", right: "0" });
 
-  assertEquals(res, false);
+  assertEquals(res, true);
 });

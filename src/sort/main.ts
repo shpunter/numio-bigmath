@@ -1,13 +1,13 @@
-import { a2s, s2a } from "../shared/utils.ts";
+import { bi2s, s2bi } from "../shared/utils.ts";
 import { ASC } from "./constants.ts";
 import type { Sort } from "./types.ts";
 import { sortInner } from "./utils.ts";
 
 /** Using this function sort an array. */
 export const sort: Sort = (array, sorting = ASC) => {
-  const inputDataArray = array.map((str) => s2a(str));
+  const arrayInner = array.map((str) => s2bi(str));
 
-  sortInner(inputDataArray, sorting);
+  sortInner(arrayInner, sorting);
 
-  return inputDataArray.map((input) => a2s(input));
+  return arrayInner.map(([bi, fpe]) => bi2s(bi, fpe));
 };

@@ -1,8 +1,15 @@
 import { bi2s, s2bi } from "../shared/utils.ts";
-import type { IsEqual, IsLeftGreater, Max, Min } from "./types.ts";
+import type {
+  IsEqual,
+  IsLeftGreater,
+  IsLeftGreaterOrEqual,
+  Max,
+  Min,
+} from "./types.ts";
 import {
   isEqualInner,
   isLeftGreaterInner,
+  isLeftGreaterOrEqualInner,
   maxInner,
   minInner,
 } from "./utils.ts";
@@ -26,6 +33,11 @@ export const min: Min = (array) => {
 /** This function returns if left value is greater than right value */
 export const isLeftGreater: IsLeftGreater = ({ left, right }) => {
   return isLeftGreaterInner({ left: s2bi(left), right: s2bi(right) });
+};
+
+/** This function returns if left value is greater than right value */
+export const isLeftGreaterOrEqual: IsLeftGreaterOrEqual = ({ left, right }) => {
+  return isLeftGreaterOrEqualInner({ left: s2bi(left), right: s2bi(right) });
 };
 
 /** This function returns if left and right values are equal */

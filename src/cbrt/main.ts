@@ -1,12 +1,12 @@
 import { round } from "../round/main.ts";
 import { bi2s, s2bi } from "../shared/utils.ts";
-import type { Sqrt } from "./types.ts";
-import { sqrtInner } from "./utils.ts";
+import type { Cbrt } from "./types.ts";
+import { cbrtInner } from "./utils.ts";
 
-/** Find square root of a number */
-export const sqrt: Sqrt = (value, precision) => {
+/** Find cube root of a number */
+export const cbrt: Cbrt = (value, precision) => {
   const valueInner = s2bi(value);
-  const [[bi, fpe], decimals] = sqrtInner(
+  const [[bi, fpe], decimals] = cbrtInner(
     valueInner,
     precision ? s2bi(precision) : undefined,
   );

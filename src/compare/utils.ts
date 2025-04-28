@@ -2,6 +2,7 @@ import type {
   CompareInner,
   IsEqualInner,
   IsLeftGreaterInner,
+  IsLeftGreaterOrEqualInner,
   MaxInner,
   MinInner,
 } from "./types.ts";
@@ -81,4 +82,8 @@ export const isEqualInner: IsEqualInner = ({ left, right }) => {
 
 export const isLeftGreaterInner: IsLeftGreaterInner = ({ left, right }) => {
   return compareInner(left, right)[1] > 0;
+};
+
+export const isLeftGreaterOrEqualInner: IsLeftGreaterOrEqualInner = ({ left, right }) => {
+  return compareInner(left, right)[1] >= 0;
 };

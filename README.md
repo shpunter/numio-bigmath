@@ -320,7 +320,7 @@ like
 
 ```javascript
 // NO precision loss using numeric literals with more than 15 significant digits.
-const int = sub(
+const int = add(
   "999999999999999999999999999999999999999999999999999999999999999",
   "2",
 ); // "1000000000000000000000000000000000000000000000000000000000000001"

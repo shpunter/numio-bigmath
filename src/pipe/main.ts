@@ -8,8 +8,8 @@ import { absInner } from "../abs/utils.ts";
 export class Pipe {
   #result: BI | undefined;
 
-  constructor(str?: string) {
-    str && (this.#result = s2bi(str));
+  constructor(value?: string) {
+    value && (this.#result = s2bi(value));
   }
 
   add(array: string[]): Pipe {

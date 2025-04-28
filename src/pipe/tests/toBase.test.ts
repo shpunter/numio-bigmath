@@ -36,3 +36,9 @@ Deno.test("pipe.base", () => {
 
   assertEquals(res, "1f");
 });
+
+Deno.test("pipe.base", () => {
+  const res = new Pipe("-13").resultToBase(16);
+
+  assertEquals(res, "-d");
+});

@@ -1,10 +1,11 @@
 ### 2.1.0 
-abs
-toBase
-isLeftGreaterOrEqual
+Added `toBase` - convert number to another base
+Added `abs` - absolute value
+Added `isLeftGreaterOrEqual` - Is the left-hand side value greater than or equal to the right-hand side value
+Added `cbrt` - cube root of a number
 
-pipe.abs
-pipe.resultToBase
+Added `Pipe().abs` - absolute value in pipe
+Added `Pipe().resultToBase` - convert number to another base in pipe
 
 ### 2.0.0
 The performance was improved. Adding, subtracting, dividing, and multiplying are now **2** to **5** times faster than before.\

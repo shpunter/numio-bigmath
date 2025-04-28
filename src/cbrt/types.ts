@@ -1,9 +1,9 @@
 import type { BI } from "../shared/types.ts";
 
-export type SqrtInner = (
+export type CbrtInner = (
   value: BI,
   prec?: BI,
   max?: number,
 ) => [BI, number];
 
-export type Sqrt = (value: string, precision?: string) => string; 
+export type Cbrt = (value: string, precision?: string) => string; 

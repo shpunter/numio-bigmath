@@ -21,6 +21,8 @@
 * **Round Based on Significant Figures:** Control rounding based on the number of significant figures, crucial for scientific and engineering applications.
 * **Calculate Roots:**
     * **Calculate Square Root (`sqrt`):** Compute the square root of a number with arbitrary precision. You can also specify the desired precision of the result.
+    * **NEW! Calculate Cube Root (`cbrt`):** Determine the cube root of a number with arbitrary precision, allowing you to specify the desired accuracy.
+
 * **Chain Operations with Pipe:** Simplify complex calculations by chaining arithmetic operations in a readable and intuitive manner.
 * **Analyze Data Distribution:**
     * **Calculate Quartiles (Q1, Q2, Q3):** Understand the spread and central tendency of your numerical data, helping identify outliers and the shape of the distribution.
@@ -29,9 +31,12 @@
 * **Compare Numbers:**
     * **Check for Equality (`isEqual`):** Accurately determine if two arbitrary-precision numbers are equal.
     * **Check if Left is Greater (`isLeftGreater`):** Precisely compare two arbitrary-precision numbers to see if the left operand is greater than the right.
+    * **NEW! Check if Left is Greater or Equal (`isLeftGreaterOrEqual`):** Precisely compare two arbitrary-precision numbers to determine if the left operand is greater than or equal to the right.
 * **Sort Numbers Accurately:** Sort arrays of numbers, including negative and decimal values, in ascending or descending order, correctly handling string representations of numbers that JavaScript's native sort might misinterpret.
 * **Calculate Central Tendency:** Easily compute the mean (average) of a set of numbers.
 * **Identify Extremes:** Find the maximum and minimum values within an array of numbers.
+* **NEW! Calculate Absolute Value (`abs`):** Determine the non-negative value of a number, regardless of its sign.
+* **NEW! Convert Number to Another Base (`toBase`):** Seamlessly convert numbers between decimal, hexadecimal (HEX), binary, and octal representations.
 
 ## When is @numio/bigmath essential?
 
@@ -208,18 +213,24 @@ round("1.000119", { decimals: 2, sigFig: true }); // 1
 ### Pipe
 
 ```javascript
-import { pipe } from "@numio/bigmath";
+import { Pipe } from "@numio/bigmath";
 
 const addNums = ["1", "2", "3"];
 const subNums = ["0.2", "0.3"];
 const divNums = ["4"];
 const mulNums = ["2", "5", "0.2"];
 
-pipe.add(addNums) // 6
+new Pipe().add(addNums) // 6
   .div(divNums) // 6 / 4 = 1.5 
   .sub(subNums) // 1.5 - 0.2 - 0.3 = 1
   .mul(mulNums) // 1 * 2 * 5 * 0.2 = 2
   .calc() // convert end result to readable string
+
+new Pipe().sub(["1", "5"]) // 1 - 5 = -4
+  .abs() // 4 - returns absolute value
+
+new Pipe().add(["10", "5"]) // 11 + 5 = 15
+  .resultToBase(16) // f - returns result converted to base 16
 ```
 
 ### Quartile
@@ -289,6 +300,16 @@ isLeftGreater({left: "0.1", right: "0.1"}) // false;
 isLeftGreater({left: "0.1", right: "-0.1"}) // true;
 ```
 
+### IsLeftGreaterOrEqual
+```javascript
+import { isLeftGreaterOrEqual } from "@numio/bigmath";
+
+isLeftGreaterOrEqual({left: "0.1", right: "2"}) // false;
+isLeftGreaterOrEqual({left: "2", right: "0.1"}) // true;
+isLeftGreaterOrEqual({left: "0.1", right: "0.1"}) // true;
+isLeftGreaterOrEqual({left: "0.1", right: "-0.1"}) // true;
+```
+
 ### MAD - Median Absolute Deviation
 ```javascript
 import { MAD } from "@numio/bigmath";
@@ -313,6 +334,40 @@ sqrt("3") // 1.7320508075689;
 // you can change precision of a result (second parameter), 
 sqrt("3", "0.01") // 1.732;
 sqrt("3", "0.000000000000000000001") // 1.732050807568877293527;
+```
+
+### CBRT - cube root of a number
+```javascript
+import { cbrt } from "@numio/bigmath";
+
+cbrt("37") // 3;
+cbrt("1000") // 10;
+cbrt("15"), // 2.4662120743305
+
+// you can change precision of a result (second parameter), 
+cbrt("15", "0.001") // 2.466
+```
+
+### ABS - absolute value
+```javascript
+import { abs } from "@numio/bigmath";
+
+abs("-1") // 1;
+abs("1") // 1;
+```
+
+### toBase - convert number to another base
+```javascript
+import { toBase } from "@numio/bigmath";
+
+toBase({ value: "11", toBase: 16 }) // b
+// 0x - HEX
+toBase({ value: "0xb", toBase: 10 }) // 11
+// 0b - binary
+toBase({ value: "0b101", toBase: 10 }) // 5
+toBase({ value: "0b1101", toBase: 16 }) // d
+// 0o - octal
+toBase({ value: "0o11", toBase: 10 }) // 9
 ```
 
 Does not have a limitation on the number of digits. You can use any length you'd

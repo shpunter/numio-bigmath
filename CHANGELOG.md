@@ -1,3 +1,6 @@
+### 2.1.3
+Optimize performance for small numbers
+
 ### 2.1.2
 Renamed main.ts files
 Changed import path in test files

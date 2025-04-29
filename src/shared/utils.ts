@@ -28,44 +28,51 @@ export const s2bi: S2BI = (str) => {
 
   if (fpi === -1) return [BigInt(str), 0];
 
+  if (str.length < 15 && str[0] !== "0") {
+    return [
+      BigInt(+(str.slice(0, fpi) + str.slice(fpi + 1))),
+      str.length - 1 - fpi,
+    ] as const;
+  }
+
   return [
     BigInt(str.slice(0, fpi) + str.slice(fpi + 1)),
-    fpi === -1 ? 0 : str.length - 1 - fpi,
+    str.length - 1 - fpi,
   ] as const;
 };
 
 export const calcInner: CalcInner = (array, op, def) => {
-  let bigInt = def ? def[0] : array[0][0];
-  let fpe = def ? def[1] : array[0][1];
+  let totalBi = def ? def[0] : array[0][0];
+  let totalFpe = def ? def[1] : array[0][1];
   const opm = op(1n, 1n);
 
   for (let i = def ? 0 : 1; i < array.length; i++) {
-    const [bigCurrent, dpLen] = array[i];
+    const [bi, fpe] = array[i];
 
-    if (dpLen === 0 && fpe === 0) {
-      bigInt = op(bigInt, bigCurrent);
+    if (fpe === 0 && totalFpe === 0) {
+      totalBi = op(totalBi, bi);
       continue;
     }
 
     if (opm === 1n) {
-      bigInt = op(bigInt, bigCurrent);
-      fpe += dpLen;
+      totalBi = op(totalBi, bi);
+      totalFpe += fpe;
     } else {
-      if (fpe < dpLen) {
-        const fpDiff = dpLen - fpe;
-        bigInt = op(bigInt * (10n ** BigInt(fpDiff)), bigCurrent);
+      if (totalFpe < fpe) {
+        const fpDiff = fpe - totalFpe;
+        totalBi = op(totalBi * (10n ** BigInt(fpDiff)), bi);
       }
 
-      if (fpe > dpLen) {
-        bigInt = op(bigInt, bigCurrent * (10n ** BigInt(fpe - dpLen)));
+      if (totalFpe > fpe) {
+        totalBi = op(totalBi, bi * (10n ** BigInt(totalFpe - fpe)));
       }
 
-      if (fpe === dpLen) bigInt = op(bigInt, bigCurrent);
-      if (fpe < dpLen) fpe = dpLen;
+      if (totalFpe === fpe) totalBi = op(totalBi, bi);
+      if (totalFpe < fpe) totalFpe = fpe;
     }
   }
 
-  return [bigInt, fpe] as const;
+  return [totalBi, totalFpe] as const;
 };
 
 export const fillHead: FillHead = (len, fpe, isNeg, hasBefore) => {

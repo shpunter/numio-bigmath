@@ -41,6 +41,24 @@ jobs:
       - name: Run tests
         run: deno test -A
 
+  unit-tests-npm:
+    needs: [unit-tests-jsr]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with: 
+          deno-version: v2.x
+
+      - name: Set up tests
+        run: deno task changeTestsPath
+
+      - name: Run tests
+        run: deno test -A   
 
   # publish-npm: 
   #   needs: [unit-tests-jsr]

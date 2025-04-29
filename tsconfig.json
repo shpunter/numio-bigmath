@@ -5,5 +5,5 @@
     "outDir": "npm",
     "declaration": true,
   },
-  "exclude": ["./build.ts", "**/*.test.ts", "**/*.bench.ts", "npm", "tsconfig.json"]
+  "exclude": ["./changeTestsPath.ts", "./build.ts", "**/*.test.ts", "**/*.bench.ts", "npm", "tsconfig.json"]
 }

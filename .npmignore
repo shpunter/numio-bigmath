@@ -2,5 +2,6 @@ src/**/tests
 src/**/bench
 
 ./build.ts
+./changeTestsPath
 .github
 .gitignore

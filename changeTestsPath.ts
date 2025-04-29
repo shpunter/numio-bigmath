@@ -19,7 +19,7 @@ async function walk(path: string, cb: ({ path, fileInfo }: CB) => void) {
 await walk(rootPath, ({ path, fileInfo }) => {
   if (fileInfo.isFile && path.endsWith(".test.ts")) {
     const content = decoder.decode(Deno.readFileSync(path));
-    const fixed = content.replaceAll("/index.ts", "/npm/index.ts");
+    const fixed = content.replaceAll("/index.ts", "/npm/index.js");
 
     Deno.writeFileSync(path, encoder.encode(fixed));
   }

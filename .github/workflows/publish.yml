@@ -67,7 +67,7 @@ jobs:
         run: deno test -A   
 
   publish-npm: 
-    needs: [unit-tests-npm]
+    needs: [unit-tests-npm, unit-tests-jsr]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
@@ -101,7 +101,7 @@ jobs:
 
 
   publish-jsr:
-    needs: [unit-tests-jsr]
+    needs: [unit-tests-npm, unit-tests-jsr]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 

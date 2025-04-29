@@ -2,7 +2,7 @@ name: Publish
 on:
   push:
     branches:
-      - main
+      - "*"
 
 jobs:
   build: 
@@ -25,8 +25,9 @@ jobs:
       - name: Replace .ts with .js
         run: deno task changeExtension
 
-  unit-tests:
+  unit-tests-jsr:
     needs: [build]
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -51,51 +52,51 @@ jobs:
         run: deno test -A
 
 
-  publish-npm: 
-    needs: [unit-tests]
-    runs-on: ubuntu-latest
+  # publish-npm: 
+  #   needs: [unit-tests]
+  #   runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      id-token: write
+  #   permissions:
+  #     contents: read
+  #     id-token: write
 
-    steps:
-      - name: Setup repo
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Setup repo
+  #       uses: actions/checkout@v4
 
-      - name: Setup Deno
-        uses: denoland/setup-deno@v2
-        with: 
-          deno-version: v2.x
+  #     - name: Setup Deno
+  #       uses: denoland/setup-deno@v2
+  #       with: 
+  #         deno-version: v2.x
 
-      - name: Build js version
-        run: deno task ts2js
+  #     - name: Build js version
+  #       run: deno task ts2js
 
-      - name: Replace .ts with .js
-        run: deno task changeExtension
+  #     - name: Replace .ts with .js
+  #       run: deno task changeExtension
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm publish ./npm --provenance --access public 
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20.x'
+  #         registry-url: 'https://registry.npmjs.org'
+  #     - run: npm ci
+  #     - run: npm publish ./npm --provenance --access public 
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
-  publish-jsr:
-    needs: [unit-tests]
-    runs-on: ubuntu-latest
+  # publish-jsr:
+  #   needs: [unit-tests]
+  #   runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      id-token: write
+  #   permissions:
+  #     contents: read
+  #     id-token: write
 
-    steps:
-      - name: Setup repo
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Setup repo
+  #       uses: actions/checkout@v4
 
-      - name: Publish package
-        run: npx jsr publish
+  #     - name: Publish package
+  #       run: npx jsr publish
 

@@ -27,7 +27,6 @@ jobs:
 
   unit-tests-jsr:
     needs: [build]
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -39,21 +38,13 @@ jobs:
         with: 
           deno-version: v2.x
 
-      # - name: Run linter
-      #   run: deno lint
-
-      # - name: Build js version
-      #   run: deno task ts2js
-    
-      # - name: Replace .ts with .js
-      #   run: deno task changeExtension
-
       - name: Run tests
         run: deno test -A
 
 
   # publish-npm: 
-  #   needs: [unit-tests]
+  #   needs: [unit-tests-jsr]
+  # if: github.ref == 'refs/heads/main'
   #   runs-on: ubuntu-latest
 
   #   permissions:
@@ -86,7 +77,8 @@ jobs:
 
 
   # publish-jsr:
-  #   needs: [unit-tests]
+  #   needs: [unit-tests-jsr]
+    # if: github.ref == 'refs/heads/main'
   #   runs-on: ubuntu-latest
 
   #   permissions:

@@ -1,6 +1,10 @@
-### 2.1.1
+### 2.1.2
 Renamed main.ts files
 Changed import path in test files
+Change build config - run test on JSR and NPM versions
+
+### 2.1.1
+Fixed lib crash (NPM version)
 
 ### 2.1.0 
 Added `toBase` - convert number to another base

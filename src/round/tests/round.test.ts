@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { round } from "../main.ts";
+import { round } from "../round.ts";
 
 Deno.test("123", () => {
   const res = round("123");

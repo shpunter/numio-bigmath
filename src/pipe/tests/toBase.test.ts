@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert/equals";
-import { Pipe } from "../main.ts";
+import { Pipe } from "../pipe.ts";
 
 Deno.test("pipe.base, ", () => {
   const res = new Pipe().add(["1", "2", "3"]).resultToBase(2);

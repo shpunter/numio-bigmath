@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert/equals";
-import { isLeftGreaterOrEqual } from "../main.ts";
+import { isLeftGreaterOrEqual } from "../isLeftGreaterOrEqual.ts";
 
 Deno.test("left: -0.1, right: 0", () => {
   const res = isLeftGreaterOrEqual({ left: "-0.1", right: "0" });

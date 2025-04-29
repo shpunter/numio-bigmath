@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert/equals";
-import { Pipe } from "../main.ts";
+import { Pipe } from "../pipe.ts";
 
 Deno.test("pipe.abs", () => {
   const res = new Pipe().mul(["10", "-2"]).abs().calc();

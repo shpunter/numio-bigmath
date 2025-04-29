@@ -1,4 +1,4 @@
-import { round } from "../round/main.ts";
+import { round } from "../round/round.ts";
 import { bi2s, s2bi } from "../shared/utils.ts";
 import type { Sqrt } from "./types.ts";
 import { sqrtInner } from "./utils.ts";

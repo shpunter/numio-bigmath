@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert/equals";
-import { toBase } from "../main.ts";
+import { toBase } from "../toBase.ts";
 
 Deno.test("11 toBase 16", () => {
   assertEquals(toBase({ value: "11", toBase: 16 }), "b");

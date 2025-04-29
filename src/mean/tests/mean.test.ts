@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { mean } from "../main.ts";
+import { mean } from "../../../index.ts";
 
 Deno.test("mean of [1, 1, 1, 1, 1, 1, 100]", () => {
   const res = mean(["1", "1", "1", "1", "1", "1", "100"]);

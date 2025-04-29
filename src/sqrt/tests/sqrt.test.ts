@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert/equals";
-import { sqrt } from "../main.ts";
+import { sqrt } from "../../../index.ts";
 
 Deno.test("81", () => {
   assertEquals(sqrt("81"), "9");

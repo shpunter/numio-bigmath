@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { max } from "../main.ts";
+import { max } from "../../../index.ts";
 
 Deno.test("max 2 & 1", () => {
   assertEquals(max(["2", "1"]), "2");

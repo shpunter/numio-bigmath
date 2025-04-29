@@ -1,25 +1,23 @@
-import { add } from "./src/operations/add/main.ts";
-import { mul } from "./src/operations/mul/main.ts";
-import { sub } from "./src/operations/sub/main.ts";
-import { div } from "./src/operations/div/main.ts";
-import { round } from "./src/round/main.ts";
-import { Pipe } from "./src/pipe/main.ts";
-import { quartile } from "./src/quartile/main.ts";
-import { sort } from "./src/sort/main.ts";
-import { mean } from "./src/mean/main.ts";
-import {
-  isEqual,
-  isLeftGreater,
-  isLeftGreaterOrEqual,
-  max,
-  min,
-} from "./src/compare/main.ts";
-import { IQR } from "./src/IQR/main.ts";
-import { MAD } from "./src/MAD/main.ts";
-import { sqrt } from "./src/sqrt/main.ts";
-import { cbrt } from "./src/cbrt/main.ts";
-import { abs } from "./src/abs/main.ts";
-import { toBase } from "./src/toBase/main.ts";
+import { add } from "./src/operations/add/add.ts";
+import { mul } from "./src/operations/mul/mul.ts";
+import { sub } from "./src/operations/sub/sub.ts";
+import { div } from "./src/operations/div/div.ts";
+import { round } from "./src/round/round.ts";
+import { Pipe } from "./src/pipe/pipe.ts";
+import { quartile } from "./src/quartile/quartile.ts";
+import { sort } from "./src/sort/sort.ts";
+import { mean } from "./src/mean/mean.ts";
+import { isEqual } from "./src/compare/isEqual.ts";
+import { min } from "./src/compare/min.ts";
+import { max } from "./src/compare/max.ts";
+import { isLeftGreaterOrEqual } from "./src/compare/isLeftGreaterOrEqual.ts";
+import { isLeftGreater } from "./src/compare/isLeftGreater.ts";
+import { IQR } from "./src/IQR/iqr.ts";
+import { MAD } from "./src/MAD/mad.ts";
+import { sqrt } from "./src/sqrt/sqrt.ts";
+import { cbrt } from "./src/cbrt/cbrt.ts";
+import { abs } from "./src/abs/abs.ts";
+import { toBase } from "./src/toBase/toBase.ts";
 
 export {
   abs,

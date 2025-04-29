@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { mul } from "../main.ts";
+import { mul } from "../../../../index.ts";
 
 Deno.test("2 * 5", () => {
   const res = mul(["2", "5"]);

@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { min } from "../main.ts";
+import { min } from "../../../index.ts";
 
 Deno.test("min 2 & 1", () => {
   assertEquals(min(["2", "1"]), "1");

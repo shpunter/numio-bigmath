@@ -38,6 +38,7 @@ await walk(rootPath, ({ path, fileInfo }) => {
 
 Deno.copyFileSync("LICENSE", "npm/LICENSE");
 Deno.copyFileSync("README.md", "npm/README.md");
+Deno.copyFileSync("CHANGELOG.md", "npm/CHANGELOG.md");
 Deno.copyFileSync("package.json", "npm/package.json");
 Deno.copyFileSync("package-lock.json", "npm/package-lock.json");
 

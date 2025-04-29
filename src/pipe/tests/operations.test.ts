@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { Pipe } from "../main.ts";
+import { Pipe } from "../pipe.ts";
 
 Deno.test("pipe.add", () => {
   const res = new Pipe().add(["1", "2", "3", "4", "5"]).calc();

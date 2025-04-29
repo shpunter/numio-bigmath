@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { div } from "../main.ts";
+import { div } from "../../../../index.ts";
 
 Deno.test("15 / 3", () => {
   assertEquals(div(["15", "3"]), "5");

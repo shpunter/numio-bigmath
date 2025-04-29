@@ -1,7 +1,7 @@
 src/**/tests
 src/**/bench
-deno*
 
 ./build.ts
+./changeTestsPath
 .github
 .gitignore

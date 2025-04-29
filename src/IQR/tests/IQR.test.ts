@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert/equals";
-import { IQR } from "../main.ts";
+import { IQR } from "../../../index.ts";
 
 Deno.test("1, 2, 3, 4, 5", () => {
   const res = IQR(["1", "2", "3", "4", "5"]);

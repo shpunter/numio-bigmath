@@ -5,7 +5,7 @@ on:
       - "*"
 
 jobs:
-  build: 
+  linter: 
     runs-on: ubuntu-latest
     steps:
       - name: Setup repo
@@ -19,14 +19,11 @@ jobs:
       - name: Run linter
         run: deno lint
 
-      - name: Build js version
-        run: deno task ts2js
-    
-      - name: Replace .ts with .js
-        run: deno task changeExtension
+      - name: Run check
+        run: deno check --all index.ts
 
   unit-tests-jsr:
-    needs: [build]
+    needs: [linter]
     runs-on: ubuntu-latest
 
     steps:
@@ -42,7 +39,7 @@ jobs:
         run: deno test -A
 
   unit-tests-npm:
-    needs: [unit-tests-jsr]
+    needs: [linter]
     runs-on: ubuntu-latest
 
     steps:

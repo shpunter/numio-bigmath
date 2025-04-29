@@ -5,9 +5,8 @@ on:
       - main
 
 jobs:
-  unit-tests:
+  build: 
     runs-on: ubuntu-latest
-
     steps:
       - name: Setup repo
         uses: actions/checkout@v4
@@ -25,6 +24,28 @@ jobs:
     
       - name: Replace .ts with .js
         run: deno task changeExtension
+
+  unit-tests:
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with: 
+          deno-version: v2.x
+
+      # - name: Run linter
+      #   run: deno lint
+
+      # - name: Build js version
+      #   run: deno task ts2js
+    
+      # - name: Replace .ts with .js
+      #   run: deno task changeExtension
 
       - name: Run tests
         run: deno test -A

@@ -1,3 +1,7 @@
+### 2.1.1
+Renamed main.ts files
+Changed import path in test files
+
 ### 2.1.0 
 Added `toBase` - convert number to another base
 Added `abs` - absolute value

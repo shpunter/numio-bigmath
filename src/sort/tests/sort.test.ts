@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { sort } from "../sort.ts";
+import { sort } from "../../../index.ts";
 import { ASC, DESC } from "../constants.ts";
 
 Deno.test("sort asc [1, 2, 1, 9, 2]", () => {

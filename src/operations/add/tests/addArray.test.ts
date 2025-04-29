@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { add } from "../add.ts";
+import { add } from "../../../../index.ts";
 
 Deno.test("999 + 999 + 999", () => {
   const result = add(["999", "999", "999"]);

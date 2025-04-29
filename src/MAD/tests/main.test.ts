@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert/equals";
-import { MAD } from "../mad.ts";
+import { MAD } from "../../../index.ts";
 
 Deno.test("MAD [11, 12, 12, 14, 15, 16]", () => {
   const res = MAD(["11", "12", "12", "14", "15", "16"]);

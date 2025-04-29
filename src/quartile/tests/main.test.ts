@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import { quartile } from "../quartile.ts";
+import { quartile } from "../../../index.ts";
 
 Deno.test("[1, 2, 3]", () => {
   const res = quartile(["1", "2", "3"]);

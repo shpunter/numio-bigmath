@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert/equals";
-import { cbrt } from "../cbrt.ts";
+import { cbrt } from "../../../index.ts";
 
 Deno.test("cbrt 27", () => {
   assertEquals(cbrt("27"), "3");

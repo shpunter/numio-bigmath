@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert/equals";
-import { isLeftGreater } from "../isLeftGreater.ts";
+import { isLeftGreater } from "../../../index.ts";
 
 Deno.test("left: 2, right: 0.3", () => {
   const res = isLeftGreater({ left: "2", right: "0.3" });

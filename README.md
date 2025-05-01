@@ -377,6 +377,40 @@ toBase({ value: "0b1101", toBase: 16 }) // d
 toBase({ value: "0o11", toBase: 10 }) // 9
 ```
 
+### Number format validation
+
+```javascript
+import { isHex, isBinary, isDecimal, isOctal, isNumber } from "@numio/bigmath";
+
+console.log(isHex("0x1A")); // true
+console.log(isHex("1A"));    // false (no 0x prefix)
+console.log(isHex("-0x2f")); // true
+console.log(isHex("0xG"));  // false (invalid hex digit)
+
+console.log(isBinary("0b101")); // true
+console.log(isBinary("101"));   // false (no 0b prefix)
+console.log(isBinary("-0b11"));  // true
+console.log(isBinary("0b12"));  // false (invalid binary digit)
+
+console.log(isDecimal("123"));   // true
+console.log(isDecimal("123.45"));// true
+console.log(isDecimal("-0.5"));  // true
+console.log(isDecimal(".5"));   // false (leading dot)
+console.log(isDecimal("10."));  // false (trailing dot)
+
+console.log(isOctal("0o77"));  // true
+console.log(isOctal("77"));    // false (no 0o prefix)
+console.log(isOctal("-0o12")); // true
+console.log(isOctal("0o19"));  // false (invalid octal digit)
+
+console.log(isNumber("0x1A"));  // true (hex)
+console.log(isNumber("0b101")); // true (binary)
+console.log(isNumber("123.45"));// true (decimal)
+console.log(isNumber("0o77"));  // true (octal)
+console.log(isNumber("123"));   // true (decimal)
+console.log(isNumber("abc"));   // false (not a valid number)
+```
+
 Does not have a limitation on the number of digits. You can use any length you'd
 like
 

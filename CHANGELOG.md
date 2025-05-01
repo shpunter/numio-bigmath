@@ -1,3 +1,6 @@
+### 2.2.1
+Add Number format validation examples (README.md)
+
 ### 2.2.0
 Added `isHex(str: string): boolean` - Checks if a string is a valid hexadecimal number (prefixed with `0x` or `-0x`).
 Added `isBinary(str: string): boolean` - Checks if a string is a valid binary number (prefixed with `0b` or `-0b`).

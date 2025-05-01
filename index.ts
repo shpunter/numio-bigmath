@@ -18,6 +18,11 @@ import { sqrt } from "./src/sqrt/sqrt.ts";
 import { cbrt } from "./src/cbrt/cbrt.ts";
 import { abs } from "./src/abs/abs.ts";
 import { toBase } from "./src/toBase/toBase.ts";
+import { isHex } from "./src/isValid/isHex.ts";
+import { isBinary } from "./src/isValid/isBinary.ts";
+import { isDecimal } from "./src/isValid/isDecimal.ts";
+import { isOctal } from "./src/isValid/isOctal.ts";
+import { isNumber } from "./src/isValid/isNumber.ts";
 
 export {
   abs,
@@ -40,4 +45,9 @@ export {
   sqrt,
   sub,
   toBase,
+  isHex,
+  isBinary,
+  isDecimal,
+  isOctal,
+  isNumber
 };

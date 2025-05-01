@@ -12,6 +12,8 @@
 * **Eliminate Precision Loss:** Achieve accurate results even with numeric literals exceeding 15 significant digits, ensuring the integrity of your calculations.
 * **Precise Decimal Operations:** Execute addition, subtraction, multiplication, and division on decimal numbers with guaranteed accuracy, including scenarios with negative values.
 * ****NEW! Multi-Base Number Support:** Seamlessly perform arithmetic operations involving **hexadecimal (HEX), octal, binary, and decimal numbers**, offering unparalleled flexibility in handling various number formats.
+* ****NEW! Number Format Validation:** Easily validate if a string represents a valid **hexadecimal (`isHex`)**, **binary (`isBinary`)**, **decimal (`isDecimal`)**, **octal (`isOctal`)**, or any valid **number (`isNumber`)** format supported by the library.
+
 
 
 **Unlock Advanced Numerical Operations:**
@@ -54,8 +56,13 @@ With `@numio/bigmath`, you can confidently perform complex arithmetic operations
 
 ### Latest update
 
-The performance was improved. Adding, subtracting, dividing, and multiplying are now **2** to **5** times faster than before.\
-Adding, subtracting, dividing, and multiplying support operations on HEX, octal, binary, and decimal numbers. Mixed-type calculations are allowed, with the final result converted to decimal.
+**New Functions added:**
+
+* `isHex` - Checks if a string is a valid hexadecimal number (prefixed with `0x` or `-0x`).
+* `isBinary` - Checks if a string is a valid binary number (prefixed with `0b` or `-0b`).
+* `isDecimal` - Checks if a string is a valid decimal number.
+* `isOctal` - Checks if a string is a valid octal number (prefixed with `0o` or `-0o`).
+* `isNumber` - Checks if a string is a valid number in any of the formats supported by the library (decimal, hexadecimal, binary, octal).
 
 # Install:
 
@@ -391,5 +398,7 @@ Download from NPM - https://www.npmjs.com/package/@numio/bigmath
 Download from JSR - https://jsr.io/@numio/bigmath
 
 Home page - https://github.com/shpunter/numio-bigmath/blob/main/README.md
+
+Change log - https://github.com/shpunter/numio-bigmath/blob/main/CHANGELOG.md
 
 License - https://github.com/shpunter/numio-bigmath/blob/main/LICENSE

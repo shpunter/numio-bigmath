@@ -1,3 +1,10 @@
+### 2.2.0
+Added `isHex(str: string): boolean` - Checks if a string is a valid hexadecimal number (prefixed with `0x` or `-0x`).
+Added `isBinary(str: string): boolean` - Checks if a string is a valid binary number (prefixed with `0b` or `-0b`).
+Added `isDecimal(str: string): boolean` - Checks if a string is a valid decimal number.
+Added `isOctal(str: string): boolean` - Checks if a string is a valid octal number (prefixed with `0o` or `-0o`).
+Added `isNumber(str: string): boolean` - Checks if a string is a valid number in any of the formats supported by the library (decimal, hexadecimal, binary, octal).
+
 ### 2.1.3
 Optimize performance for small numbers
 

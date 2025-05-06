@@ -1,3 +1,7 @@
+### 2.2.3
+Add validation for negative number input in square root function
+Add validation for negative number input in cube root function
+
 ### 2.2.2
 Throw an error if input for MAD and IQR is less than 3 elements
 Add home-page url

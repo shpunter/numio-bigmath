@@ -23,7 +23,7 @@
 * **Round Based on Significant Figures:** Control rounding based on the number of significant figures, crucial for scientific and engineering applications.
 * **Calculate Roots:**
     * **Calculate Square Root (`sqrt`):** Compute the square root of a number with arbitrary precision. You can also specify the desired precision of the result.
-    * **NEW! Calculate Cube Root (`cbrt`):** Determine the cube root of a number with arbitrary precision, allowing you to specify the desired accuracy.
+    * ****NEW! Calculate Cube Root (`cbrt`):** Determine the cube root of a number with arbitrary precision, allowing you to specify the desired accuracy.
 
 * **Chain Operations with Pipe:** Simplify complex calculations by chaining arithmetic operations in a readable and intuitive manner.
 * **Analyze Data Distribution:**
@@ -33,12 +33,12 @@
 * **Compare Numbers:**
     * **Check for Equality (`isEqual`):** Accurately determine if two arbitrary-precision numbers are equal.
     * **Check if Left is Greater (`isLeftGreater`):** Precisely compare two arbitrary-precision numbers to see if the left operand is greater than the right.
-    * **NEW! Check if Left is Greater or Equal (`isLeftGreaterOrEqual`):** Precisely compare two arbitrary-precision numbers to determine if the left operand is greater than or equal to the right.
+    * ****NEW! Check if Left is Greater or Equal (`isLeftGreaterOrEqual`):** Precisely compare two arbitrary-precision numbers to determine if the left operand is greater than or equal to the right.
 * **Sort Numbers Accurately:** Sort arrays of numbers, including negative and decimal values, in ascending or descending order, correctly handling string representations of numbers that JavaScript's native sort might misinterpret.
 * **Calculate Central Tendency:** Easily compute the mean (average) of a set of numbers.
 * **Identify Extremes:** Find the maximum and minimum values within an array of numbers.
-* **NEW! Calculate Absolute Value (`abs`):** Determine the non-negative value of a number, regardless of its sign.
-* **NEW! Convert Number to Another Base (`toBase`):** Seamlessly convert numbers between decimal, hexadecimal (HEX), binary, and octal representations.
+* ****NEW! Calculate Absolute Value (`abs`):** Determine the non-negative value of a number, regardless of its sign.
+* ****NEW! Convert Number to Another Base (`toBase`):** Seamlessly convert numbers between decimal, hexadecimal (HEX), binary, and octal representations.
 
 ## When is @numio/bigmath essential?
 
@@ -431,7 +431,7 @@ Download from NPM - https://www.npmjs.com/package/@numio/bigmath
 
 Download from JSR - https://jsr.io/@numio/bigmath
 
-Home page - https://github.com/shpunter/numio-bigmath/blob/main/README.md
+Home page - https://numio.deno.dev
 
 Change log - https://github.com/shpunter/numio-bigmath/blob/main/CHANGELOG.md
 

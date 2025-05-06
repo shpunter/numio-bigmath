@@ -1,3 +1,7 @@
+### 2.2.2
+Throw an error if input for MAD and IQR is less than 3 elements
+Add home-page url
+
 ### 2.2.1
 Add Number format validation examples (README.md)
 

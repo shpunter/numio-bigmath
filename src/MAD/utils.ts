@@ -6,8 +6,12 @@ import { sortInner } from "../sort/utils.ts";
 import type { TMADInner } from "./types.ts";
 
 export const MADInner: TMADInner = (array) => {
+  if (array.length < 3) {
+    throw Error("To calculate MAD you need at least 3 elements");
+  }
+
   const median = quartileInner(array).Q2;
-  
+
   const madArray = array.map<BI>((el) => {
     const [bi, fpe] = new PipeInner().sub([el, median]).calc();
 

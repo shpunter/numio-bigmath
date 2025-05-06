@@ -55,3 +55,9 @@ Deno.test("MAD [-41, -40, -39, -36, -15, -7]", () => {
 
   assertEquals(res, "3");
 });
+
+Deno.test("MAD [-1, 0, 1, 2, 3]", () => {
+  const res = MAD(["-1", "0", "1", "2", "3"]);
+
+  assertEquals(res, "1");
+});

@@ -51,7 +51,8 @@
     "octal",
     "binary",
     "decimal",
-    "binary"
+    "binary",
+    "cube root"
   ],
   "repository": {
     "type": "git",

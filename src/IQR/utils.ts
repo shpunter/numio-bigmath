@@ -9,6 +9,10 @@ import type { TIQRInner } from "./types.ts";
 export const MIN_LENGTH_FOR_MAD = 30;
 
 export const IQRInner: TIQRInner = (array, sigNum = false) => {
+  if (array.length < 3) {
+    throw Error("To calculate IQR you need at least 3 elements");
+  }
+
   const { Q1, Q3 } = quartileInner(array);
   const sub = new PipeInner().sub([Q3, Q1]).calc();
 

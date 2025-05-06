@@ -431,7 +431,7 @@ Download from NPM - https://www.npmjs.com/package/@numio/bigmath
 
 Download from JSR - https://jsr.io/@numio/bigmath
 
-Home page - https://github.com/shpunter/numio-bigmath/blob/main/README.md
+Home page - https://numio.deno.dev
 
 Change log - https://github.com/shpunter/numio-bigmath/blob/main/CHANGELOG.md
 

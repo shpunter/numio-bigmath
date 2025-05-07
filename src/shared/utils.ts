@@ -25,8 +25,18 @@ export const bi2s: BI2S = (bigInt, fpe) => {
 
 export const s2bi: S2BI = (str) => {
   const fpi = str.indexOf(".");
+  const isHex = str.startsWith("0x") || str.startsWith("-0x");
+  const isOctal = str.startsWith("0o") || str.startsWith("-0o");
+  const isBinary = str.startsWith("0b") || str.startsWith("-0b");
 
-  if (fpi === -1) return [BigInt(str), 0];
+  if (fpi === -1 && !isHex && !isOctal && !isBinary) return [BigInt(str), 0];
+
+  if (isHex || isBinary || isOctal) {
+    const isNegative = str[0] === "-";
+    const bi = BigInt(str.slice(isNegative ? 1 : 0));
+
+    return [isNegative ? -1n * bi : bi, 0];
+  }
 
   if (str.length < 15 && str[0] !== "0") {
     return [

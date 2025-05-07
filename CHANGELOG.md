@@ -1,3 +1,6 @@
+### 2.2.4
+Fix handling negative numbers for toBase function.
+
 ### 2.2.3
 Add validation for negative number input in square root function
 Add validation for negative number input in cube root function

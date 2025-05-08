@@ -1,3 +1,7 @@
+### 2.2.5
+Handle "0B", "0X", "0O", "-0B", "-0X", "-0O" as a start of the input for toBase function.
+Move documentation from README.md to web-site http://numio.deno.dev
+
 ### 2.2.4
 Fix handling negative numbers for toBase function.
 

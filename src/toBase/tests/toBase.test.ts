@@ -76,3 +76,16 @@ Deno.test("0xA toBase 2", () => {
 Deno.test("-0xA toBase 2", () => {
   assertEquals(toBase({ value: "-0xA", toBase: 2 }), "-0b1010");
 });
+
+Deno.test("-0XA toBase 2", () => {
+  assertEquals(toBase({ value: "-0XA", toBase: 2 }), "-0b1010");
+});
+
+Deno.test("0B11 toBase 10", () => {
+  assertEquals(toBase({ value: "0B11", toBase: 10 }), "3");
+});
+
+Deno.test("-0O3 toBase 10", () => {
+  assertEquals(toBase({ value: "-0O3", toBase: 10 }), "-3");
+});
+

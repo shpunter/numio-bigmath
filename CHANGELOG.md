@@ -1,3 +1,6 @@
+### 2.2.6
+Optimize performance for small numbers (add operation)
+
 ### 2.2.5
 Handle "0B", "0X", "0O", "-0B", "-0X", "-0O" as a start of the input for toBase function.
 Move documentation from README.md to web-site http://numio.deno.dev

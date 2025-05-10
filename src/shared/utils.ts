@@ -23,8 +23,8 @@ export const bi2s: BI2S = (bigInt, fpe) => {
   return `${fillHead(bigStr.length, fpe, isNeg, false)}${trimTail(after)}`;
 };
 
-export const s2bi: S2BI = (str) => {
-  const fpi = str.indexOf(".");
+export const s2bi: S2BI = (str, _fpi) => {
+  const fpi = _fpi ?? str.indexOf(".");
   const isHex = str.startsWith("0x") || str.startsWith("-0x") ||
     str.startsWith("-0X") || str.startsWith("0X");
   const isOctal = str.startsWith("0o") || str.startsWith("-0o") ||
@@ -45,13 +45,13 @@ export const s2bi: S2BI = (str) => {
     return [
       BigInt(+(str.slice(0, fpi) + str.slice(fpi + 1))),
       str.length - 1 - fpi,
-    ] as const;
+    ];
   }
 
   return [
     BigInt(str.slice(0, fpi) + str.slice(fpi + 1)),
     str.length - 1 - fpi,
-  ] as const;
+  ];
 };
 
 export const calcInner: CalcInner = (array, op, def) => {

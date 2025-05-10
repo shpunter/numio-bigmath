@@ -16,4 +16,4 @@ export type CalcInner = (
 ) => BI;
 
 export type BI2S = (bigInt: bigint, fpe: number) => string;
-export type S2BI = (str: string) => BI;
+export type S2BI = (str: string, fpi?: number) => BI;

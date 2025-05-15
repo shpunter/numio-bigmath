@@ -4,7 +4,7 @@ import { calcInner } from "../../shared/utils.ts";
 /** This function subtracts numbers (as string). */
 export function sub(array: string[]): string {
   const arrayInner = array.map((str) => s2bi(str));
-  const [bigInt, fpe] = calcInner(arrayInner, (a, b) => a - b);
+  const bi = calcInner(arrayInner, (a, b) => a - b);
 
-  return bi2s(bigInt, fpe);
+  return bi2s(bi);
 }

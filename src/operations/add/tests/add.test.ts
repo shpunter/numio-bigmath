@@ -291,6 +291,7 @@ Deno.test("0.8 + -0.99", () => {
   assertEquals(res, "-0.19");
 });
 
-
-
-
+Deno.test("0xA + 11", () => {
+  const res = add(["0xA", "11"]);
+  assertEquals(res, "21");
+});

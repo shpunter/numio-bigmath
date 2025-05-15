@@ -4,7 +4,7 @@ import { absInner } from "./utils.ts";
 
 /** Get absolute value of a number */
 export const abs: Abs = (value) => {
-  const [bi, fpe] = absInner(s2bi(value));
+  const bi = absInner(s2bi(value));
 
-  return bi2s(bi, fpe);
+  return bi2s(bi);
 };

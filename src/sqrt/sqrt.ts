@@ -6,10 +6,10 @@ import { sqrtInner } from "./utils.ts";
 /** Find square root of a number */
 export const sqrt: Sqrt = (value, precision) => {
   const valueInner = s2bi(value);
-  const [[bi, fpe], decimals] = sqrtInner(
+  const [bi, decimals] = sqrtInner(
     valueInner,
     precision ? s2bi(precision) : undefined,
   );
 
-  return round(bi2s(bi, fpe), { decimals });
+  return round(bi2s(bi), { decimals });
 };

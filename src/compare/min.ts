@@ -5,7 +5,7 @@ import { minInner } from "./utils.ts";
 /** This function returns min value. */
 export const min: Min = (array) => {
   const arrayInner = array.map((str) => s2bi(str));
-  const [bi, fpe] = minInner(arrayInner);
+  const bi = minInner(arrayInner);
 
-  return bi2s(bi, fpe);
+  return bi2s(bi);
 };

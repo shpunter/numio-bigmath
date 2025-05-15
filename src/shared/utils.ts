@@ -1,6 +1,13 @@
-import type { BI2S, CalcInner, FillHead, S2BI, TrimTail } from "./types.ts";
+import type {
+  BI2S,
+  CalcInner,
+  FillHead,
+  GetBigInt,
+  S2BI,
+  TrimTail,
+} from "./types.ts";
 
-export const bi2s: BI2S = (bigInt, fpe) => {
+export const bi2s: BI2S = ([bigInt, fpe]) => {
   if (bigInt === 0n) return "0";
 
   const isNeg = bigInt < 0n;
@@ -32,26 +39,47 @@ export const s2bi: S2BI = (str, _fpi) => {
   const isBinary = str.startsWith("0b") || str.startsWith("-0b") ||
     str.startsWith("-0B") || str.startsWith("0B");
 
-  if (fpi === -1 && !isHex && !isOctal && !isBinary) return [BigInt(str), 0];
+  if (fpi === -1 && !isHex && !isOctal && !isBinary) {
+    return [getBigInt(str, "di", fpi), 0];
+  }
 
   if (isHex || isBinary || isOctal) {
     const isNegative = str[0] === "-";
-    const bi = BigInt(str.slice(isNegative ? 1 : 0));
+    const bi = getBigInt(str, "hbo", fpi);
 
     return [isNegative ? -1n * bi : bi, 0];
   }
 
   if (str.length < 15 && str[0] !== "0") {
     return [
-      BigInt(+(str.slice(0, fpi) + str.slice(fpi + 1))),
+      getBigInt(str, "si", fpi),
       str.length - 1 - fpi,
     ];
   }
 
   return [
-    BigInt(str.slice(0, fpi) + str.slice(fpi + 1)),
+    getBigInt(str, "reg", fpi),
     str.length - 1 - fpi,
   ];
+};
+
+export const getBigInt: GetBigInt = (value, type, fpi) => {
+  let bi = 0n;
+
+  const typeMap = {
+    di: value,
+    hbo: value.slice(value[0] === "-" ? 1 : 0),
+    si: +(value.slice(0, fpi) + value.slice(fpi + 1)),
+    reg: value.slice(0, fpi) + value.slice(fpi + 1),
+  };
+
+  try {
+    bi = BigInt(typeMap[type]);
+  } catch (_) {
+    throw new Error(`${value} is not valid input`);
+  }
+
+  return bi;
 };
 
 export const calcInner: CalcInner = (array, op, def) => {

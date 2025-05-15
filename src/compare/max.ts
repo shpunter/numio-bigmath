@@ -5,7 +5,7 @@ import { maxInner } from "./utils.ts";
 /** This function returns max value. */
 export const max: Max = (array) => {
   const arrayInner = array.map((str) => s2bi(str));
-  const [bi, fpe] = maxInner(arrayInner);
+  const bi = maxInner(arrayInner);
 
-  return bi2s(bi, fpe);
+  return bi2s(bi);
 };

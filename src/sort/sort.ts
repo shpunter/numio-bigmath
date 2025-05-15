@@ -9,5 +9,5 @@ export const sort: Sort = (array, sorting = ASC) => {
 
   sortInner(arrayInner, sorting);
 
-  return arrayInner.map(([bi, fpe]) => bi2s(bi, fpe));
+  return arrayInner.map((bi) => bi2s(bi));
 };

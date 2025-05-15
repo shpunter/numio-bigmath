@@ -35,7 +35,7 @@ export const add = (array: string[]): string => {
 
   arrayInner[j] = [BigInt(sum), 0];
 
-  const [bigInt, fpe] = calcInner(arrayInner, (a, b) => a + b);
+  const bi = calcInner(arrayInner, (a, b) => a + b);
 
-  return bi2s(bigInt, fpe);
+  return bi2s(bi);
 };

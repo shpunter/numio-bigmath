@@ -5,7 +5,7 @@ import { IQRInner } from "./utils.ts";
 //** This function returns Interquartile Range */
 export const IQR: TIQR = (array, sigNum) => {
   const arrayInner = array.map((str) => s2bi(str));
-  const [bi, fpe] = IQRInner(arrayInner, sigNum);
+  const bi = IQRInner(arrayInner, sigNum);
 
-  return bi2s(bi, fpe);
+  return bi2s(bi);
 };

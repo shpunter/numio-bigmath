@@ -59,9 +59,7 @@ export class Pipe {
       throw new Error("Cannot calculate based on an undefined input.");
     }
 
-    const [bi, fpe] = this.#result;
-
-    return bi2s(bi, fpe);
+    return bi2s(this.#result);
   }
 
   resultToBase(radix: number): string {

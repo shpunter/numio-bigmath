@@ -57,7 +57,7 @@ Deno.test("10 / 3", () => {
   assertEquals(div(["10", "3"]), "3.33333333333333333333");
 });
 
-Deno.test("10 / 3, limit 5", () => {
+Deno.test("10 / 3, precision 5", () => {
   assertEquals(div(["10", "3"], 5), "3.33333");
 });
 
@@ -93,7 +93,7 @@ Deno.test("1 / 222", () => {
   assertEquals(div(["1", "222"]), "0.0045045045045045045");
 });
 
-Deno.test("1 / 222, limit 2", () => {
+Deno.test("1 / 222, precision 2", () => {
   assertEquals(div(["1", "222"], 2), "0");
 });
 

@@ -1,3 +1,4 @@
+import { tryBigInt } from "../shared/utils.ts";
 import type {
   CompareInner,
   IsEqualInner,
@@ -46,8 +47,8 @@ export const compareInner: CompareInner = (l, r) => {
       if (fpeL === fpeR) return [l, 0];
     }
 
-    const fpeBiL = BigInt(fpeL);
-    const fpeBiR = BigInt(fpeR);
+    const fpeBiL = tryBigInt(fpeL);
+    const fpeBiR = tryBigInt(fpeR);
     const max = fpeBiL > fpeBiR ? fpeBiL : fpeBiR;
     const powL = biL * 10n ** (max - fpeBiL);
     const powR = biR * 10n ** (max - fpeBiR);
@@ -63,8 +64,8 @@ export const compareInner: CompareInner = (l, r) => {
       if (fpeL === fpeR) return [l, 0];
     }
 
-    const fpeBiL = BigInt(fpeL);
-    const fpeBiR = BigInt(fpeR);
+    const fpeBiL = tryBigInt(fpeL);
+    const fpeBiR = tryBigInt(fpeR);
     const max = fpeBiL > fpeBiR ? fpeBiL : fpeBiR;
     const powL = biL * 10n ** (max - fpeBiL);
     const powR = biR * 10n ** (max - fpeBiR);

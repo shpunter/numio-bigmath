@@ -20,8 +20,8 @@ export class PipeInner {
     return this;
   }
 
-  div(array: BI[], limit = 20): PipeInner {
-    this.result = divInner(array, limit, this.result);
+  div(array: BI[], precision = 20): PipeInner {
+    this.result = divInner(array, precision, this.result);
 
     return this;
   }

@@ -17,11 +17,9 @@ export const sqrtInner: SqrtInner = (value, prec = [1n, 13], max = 100) => {
       .add([guess])
       .mul([[5n, 1]]).result ?? [0n, 0];
 
-    let [bi, fpe] = new PipeInner().sub([nextGuess, guess]).calc();
+    const bi = new PipeInner().sub([nextGuess, guess]).abs().calc();
 
-    if (bi < 0n) bi *= -1n;
-
-    if (isLeftGreaterInner({ left: prec, right: [bi, fpe] })) {
+    if (isLeftGreaterInner({ left: prec, right: bi })) {
       return [nextGuess, prec[1]];
     }
 

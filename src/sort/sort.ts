@@ -5,7 +5,11 @@ import { sortInner } from "./utils.ts";
 
 /** Using this function sort an array. */
 export const sort: Sort = (array, sorting = ASC) => {
-  const arrayInner = array.map((str) => s2bi(str));
+  const arrayInner = Array(array.length);
+
+  for (let i = 0; i < array.length; i++) {
+    arrayInner[i] = s2bi(array[i]);
+  }
 
   sortInner(arrayInner, sorting);
 

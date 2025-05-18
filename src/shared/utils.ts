@@ -1,12 +1,4 @@
-import type {
-  BI2S,
-  CalcInner,
-  FillHead,
-  GetBigInt,
-  S2BI,
-  TrimTail,
-} from "./types.ts";
-
+import type { BI2S, CalcInner, FillHead, S2BI, TrimTail } from "./types.ts";
 export const bi2s: BI2S = ([bigInt, fpe]) => {
   if (bigInt === 0n) return "0";
 

@@ -13,9 +13,7 @@ export const MADInner: TMADInner = (array) => {
   const median = quartileInner(array).Q2;
 
   const madArray = array.map<BI>((el) => {
-    const [bi, fpe] = new PipeInner().sub([el, median]).calc();
-
-    return bi < 0n ? [bi * -1n, fpe] : [bi, fpe];
+    return new PipeInner().sub([el, median]).abs().calc();
   });
 
   const sorted = sortInner(madArray, ASC);

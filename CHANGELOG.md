@@ -1,4 +1,7 @@
 ### 2.2.7
+Better error handling
+
+### 2.2.7
 Throw an error if input is not valid. In the error show exact invalid input.
 
 ### 2.2.6

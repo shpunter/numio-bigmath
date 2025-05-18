@@ -4,7 +4,12 @@ import { MADInner } from "./utils.ts";
 
 //** This function returns Median Absolute Deviation */
 export const MAD: TMAD = (array) => {
-  const arrayInner = array.map((str) => s2bi(str));
+  const arrayInner = Array(array.length);
+
+  for (let i = 0; i < array.length; i++) {
+    arrayInner[i] = s2bi(array[i]);
+  }
+
   const bi = MADInner(arrayInner);
 
   return bi2s(bi);

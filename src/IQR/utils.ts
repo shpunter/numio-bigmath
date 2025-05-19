@@ -14,15 +14,15 @@ export const IQRInner: TIQRInner = (array, sigNum = false) => {
   }
 
   const { Q1, Q3 } = quartileInner(array);
-  const sub = new PipeInner().sub([Q3, Q1]).calc();
+  const { bi: sub } = new PipeInner().sub([Q3, Q1]);
 
   if (sigNum) {
-    const isEqual = isEqualInner({ left: Q3, right: Q1 });
+    const isNilIQR = isEqualInner({ left: Q3, right: Q1 });
     const MAD = MADInner(array);
     const isNil = isEqualInner({ left: MAD, right: [0n, 0] });
     const nonNilMAD: BI = isNil ? [1n, 0] : MAD;
 
-    return isEqual ? nonNilMAD : sub;
+    return isNilIQR ? nonNilMAD : sub;
   }
 
   return sub;

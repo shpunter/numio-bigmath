@@ -33,14 +33,13 @@ export class PipeInner {
     return this;
   }
 
-  abs(): PipeInner{
+  abs(): PipeInner {
     this.result && (this.result = absInner(this.result));
 
     return this;
   }
 
-  calc(): BI {
-    const res =  this.result ?? [0n, 0];
-    return res;
+  get bi() {
+    return this.result ?? [0n, 0];
   }
 }

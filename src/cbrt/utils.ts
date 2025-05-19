@@ -15,12 +15,12 @@ export const cbrtInner: CbrtInner = (value, prec = [1n, 13], max = 100) => {
 
   for (let i = 0; i < max; i++) {
     const mul = calcInner([guess, guess], (a, b) => a * b);
-    const nextGuess = new PipeInner().add([
+    const { bi: nextGuess } = new PipeInner().add([
       calcInner([guess, [2n, 0]], (a, b) => a * b),
       divInner([value, mul], 20),
-    ]).div([[3n, 0]]).result ?? [0n, 0];
+    ]).div([[3n, 0]]);
 
-    const bi = new PipeInner().sub([nextGuess, guess]).abs().result ?? [0n, 0];
+    const { bi } = new PipeInner().sub([nextGuess, guess]).abs();
 
     if (isLeftGreaterInner({ left: prec, right: bi })) {
       return [nextGuess, prec[1]];

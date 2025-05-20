@@ -23,6 +23,8 @@ import { isBinary } from "./src/isValid/isBinary.ts";
 import { isDecimal } from "./src/isValid/isDecimal.ts";
 import { isOctal } from "./src/isValid/isOctal.ts";
 import { isNumber } from "./src/isValid/isNumber.ts";
+import { FDR } from "./src/FDR/fdr.ts";
+
 
 export {
   abs,
@@ -49,5 +51,6 @@ export {
   isBinary,
   isDecimal,
   isOctal,
-  isNumber
+  isNumber,
+  FDR
 };

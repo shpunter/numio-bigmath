@@ -3,14 +3,14 @@ import type { TMAD } from "./types.ts";
 import { MADInner } from "./utils.ts";
 
 //** This function returns Median Absolute Deviation */
-export const MAD: TMAD = (array) => {
+export const MAD: TMAD = (array, options = { from: "median" }) => {
   const arrayInner = Array(array.length);
 
   for (let i = 0; i < array.length; i++) {
     arrayInner[i] = s2bi(array[i]);
   }
 
-  const bi = MADInner(arrayInner);
+  const bi = MADInner(arrayInner, options);
 
   return bi2s(bi);
 };

@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert/equals";
-import { FDR } from "../fdr.ts";
+import { FDR } from "../../../index.ts";
 
 Deno.test("[20, 20, 22, 24, 28, 28, 32, 32, 32, 35, 35, 40, 46, 79], useMadAbove: 30", () => {
   const array = [20, 20, 22, 24, 28, 28, 32, 32, 32, 35, 35, 40, 46, 79];

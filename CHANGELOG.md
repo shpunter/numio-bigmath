@@ -1,3 +1,6 @@
+### 2.3.1
+Fix import
+
 ### 2.2.8
 Better error handling
 Add FDR - Freedman-Diaconis Rule

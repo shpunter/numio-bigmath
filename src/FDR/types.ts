@@ -14,10 +14,10 @@ type OptionsInner = {
 
 export type FDRInner = (array: BI[], options: OptionsInner) => {
   binWidth: BI;
-  binsNum: BI;
+  binNum: BI;
 };
 
 export type TFDR = (array: string[], options?: Options) => {
   binWidth: string;
-  binsNum: string;
+  binNum: string;
 };

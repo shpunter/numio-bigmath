@@ -4,7 +4,12 @@ import { quartileInner } from "./utils.ts";
 
 /** This function returns Q1, Q2, Q3 (quartile). */
 export const quartile: Quartile = (array) => {
-  const arrayInner = array.map((str) => s2bi(str));
+  const arrayInner = Array(array.length);
+
+  for (let i = 0; i < array.length; i++) {
+    arrayInner[i] = s2bi(array[i]);
+  }
+
   const { Q1, Q2, Q3 } = quartileInner(arrayInner);
 
   return {

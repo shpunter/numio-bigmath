@@ -1,68 +1,54 @@
 # @numio/bigmath: Precise Arithmetic Beyond JavaScript's Limits
 
-**Do you struggle with inaccurate calculations involving very large or very small numbers, or decimal numbers with high precision in JavaScript?**
-
-`@numio/bigmath` is your solution! This library provides a robust set of functions for performing **arbitrary-precision arithmetic**, effectively overcoming the limitations of JavaScript's built-in `Number` type. Say goodbye to unexpected rounding errors and precision loss when dealing with numbers that exceed 15 significant digits or involve complex decimal operations.
-
-## Why Choose @numio/bigmath?
-
-**Solve Precision Problems:**
-
-* **Handle Numbers of Any Size:** Perform calculations on integers and decimals of virtually unlimited length, without the risk of JavaScript's `Number` limitations.
-* **Eliminate Precision Loss:** Achieve accurate results even with numeric literals exceeding 15 significant digits, ensuring the integrity of your calculations.
-* **Precise Decimal Operations:** Execute addition, subtraction, multiplication, and division on decimal numbers with guaranteed accuracy, including scenarios with negative values.
-* ****NEW! Multi-Base Number Support:** Seamlessly perform arithmetic operations involving **hexadecimal (HEX), octal, binary, and decimal numbers**, offering unparalleled flexibility in handling various number formats.
-* ****NEW! Number Format Validation:** Easily validate if a string represents a valid **hexadecimal (`isHex`)**, **binary (`isBinary`)**, **decimal (`isDecimal`)**, **octal (`isOctal`)**, or any valid **number (`isNumber`)** format supported by the library.
+@numio/bigmath is a powerful and reliable JavaScript library designed for precise numerical computations, overcoming common limitations of standard JavaScript number handling. It provides a rich set of functionalities for arithmetic, statistical analysis, data manipulation, and number base conversions, ensuring accuracy even with extremely large numbers and solving notorious floating-point precision issues like `0.1 + 0.2 !== 0.3`.
 
 
+## Latest Update
 
-**Unlock Advanced Numerical Operations:**
+This update introduces several enhancements and new functionalities:
 
-* **Control Division Precision:** Specify the exact number of digits after the decimal point for division results, with a default precision of 20 digits for high accuracy.
-* **Flexible Rounding:** Round numbers to the nearest integer or a specific number of decimal places with various rounding modes (up, down, half-up, half-down, half-even, half-odd) to meet your exact requirements.
-* **Round Based on Significant Figures:** Control rounding based on the number of significant figures, crucial for scientific and engineering applications.
-* **Calculate Roots:**
-    * **Calculate Square Root (`sqrt`):** Compute the square root of a number with arbitrary precision. You can also specify the desired precision of the result.
-    * ****NEW! Calculate Cube Root (`cbrt`):** Determine the cube root of a number with arbitrary precision, allowing you to specify the desired accuracy.
+- **Improved Error Handling:** The application now features more robust error handling to provide clearer feedback and prevent unexpected crashes.
+- **Freedman-Diaconis Rule (FDR):** Added the Freedman-Diaconis rule for optimal binwidth estimation in histogram creation.
+- **Median Absolute Deviation (MAD):** Implemented calculation for the Median Absolute Deviation, allowing users to compute it based on either the `median` or the `mean` of the dataset.
 
-* **Chain Operations with Pipe:** Simplify complex calculations by chaining arithmetic operations in a readable and intuitive manner.
-* **Analyze Data Distribution:**
-    * **Calculate Quartiles (Q1, Q2, Q3):** Understand the spread and central tendency of your numerical data, helping identify outliers and the shape of the distribution.
-    * **Calculate Median Absolute Deviation (MAD):** Measure the dispersion of a dataset, providing a robust alternative to standard deviation that is less sensitive to outliers.
-    * **Calculate Interquartile Range (IQR):** Determine the spread of the middle 50% of your data, useful for identifying the central bulk and potential outliers.
-* **Compare Numbers:**
-    * **Check for Equality (`isEqual`):** Accurately determine if two arbitrary-precision numbers are equal.
-    * **Check if Left is Greater (`isLeftGreater`):** Precisely compare two arbitrary-precision numbers to see if the left operand is greater than the right.
-    * ****NEW! Check if Left is Greater or Equal (`isLeftGreaterOrEqual`):** Precisely compare two arbitrary-precision numbers to determine if the left operand is greater than or equal to the right.
-* **Sort Numbers Accurately:** Sort arrays of numbers, including negative and decimal values, in ascending or descending order, correctly handling string representations of numbers that JavaScript's native sort might misinterpret.
-* **Calculate Central Tendency:** Easily compute the mean (average) of a set of numbers.
-* **Identify Extremes:** Find the maximum and minimum values within an array of numbers.
-* ****NEW! Calculate Absolute Value (`abs`):** Determine the non-negative value of a number, regardless of its sign.
-* ****NEW! Convert Number to Another Base (`toBase`):** Seamlessly convert numbers between decimal, hexadecimal (HEX), binary, and octal representations.
+## Existing Functionality
 
-## When is @numio/bigmath essential?
+The application currently supports the following operations:
 
-This library is particularly invaluable in applications where numerical accuracy and the ability to handle large numbers are paramount:
-
-* **Financial Applications:** Accurate calculations for large sums of money, precise interest rates, and complex financial modeling.
-* **Scientific Computing:** Working with extremely large or small numbers in simulations, data analysis, and research.
-* **Cryptography:** Implementing cryptographic algorithms that rely on high-precision arithmetic.
-* **E-commerce and Payments:** Handling precise amounts and avoiding rounding errors in transactions.
-* **Data Analysis and Statistics:** Performing accurate statistical calculations on datasets with varying scales.
-* **Low-Level Operations:** Working with different number representations commonly found in computer systems.
-* **Any Scenario Exceeding JavaScript's Number Limits:** Ensuring the reliability of your calculations when dealing with numbers beyond the safe integer limit or requiring more than 15 significant digits.
-
-With `@numio/bigmath`, you can confidently perform complex arithmetic operations with the assurance of accuracy, regardless of the size or precision of the numbers involved.
-
-### Latest update
-
-**New Functions added:**
-
-* `isHex` - Checks if a string is a valid hexadecimal number (prefixed with `0x` or `-0x`).
-* `isBinary` - Checks if a string is a valid binary number (prefixed with `0b` or `-0b`).
-* `isDecimal` - Checks if a string is a valid decimal number.
-* `isOctal` - Checks if a string is a valid octal number (prefixed with `0o` or `-0o`).
-* `isNumber` - Checks if a string is a valid number in any of the formats supported by the library (decimal, hexadecimal, binary, octal).
+- **Arithmetic:**
+    - `add`: Addition of numbers.
+    - `sub`: Subtraction of numbers.
+    - `mul`: Multiplication of numbers.
+    - `div`: Division of numbers.
+- **Rounding:**
+    - `round`: Rounding numbers to a specified number of decimal places.
+- **Data Manipulation:**
+    - `pipe`: Chaining operations together.
+    - `sort`: Sorting arrays.
+- **Statistical Measures:**
+    - `quartile`: Calculating quartiles of a dataset.
+    - `mean`: Calculating the average of a dataset.
+    - `max`: Finding the maximum value in a dataset.
+    - `min`: Finding the minimum value in a dataset.
+    - `MAD`: Calculating the Median Absolute Deviation (based on either median or mean).
+    - `IQR`: Calculating the Interquartile Range.
+- **Comparison:**
+    - `isEqual`: Checking if two values are equal.
+    - `isLeftGreater`: Checking if the left value is greater than the right value.
+    - `isLeftGreaterOrEqual`: Checking if the left value is greater than or equal to the right value.
+- **Mathematical Functions:**
+    - `sqrt`: Calculating the square root of a number.
+    - `cbrt`: Calculating the cube root of a number.
+    - `abs`: Calculating the absolute value of a number.
+- **Number Base Conversion:**
+    - `toBase`: Converting a number to a specified base.
+    - `isHex`: Checking if a string is a valid hexadecimal number.
+    - `isBinary`: Checking if a string is a valid binary number.
+    - `isDecimal`: Checking if a string is a valid decimal number.
+    - `isOctal`: Checking if a string is a valid octal number.
+    - `isNumber`: Checking if a value is a number.
+- **Utility:**
+    - `Benchmark`: Functionality for benchmarking code execution.
 
 # Install:
 

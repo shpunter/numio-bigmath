@@ -28,10 +28,10 @@ export class Pipe {
     return this;
   }
 
-  div(array: string[], limit = 20): Pipe {
+  div(array: string[], precision = 20): Pipe {
     const arrayInner = array.map((str) => s2bi(str));
 
-    this.#result = divInner(arrayInner, limit, this.#result);
+    this.#result = divInner(arrayInner, precision, this.#result);
 
     return this;
   }

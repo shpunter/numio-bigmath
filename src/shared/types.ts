@@ -17,9 +17,3 @@ export type CalcInner = (
 
 export type BI2S = (value: BI) => string;
 export type S2BI = (str: string, fpi?: number) => BI;
-
-export type GetBigInt = (
-  value: string,
-  type: "di" | "hbo" | "si" | "reg",
-  fpi: number,
-) => bigint;

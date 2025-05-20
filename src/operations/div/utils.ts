@@ -1,6 +1,7 @@
+import { tryBigInt } from "../../shared/utils.ts";
 import type { DivInner } from "./types.ts";
 
-export const divInner: DivInner = (array, limit, def) => {
+export const divInner: DivInner = (array, precision, def) => {
   let bigInt = def ? def[0] : array[0][0];
   let fpe = def ? def[1] : array[0][1];
   const isNeg = bigInt < 0n;
@@ -17,14 +18,14 @@ export const divInner: DivInner = (array, limit, def) => {
     }
     
     if (dpLen > 0 && fpe < dpLen) {
-      bigInt *= 10n ** BigInt(dpLen - fpe);
+      bigInt *= 10n ** tryBigInt(dpLen - fpe);
       fpe = 0;
     }
     
     if (dpLen > 0 && fpe > dpLen) fpe = fpe - dpLen;
 
     while ((bigInt < 0 ? bigInt * -1n : bigInt) < bigCurrent) {
-      if (limit <= fpe) return [bigInt / bigCurrent, fpe];
+      if (precision <= fpe) return [bigInt / bigCurrent, fpe];
       
       fpe += 1;
       bigInt *= 10n;
@@ -33,7 +34,7 @@ export const divInner: DivInner = (array, limit, def) => {
     r = bigInt - q * bigCurrent;
     bigInt = q;
 
-    while ((isNeg ? r < 0n: r > 0n) && fpe < limit) {
+    while ((isNeg ? r < 0n: r > 0n) && fpe < precision) {
       const nextBigInt = r * 10n;
       const nextQ = nextBigInt / bigCurrent;
       const nextRemained = nextBigInt - nextQ * bigCurrent;

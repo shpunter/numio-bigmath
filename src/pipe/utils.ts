@@ -2,6 +2,7 @@ import { calcInner } from "../shared/utils.ts";
 
 import type { BI } from "../shared/types.ts";
 import { divInner } from "../operations/div/utils.ts";
+import { absInner } from "../abs/utils.ts";
 
 export class PipeInner {
   result: BI | undefined;
@@ -20,8 +21,8 @@ export class PipeInner {
     return this;
   }
 
-  div(array: BI[], limit = 20): PipeInner {
-    this.result = divInner(array, limit, this.result);
+  div(array: BI[], precision = 20): PipeInner {
+    this.result = divInner(array, precision, this.result);
 
     return this;
   }
@@ -32,8 +33,13 @@ export class PipeInner {
     return this;
   }
 
-  calc(): BI {
-    const res =  this.result ?? [0n, 0];
-    return res;
+  abs(): PipeInner {
+    this.result && (this.result = absInner(this.result));
+
+    return this;
+  }
+
+  get bi() {
+    return this.result ?? [0n, 0];
   }
 }

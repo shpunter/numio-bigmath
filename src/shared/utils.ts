@@ -1,19 +1,11 @@
-import type {
-  BI2S,
-  CalcInner,
-  FillHead,
-  GetBigInt,
-  S2BI,
-  TrimTail,
-} from "./types.ts";
-
+import type { BI2S, CalcInner, FillHead, S2BI, TrimTail } from "./types.ts";
 export const bi2s: BI2S = ([bigInt, fpe]) => {
   if (bigInt === 0n) return "0";
 
   const isNeg = bigInt < 0n;
   isNeg && (bigInt *= -1n);
 
-  const dp = bigInt % (10n ** BigInt(fpe));
+  const dp = bigInt % (10n ** tryBigInt(fpe));
   const bigStr = bigInt.toString();
   let fpIdx = bigStr.length - fpe;
 
@@ -39,47 +31,26 @@ export const s2bi: S2BI = (str, _fpi) => {
   const isBinary = str.startsWith("0b") || str.startsWith("-0b") ||
     str.startsWith("-0B") || str.startsWith("0B");
 
-  if (fpi === -1 && !isHex && !isOctal && !isBinary) {
-    return [getBigInt(str, "di", fpi), 0];
-  }
+  if (fpi === -1 && !isHex && !isOctal && !isBinary) return [tryBigInt(str), 0];
 
   if (isHex || isBinary || isOctal) {
     const isNegative = str[0] === "-";
-    const bi = getBigInt(str, "hbo", fpi);
+    const bi = tryBigInt(str.slice(isNegative ? 1 : 0));
 
     return [isNegative ? -1n * bi : bi, 0];
   }
 
   if (str.length < 15 && str[0] !== "0") {
     return [
-      getBigInt(str, "si", fpi),
+      tryBigInt(tryNumber(str.slice(0, fpi) + str.slice(fpi + 1), str)),
       str.length - 1 - fpi,
     ];
   }
 
   return [
-    getBigInt(str, "reg", fpi),
+    tryBigInt(str.slice(0, fpi) + str.slice(fpi + 1)),
     str.length - 1 - fpi,
   ];
-};
-
-export const getBigInt: GetBigInt = (value, type, fpi) => {
-  let bi = 0n;
-
-  const typeMap = {
-    di: value,
-    hbo: value.slice(value[0] === "-" ? 1 : 0),
-    si: +(value.slice(0, fpi) + value.slice(fpi + 1)),
-    reg: value.slice(0, fpi) + value.slice(fpi + 1),
-  };
-
-  try {
-    bi = BigInt(typeMap[type]);
-  } catch (_) {
-    throw new Error(`${value} is not valid input`);
-  }
-
-  return bi;
 };
 
 export const calcInner: CalcInner = (array, op, def) => {
@@ -101,11 +72,11 @@ export const calcInner: CalcInner = (array, op, def) => {
     } else {
       if (totalFpe < fpe) {
         const fpDiff = fpe - totalFpe;
-        totalBi = op(totalBi * (10n ** BigInt(fpDiff)), bi);
+        totalBi = op(totalBi * (10n ** tryBigInt(fpDiff)), bi);
       }
 
       if (totalFpe > fpe) {
-        totalBi = op(totalBi, bi * (10n ** BigInt(totalFpe - fpe)));
+        totalBi = op(totalBi, bi * (10n ** tryBigInt(totalFpe - fpe)));
       }
 
       if (totalFpe === fpe) totalBi = op(totalBi, bi);
@@ -139,4 +110,24 @@ export const trimTail: TrimTail = (str) => {
   }
 
   return str;
+};
+
+export const tryBigInt = <T extends number | string>(value: T) => {
+  let bi: bigint;
+
+  try {
+    bi = BigInt(value);
+  } catch (_) {
+    throw new Error(`Invalid input: ${value}`);
+  }
+
+  return bi;
+};
+
+export const tryNumber = (value: string, origin = value) => {
+  const num = +value;
+
+  if (Number.isNaN(num)) throw new Error(`Invalid input: ${origin}`);
+
+  return num;
 };

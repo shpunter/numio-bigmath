@@ -6,7 +6,7 @@ Deno.test("[20, 20, 22, 24, 28, 28, 32, 32, 32, 35, 35, 40, 46, 79], useMadAbove
   const result = FDR(array.map((el) => el.toString()), { useMadAbove: 30 });
 
   assertEquals(result, {
-    binsNum: "12",
+    binNum: "12",
     binWidth: "4.97895920019746064602",
   });
 });
@@ -16,7 +16,7 @@ Deno.test("[20, 20, 22, 24, 28, 28, 32, 32, 32, 35, 35, 40, 46, 79], useMadAbove
   const result = FDR(array.map((el) => el.toString()), { useMadAbove: 0 });
 
   assertEquals(result, {
-    binsNum: "7",
+    binNum: "7",
     binWidth: "9.12809186702867785104",
   });
 });
@@ -25,49 +25,49 @@ Deno.test("[6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49]", () => {
   const array = [6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49];
   const result = FDR(array.map((el) => el.toString()));
 
-  assertEquals(result, { binsNum: "2", binWidth: "25.18008152926611351152" });
+  assertEquals(result, { binNum: "2", binWidth: "25.18008152926611351152" });
 });
 
 Deno.test("[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 6, 7, 7, 10]", () => {
   const array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 6, 7, 7, 10];
   const result = FDR(array.map((el) => el.toString()));
 
-  assertEquals(result, { binsNum: "7", binWidth: "1.3172675120166990199" });
+  assertEquals(result, { binNum: "7", binWidth: "1.3172675120166990199" });
 });
 
 Deno.test("[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 6, 7, 7, 10], useMadAbove: 30", () => {
   const array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 6, 7, 7, 10];
   const result = FDR(array.map((el) => el.toString()), { useMadAbove: 30 });
 
-  assertEquals(result, { binsNum: "14", binWidth: "0.65863375600834950995" });
+  assertEquals(result, { binNum: "14", binWidth: "0.65863375600834950995" });
 });
 
 Deno.test("[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 6, 7, 7, 10], useMadAbove: 30, madFrom: 'mean'", () => {
   const array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 6, 7, 7, 10];
   const result = FDR(array.map((el) => el.toString()), { useMadAbove: 30, madFrom: "mean" });
 
-  assertEquals(result, { binsNum: "9", binWidth: "1.03499590229883494421" });
+  assertEquals(result, { binNum: "9", binWidth: "1.03499590229883494421" });
 });
 
 Deno.test("[6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49]", () => {
   const array = [6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49];
   const result = FDR(array.map((el) => el.toString()));
 
-  assertEquals(result, { binsNum: "2", binWidth: "25.18008152926611351152" });
+  assertEquals(result, { binNum: "2", binWidth: "25.18008152926611351152" });
 });
 
 Deno.test("[6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49]", () => {
   const array = [6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49];
   const result = FDR(array.map((el) => el.toString()), { madFrom: "mean", useMadAbove: 30 });
 
-  assertEquals(result, { binsNum: "5", binWidth: "8.82937923753487097157" });
+  assertEquals(result, { binNum: "5", binWidth: "8.82937923753487097157" });
 });
 
 Deno.test("[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 100]", () => {
   const array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 100];
   const result = FDR(array.map((el) => el.toString()));
 
-  assertEquals(result, { binsNum: "90", binWidth: "1.10643537782165792133056724488877918853" });
+  assertEquals(result, { binNum: "90", binWidth: "1.10643537782165792133056724488877918853" });
 });
 
 Deno.test("[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 100]", () => {
@@ -77,7 +77,7 @@ Deno.test("[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 100]", () => {
   const result = FDR(array, { madFrom: "mean" });
 
   assertEquals(result, {
-    binsNum: "17",
+    binNum: "17",
     binWidth: "5.86805905737557861852",
   });
 });
@@ -132,7 +132,7 @@ Deno.test(`[
   const result = FDR(array, { madFrom: "mean" });
 
   assertEquals(result, {
-    binsNum: "90",
+    binNum: "90",
     binWidth: "11.1330731055609738054380991870634861093713",
   });
 });

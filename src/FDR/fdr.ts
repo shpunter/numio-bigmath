@@ -9,14 +9,14 @@ export const FDR: TFDR = (array, options) => {
     arrayInner[i] = s2bi(array[i]);
   }
 
-  const { binWidth, binsNum } = fdrInner(arrayInner, {
+  const { binWidth, binNum } = fdrInner(arrayInner, {
     useMadAbove: options?.useMadAbove ?? 0,
     maxBinNumber: options?.maxBinNumber ?? 90,
     madFrom: options?.madFrom ?? "median",
   });
 
   return {
-    binsNum: bi2s(binsNum),
+    binNum: bi2s(binNum),
     binWidth: bi2s(binWidth),
   };
 };

@@ -9,13 +9,13 @@ import { tryBigInt } from "../shared/utils.ts";
 import type { FDRInner } from "./types.ts";
 
 const getBinsNum = (range: BI, binWidth: BI): BI => {
-  let binsNum = new PipeInner().div([range, binWidth], 10).bi;
+  let binNum = new PipeInner().div([range, binWidth], 10).bi;
 
-  if (binsNum[1] > 0) {
-    binsNum = [new PipeInner().div([range, binWidth], 0).bi[0] + 1n, 0];
+  if (binNum[1] > 0) {
+    binNum = [new PipeInner().div([range, binWidth], 0).bi[0] + 1n, 0];
   }
 
-  return binsNum;
+  return binNum;
 };
 
 export const fdrInner: FDRInner = (
@@ -30,17 +30,17 @@ export const fdrInner: FDRInner = (
   const [cbrtLen] = cbrtInner([tryBigInt(array.length), 0]);
   const binWidth = new PipeInner().mul([[2n, 0], validIQR]).div([cbrtLen]).bi;
   const range = new PipeInner().sub([array[array.length - 1], array[0]]).bi;
-  const binsNum = getBinsNum(range, binWidth);
+  const binNum = getBinsNum(range, binWidth);
   const maxBinNum: BI = [tryBigInt(options.maxBinNumber), 0];
   const scale: BI =
-    isLeftGreaterOrEqualInner({ left: binsNum, right: maxBinNum })
-      ? divInner([binsNum, maxBinNum], 20)
+    isLeftGreaterOrEqualInner({ left: binNum, right: maxBinNum })
+      ? divInner([binNum, maxBinNum], 20)
       : [1n, 0];
 
   const scaledBinWidth = new PipeInner().mul([binWidth, scale]).bi;
 
   return {
     binWidth: scaledBinWidth,
-    binsNum: getBinsNum(range, scaledBinWidth),
+    binNum: getBinsNum(range, scaledBinWidth),
   };
 };

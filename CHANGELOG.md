@@ -1,4 +1,4 @@
-### 2.2.7
+### 2.2.8
 Better error handling
 Add FDR - Freedman-Diaconis Rule
 MAD - median of the absolute deviations from `median` or `mean`

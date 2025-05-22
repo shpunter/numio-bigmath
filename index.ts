@@ -24,7 +24,7 @@ import { isDecimal } from "./src/isValid/isDecimal.ts";
 import { isOctal } from "./src/isValid/isOctal.ts";
 import { isNumber } from "./src/isValid/isNumber.ts";
 import { FDR } from "./src/FDR/fdr.ts";
-
+import { mod } from "./src/mod/mod.ts";
 
 export {
   abs,
@@ -52,5 +52,6 @@ export {
   isDecimal,
   isOctal,
   isNumber,
-  FDR
+  FDR,
+  mod
 };

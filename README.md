@@ -32,6 +32,7 @@ The application currently supports the following operations:
     - `min`: Finding the minimum value in a dataset.
     - `MAD`: Calculating the Median Absolute Deviation (based on either median or mean).
     - `IQR`: Calculating the Interquartile Range.
+    - `FDR`: Freedman-Diaconis rule
 - **Comparison:**
     - `isEqual`: Checking if two values are equal.
     - `isLeftGreater`: Checking if the left value is greater than the right value.
@@ -40,6 +41,7 @@ The application currently supports the following operations:
     - `sqrt`: Calculating the square root of a number.
     - `cbrt`: Calculating the cube root of a number.
     - `abs`: Calculating the absolute value of a number.
+    - `mod`: Modulo operation, which finds the remainder when one number is divided by another
 - **Number Base Conversion:**
     - `toBase`: Converting a number to a specified base.
     - `isHex`: Checking if a string is a valid hexadecimal number.

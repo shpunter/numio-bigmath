@@ -5,11 +5,10 @@
 
 ## Latest Update
 
-This update introduces several enhancements and new functionalities:
+This update introduces new functionalities:
 
-- **Improved Error Handling:** The application now features more robust error handling to provide clearer feedback and prevent unexpected crashes.
-- **Freedman-Diaconis Rule (FDR):** Added the Freedman-Diaconis rule for optimal binwidth estimation in histogram creation.
-- **Median Absolute Deviation (MAD):** Implemented calculation for the Median Absolute Deviation, allowing users to compute it based on either the `median` or the `mean` of the dataset.
+* **Modulo Operation (`mod`):** A new `mod` function has been added for performing modulo operations.
+* **Pipe Function Enhancement:** The `mod` function has been integrated into the `Pipe` function for seamless chaining of operations.
 
 ## Existing Functionality
 

@@ -1,7 +1,7 @@
 {
   "name": "@numio/bigmath",
   "description": "@numio/bigmath is an arbitrary-precision arithmetic library. It can be used for basic operations with decimal numbers (integers and float)",
-  "version": "2.3.2",
+  "version": "2.4.0",
   "keywords": [
     "precision",
     "arithmetic",
@@ -54,7 +54,8 @@
     "binary",
     "cube root",
     "FDR",
-    "Freedman-Diaconis Rule"
+    "Freedman-Diaconis Rule",
+    "mod"
   ],
   "repository": {
     "type": "git",

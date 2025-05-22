@@ -1,4 +1,5 @@
 export type BI = [bigint, number];
+export type Input = string[];
 
 export type FillHead = (
   len: number,

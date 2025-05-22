@@ -5,11 +5,10 @@
 
 ## Latest Update
 
-This update introduces several enhancements and new functionalities:
+This update introduces new functionalities:
 
-- **Improved Error Handling:** The application now features more robust error handling to provide clearer feedback and prevent unexpected crashes.
-- **Freedman-Diaconis Rule (FDR):** Added the Freedman-Diaconis rule for optimal binwidth estimation in histogram creation.
-- **Median Absolute Deviation (MAD):** Implemented calculation for the Median Absolute Deviation, allowing users to compute it based on either the `median` or the `mean` of the dataset.
+* **Modulo Operation (`mod`):** A new `mod` function has been added for performing modulo operations.
+* **Pipe Function Enhancement:** The `mod` function has been integrated into the `Pipe` function for seamless chaining of operations.
 
 ## Existing Functionality
 
@@ -32,6 +31,7 @@ The application currently supports the following operations:
     - `min`: Finding the minimum value in a dataset.
     - `MAD`: Calculating the Median Absolute Deviation (based on either median or mean).
     - `IQR`: Calculating the Interquartile Range.
+    - `FDR`: Freedman-Diaconis rule
 - **Comparison:**
     - `isEqual`: Checking if two values are equal.
     - `isLeftGreater`: Checking if the left value is greater than the right value.
@@ -40,6 +40,7 @@ The application currently supports the following operations:
     - `sqrt`: Calculating the square root of a number.
     - `cbrt`: Calculating the cube root of a number.
     - `abs`: Calculating the absolute value of a number.
+    - `mod`: Modulo operation, which finds the remainder when one number is divided by another
 - **Number Base Conversion:**
     - `toBase`: Converting a number to a specified base.
     - `isHex`: Checking if a string is a valid hexadecimal number.

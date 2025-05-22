@@ -1,3 +1,6 @@
+### 2.4.0
+Add Mod - Modulo operation, which finds the remainder when one number is divided by another
+
 ### 2.3.2
 FDR - change variable name to make it consistent
 

@@ -3,7 +3,6 @@ import type { BI, BI2S } from "../shared/types.ts";
 import { divInner } from "../operations/div/utils.ts";
 import { absInner } from "../abs/utils.ts";
 import { modInner } from "../mod/utils.ts";
-import type { ModOptions } from "../mod/types.ts";
 
 /** Using this function you can chain operations (add, sub, div, mul). */
 export class Pipe {
@@ -55,12 +54,12 @@ export class Pipe {
     return this;
   }
 
-  mod(value: string, options: ModOptions = { precision: 20 }): Pipe {
+  mod(value: string): Pipe {
     if (!this.#result) {
       throw new Error("Value is undefined.");
     }
 
-    this.#result = modInner(this.#result, s2bi(value), options);
+    this.#result = modInner(this.#result, s2bi(value));
 
     return this;
   }

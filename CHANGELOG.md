@@ -1,3 +1,6 @@
+### 2.4.1
+Modulo - fix calculation
+
 ### 2.4.0
 Add Mod - Modulo operation, which finds the remainder when one number is divided by another
 

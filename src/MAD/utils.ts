@@ -13,8 +13,8 @@ export const MADInner: TMADInner = (array, { from }) => {
 
   const fromMap = {
     median: quartileInner(array).Q2,
-    mean: meanInner(array)
-  } 
+    mean: meanInner(array),
+  };
 
   const madArray = array.map<BI>((el) => {
     return new PipeInner().sub([el, fromMap[from]]).abs().bi;

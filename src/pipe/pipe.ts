@@ -55,10 +55,11 @@ export class Pipe {
   }
 
   mod(value: string): Pipe {
-    if (!this.#result) {
-      throw new Error("Value is undefined.");
-    }
-
+    const right = s2bi(value);
+    if (!this.#result) throw new Error("Value is undefined.");
+    if (this.#result[1] > 0) throw new Error(`${bi2s(this.#result)} is not valid. It should be integer to take a modulo.`);
+    if (right[1] > 0) throw new Error(`${value} is not valid. It should be integer to take a modulo.`);
+    
     this.#result = modInner(this.#result, s2bi(value));
 
     return this;

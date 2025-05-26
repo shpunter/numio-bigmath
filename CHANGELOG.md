@@ -1,3 +1,6 @@
+### 2.4.2
+Improve performance of MAD, FDR, sorting
+
 ### 2.4.1
 Modulo - fix calculation
 

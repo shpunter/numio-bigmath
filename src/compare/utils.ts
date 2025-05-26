@@ -31,6 +31,9 @@ export const minInner: MinInner = (array) => {
 export const compareInner: CompareInner = (l, r) => {
   const [biL, fpeL] = l;
   const [biR, fpeR] = r;
+  
+  if (fpeL === fpeR && biL > biR) return [l, 1];
+  if (fpeL === fpeR && biL < biR) return [r, -1];
 
   if (biL > 0n && biR < 0n) return [l, 1];
   if (biL < 0n && biR > 0n) return [r, -1];
